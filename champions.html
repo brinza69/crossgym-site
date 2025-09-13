@@ -1,0 +1,591 @@
+<!doctype html>
+<html lang="ro">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Campionii CrossGym</title>
+  <meta name="description" content="Rezultatele sportivilor CrossGym la campionate naționale și internaționale." />
+  <link rel="icon" href="assets/icons/favicon.png" />
+  <meta property="og:title" content="Campionii CrossGym" />
+  <meta property="og:description" content="Rezultatele sportivilor CrossGym la campionate naționale și internaționale." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="assets/icons/logo.png">
+  <link rel="canonical" href="https://exemplu-domeniu.ro/" />
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"HealthClub","name":"CrossGym Târgoviște","url":"https://exemplu-domeniu.ro/","image":"assets/og-image.jpg","address":{"@type":"PostalAddress","addressLocality":"Târgoviște","addressRegion":"Dâmbovița","addressCountry":"RO"},"telephone":"+40 735 393 772"}</script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css" />
+  <script defer src="js/main.js"></script>
+
+  <!-- ===== Stiluri specifice paginii (scoped) ===== -->
+  <style>
+    :root{ --bg:#0f1012; --panel:#15171b; --muted:#b7bcc6; --text:#f7f7fb; --brand:#ffd21f; --border:#242730; --r:18px; }
+
+    /* Hero subțire cu gradient discret */
+    .champ-hero{
+      position:relative; isolation:isolate;
+      padding:70px 0 34px;
+      background:
+        radial-gradient(1000px 280px at 20% -80%, rgba(255,210,31,.10), transparent 60%),
+        radial-gradient(900px 260px at 80% -80%, rgba(255,210,31,.08), transparent 60%);
+      border-bottom:1px solid var(--border);
+      text-align:center;
+    }
+    .champ-hero h1{ font-size:42px; line-height:1.1; margin:0 0 10px; }
+    .champ-hero p{ color:var(--muted); max-width:780px; margin:0 auto; }
+
+    /* Grid campioni */
+    .champs{ padding:46px 0 18px; }
+    .champs-grid{
+      display:grid; gap:26px;
+      grid-template-columns:repeat(3,1fr);
+    }
+    @media (max-width:1100px){ .champs-grid{ grid-template-columns:repeat(2,1fr); } }
+    @media (max-width:700px){ .champs-grid{ grid-template-columns:1fr; } }
+
+    /* Card cu glow + lift */
+    .champ{
+      position:relative; overflow:hidden; border-radius:var(--r);
+      background:var(--panel); border:1px solid var(--border);
+      box-shadow:var(--shadow);
+      transition:transform .35s cubic-bezier(.2,.8,.2,1), box-shadow .35s cubic-bezier(.2,.8,.2,1), border-color .35s ease;
+      text-align:center; /* CENTRARE toate textele din card */
+    }
+    .champ::before, .champ::after{
+      content:""; position:absolute; inset:-2px; border-radius:inherit; pointer-events:none; z-index:0;
+      opacity:.0; transition:opacity .35s ease;
+    }
+    .champ::before{ background:radial-gradient(450px 180px at 0% 0%, rgba(255,210,31,.28), transparent 60%); }
+    .champ::after { background:radial-gradient(450px 180px at 100% 100%, rgba(255,210,31,.18), transparent 60%); }
+    .champ:hover{
+      transform: translateY(-8px);
+      border-color: rgba(255,210,31,.35);
+      box-shadow:0 18px 60px rgba(0,0,0,.5), 0 0 40px rgba(255,210,31,.12) inset;
+    }
+    .champ:hover::before,.champ:hover::after{ opacity:.9; }
+
+    /* Media */
+    .champ-media{ position:relative; overflow:hidden; border-top-left-radius:var(--r); border-top-right-radius:var(--r); background:#0b0c0e; }
+    .champ-media img{ display:block; width:100%; height:420px; object-fit:cover; object-position:center; transform:scale(1.02); transition:transform .6s cubic-bezier(.2,.6,.2,1); }
+    .champ:hover .champ-media img{ transform:scale(1.08); }
+
+    /* Badge de loc pe poză */
+    .tag-rank{
+      position:absolute; left:12px; bottom:12px;
+      background:var(--brand); color:#000; font-weight:900; font-size:12px; letter-spacing:.4px;
+      padding:6px 10px; border-radius:999px; box-shadow:0 6px 16px rgba(255,210,31,.35);
+    }
+
+    .champ-body{ position:relative; z-index:1; padding:18px 18px 22px; }
+    .champ h3{ margin:0 0 6px; font-size:22px; }
+    .champ .role{
+      display:inline-block; font-size:13px; padding:6px 10px; border-radius:999px;
+      background:#1d1f24; border:1px solid var(--border); color:#c9ced9; margin-bottom:8px;
+    }
+    .champ .muted{ margin:6px 0 0; }
+
+    /* Reveal la scroll */
+    .reveal{ opacity:0; transform:translateY(16px); transition:opacity .6s ease, transform .6s ease; }
+    .reveal.show{ opacity:1; transform:none; }
+
+    /* Spacing față de header/footer */
+    .site-header + .champ-hero{ margin-top: 6px; }
+    .champs + .site-footer{ margin-top: 30px; }
+
+    @media (prefers-reduced-motion: reduce){
+      .champ, .champ-media img { transition:none !important; }
+    }
+
+    /* ——— LIGHTBOX peste TOT + blocare scroll ——— */
+.lightbox{
+  position: fixed;
+  inset: 0;
+  z-index: 9999;                 /* peste header & „pill-uri” */
+  background: rgba(0,0,0,.86);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+.lightbox img{
+  max-width: 95vw;
+  max-height: 90vh;
+  border-radius: 16px;
+  box-shadow: 0 14px 48px rgba(0,0,0,.6);
+}
+.lightbox.show{ display: flex; }
+body.lb-open{ overflow: hidden; } /* oprește derularea fundalului */
+
+
+
+
+/* Spațiere pe mobil și tabletă */
+@media (max-width: 1100px) {
+  .champs {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+}
+
+@media (max-width: 700px) {
+  .champs {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .champs-grid {
+    grid-template-columns: 1fr; /* un card pe rând */
+  }
+}
+
+
+.champ-hero{
+  position:relative; isolation:isolate;
+  padding:70px 0 34px;
+  background:
+    radial-gradient(1000px 280px at 20% -80%, rgba(255,210,31,.10), transparent 60%),
+    radial-gradient(900px 260px at 80% -80%, rgba(255,210,31,.08), transparent 60%);
+  border-bottom:1px solid var(--border);
+  text-align:center;
+  overflow:hidden;
+}
+
+/* imagine trofee subtilă */
+.champ-hero::after{
+  content:"";
+  position:absolute; inset:0;
+  background-image: url("assets/champs/raft-trofee-crossgym-targoviste-hero.webp");
+  background-size:cover;
+  background-position:center;
+  opacity:.18;             /* ajustează între .12 și .25 */
+  filter: saturate(.6) blur(1px);
+  z-index:-1;
+}
+
+/* overlay pentru lizibilitate text */
+.champ-hero::before{
+  content:"";
+  position:absolute; inset:0;
+  background:linear-gradient(to bottom,
+    rgba(15,16,18,.55),
+    rgba(15,16,18,.35) 40%,
+    rgba(15,16,18,.55));
+  z-index:-1;
+}
+
+
+
+    
+  </style>
+</head>
+<body>
+<!-- ====================== HEADER ====================== -->
+<header class="site-header">
+  <div class="container nav">
+    <a class="logo" href="index.html" aria-label="Pagina principală CrossGym">
+      <img class="brand-logo brand-logo--nav" src="assets/icons/logo.png" alt="CrossGym Târgoviște" loading="eager" decoding="async">
+      <span class="brand-name">CrossGym</span>
+    </a>
+
+    <nav id="menu" class="menu" aria-label="Navigație principală">
+      <a href="about.html">Despre noi</a>
+      <a href="coaches.html">Antrenori</a>
+      <a href="pricing.html">Abonamente</a>
+      <a href="champions.html" class="active">Campionii</a>
+      <a href="gallery.html">Galerie</a>
+      <a href="contact.html" class="btn menu-contact">Contact</a>
+    </nav>
+
+    <a href="contact.html" class="btn contact-cta">Contact</a>
+    <button class="burger" aria-label="Deschide meniul" aria-controls="menu" aria-expanded="false">☰</button>
+  </div>
+</header>
+
+<!-- ====================== HERO MIC ====================== -->
+<section class="champ-hero">
+  <div class="container">
+    <h1>Campionii noștri</h1>
+    <p>Rezultate reale pe scenă: național, european și internațional. Ne mândrim cu sportivii care își depășesc limitele.</p>
+  </div>
+</section>
+
+<!-- ====================== GRID CAMPIONI ====================== -->
+<section class="container champs">
+  <div class="champs-grid">
+
+
+    <!-- Andrei Alexandrescu -->
+<article class="champ reveal">
+  <div class="champ-media">
+    <img
+      src="assets/champs/andrei-alexandrescu-vicecampion-mondial.webp"
+      alt="Andrei Alexandrescu – Vicecampion Mondial la Culturism"
+      class="champ-photo" loading="lazy" decoding="async"
+      width="1200" height="1500">
+    <span class="tag-rank">Locul 1</span>
+  </div>
+  <div class="champ-body">
+    <h3>Andrei Alexandrescu</h3>
+    <span class="role">Campion Național</span>
+    <p class="muted">Campionatul Național de Culturism și Fitness</p>
+  </div>
+</article>
+
+<!-- Iulian Nedelcu -->
+<article class="champ reveal">
+  <div class="champ-media">
+    <img
+      src="assets/champs/iulian-nedelcu-olympia-amateur-2022.webp"
+      alt="Iulian Nedelcu – Sportiv CrossGym, medalie la Olympia Amateur 2022 și multiplu campion național"
+      class="champ-photo" loading="lazy" decoding="async"
+      width="1200" height="1500">
+    <span class="tag-rank">Locul 1</span>
+  </div>
+  <div class="champ-body">
+    <h3>Iulian Nedelcu</h3>
+    <span class="role">Campion</span>
+    <p class="muted">
+      Campionatul Național de Culturism și Fitness
+    </p>
+  </div>
+</article>
+
+
+<!-- Ștefănescu Cătălin -->
+<article class="champ reveal">
+  <div class="champ-media">
+    <img
+      src="assets/champs/stefanescu-catalin-campion-absolut-grand-prix-romania.webp"
+      alt="Ștefănescu Cătălin – Campion Absolut la Grand Prix România"
+      class="champ-photo" loading="lazy" decoding="async"
+      width="1200" height="1500">
+    <span class="tag-rank">Locul 1</span>
+  </div>
+  <div class="champ-body">
+    <h3>Ștefănescu Cătălin</h3>
+    <span class="role">Campion Absolut</span>
+    <p class="muted">Grand Prix România</p>
+  </div>
+</article>
+
+<!-- Nicolescu Claudia -->
+<article class="champ reveal">
+  <div class="champ-media">
+    <img
+      src="assets/champs/nicolescu-claudia-campioana-absoluta-bodyfitness.webp"
+      alt="Nicolescu Claudia – Campioana Absolută la BodyFitness"
+      class="champ-photo" loading="lazy" decoding="async"
+      width="1200" height="1500">
+    <span class="tag-rank">Absolut</span>
+  </div>
+  <div class="champ-body">
+    <h3>Nicolescu Claudia</h3>
+    <span class="role">Campioană Absolută</span>
+    <p class="muted">Campionatul Național de Culturism și Fitness</p>
+  </div>
+</article>
+
+<!-- Simion Robert -->
+<article class="champ reveal">
+  <div class="champ-media">
+    <img
+      src="assets/champs/simion-robert-semifinalist-cupa-romaniei.webp"
+      alt="Simion Robert – Semifinalist la Cupa României"
+      class="champ-photo" loading="lazy" decoding="async"
+      width="1200" height="1500">
+    <span class="tag-rank">Semifinală</span>
+  </div>
+  <div class="champ-body">
+    <h3>Simion Robert</h3>
+    <span class="role">Semifinalist</span>
+    <p class="muted">Cupa României</p>
+  </div>
+</article>
+
+<!-- Dragoș Antonio -->
+<article class="champ reveal">
+  <div class="champ-media">
+    <img
+      src="assets/champs/dragos-antonio-locul-2-cupa-romaniei-bodybuilding.webp"
+      alt="Dragoș Antonio – Locul 2 (Vicecampion) la Cupa României, Bodybuilding"
+      class="champ-photo" loading="lazy" decoding="async"
+      width="1200" height="1500">
+    <span class="tag-rank">Locul 2</span>
+  </div>
+  <div class="champ-body">
+    <h3>Dragoș Antonio</h3>
+    <span class="role">Vicecampion</span>
+    <p class="muted">Cupa României</p>
+  </div>
+</article>
+
+
+<!-- Ianis Ciurezu -->
+<article class="champ reveal">
+  <div class="champ-media">
+    <img
+      src="assets/champs/ianis-ciurezu-locul-3-campionatul-national.webp"
+      alt="Ianis Ciurezu – Locul 3 la Campionatul Național de Culturism și Fitness"
+      class="champ-photo" loading="lazy" decoding="async"
+      width="1200" height="1500">
+    <span class="tag-rank">Locul 3</span>
+  </div>
+  <div class="champ-body">
+    <h3>Ianis Ciurezu</h3>
+    <span class="role">Medaliat cu bronz</span>
+    <p class="muted">Campionatul Național de Culturism și Fitness</p>
+  </div>
+</article>
+
+<!-- Cătălin -->
+<article class="champ reveal">
+  <div class="champ-media">
+    <img
+      src="assets/champs/tudorache-catalin-vicecampion-locul-2-cupa-romaniei.webp"
+      alt="Tudorache Cătălin – Vicecampion (Locul 2) la Cupa României"
+      class="champ-photo" loading="lazy" decoding="async"
+      width="1200" height="1500">
+    <span class="tag-rank">Locul 2</span>
+  </div>
+  <div class="champ-body">
+    <h3>Tudorache Cătălin</h3>
+    <span class="role">Vicecampion</span>
+    <p class="muted">Cupa României</p>
+  </div>
+</article>
+
+
+
+
+
+
+<!-- Cristi -->
+<article class="champ reveal">
+  <div class="champ-media">
+    <img
+      src="assets/champs/simion-cristi-finalist-locul-4-cupa-romaniei.webp"
+      alt="Simion Cristi – Finalist (Locul 4) la Cupa României"
+      class="champ-photo" loading="lazy" decoding="async"
+      width="1200" height="1500">
+    <span class="tag-rank">Locul 4</span>
+  </div>
+  <div class="champ-body">
+    <h3>Simion Cristi</h3>
+    <span class="role">Finalist</span>
+    <p class="muted">Cupa României</p>
+  </div>
+</article>
+
+
+
+
+
+    <!-- Robica -->
+    <article class="champ reveal">
+      <div class="champ-media">
+        <img class="champ-photo"
+     src="assets/champs/joitoiu-robert-campion-national-locul-1.webp"
+     alt="Joițoiu Robert – Campion Național, Locul 1 la Campionatul Național de Culturism și Fitness"
+     loading="lazy" decoding="async" width="800" height="1000">
+
+
+        <span class="tag-rank">Locul 1</span>
+      </div>
+      <div class="champ-body">
+        <h3>Joițoiu Robert</h3>
+        <span class="role">Campion Național</span>
+        <p class="muted">Campionatul Național de Culturism și Fitness</p>
+      </div>
+    </article>
+
+
+    
+
+    
+
+    
+
+
+
+
+
+
+
+
+<!-- Mihai Laura -->
+<article class="champ reveal">
+  <div class="champ-media">
+    <img
+      src="assets/champs/mihai-laura-campioana-locul-1-campionat-national.webp"
+      alt="Mihai Laura – Campioană, Locul 1 la Campionatele Naționale"
+      class="champ-photo" loading="lazy" decoding="async"
+      width="1200" height="1500">
+    <span class="tag-rank">Locul 1</span>
+  </div>
+  <div class="champ-body">
+    <h3>Mihai Laura</h3>
+    <span class="role">Campioană</span>
+    <p class="muted">Campionatul Național de Culturism și Fitness</p>
+  </div>
+</article>
+
+<!-- Alex Stănescu -->
+<article class="champ reveal">
+  <div class="champ-media">
+    <img
+      src="assets/champs/alex-stanescu-vicecampion-locul-2-cupa-romaniei.webp"
+      alt="Alex Stănescu – Vicecampion, Locul 2 la Cupa României"
+      class="champ-photo" loading="lazy" decoding="async"
+      width="1200" height="1500">
+    <span class="tag-rank">Locul 2</span>
+  </div>
+  <div class="champ-body">
+    <h3>Alex Stănescu</h3>
+    <span class="role">Vicecampion</span>
+    <p class="muted">Cupa României</p>
+  </div>
+</article>
+
+
+
+
+
+
+    
+</section>
+
+
+<!-- ====================== FOOTER (3 coloane) ====================== -->
+<footer class="site-footer" id="footer">
+  <div class="container">
+    <div class="footer-main">
+      <!-- stânga: brand + descriere -->
+      <div class="f-col f-brand">
+        <div class="f-brand-head">
+          <img class="brand-logo brand-logo--footer" src="assets/icons/logo.png" alt="CrossGym Târgoviște">
+          <strong>CrossGym Târgoviște</strong>
+        </div>
+        <p class="muted">
+          CrossGym susține performanța. Sala ta de fitness modernă din Târgoviște.
+        </p>
+      </div>
+
+      <!-- centru: link-uri rapide -->
+      <nav class="f-col f-links" aria-label="Link-uri rapide">
+        <h4>Link-uri rapide</h4>
+        <ul class="f-list">
+          <li><a href="index.html">Acasă</a></li>
+          <li><a href="about.html">Despre noi</a></li>
+          <li><a href="coaches.html">Antrenori</a></li>
+          <li><a href="gallery.html">Galerie</a></li>
+          <li><a href="champions.html">Campionii Noștri</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+
+      <!-- dreapta: contact -->
+      <div class="f-col f-contact">
+        <ul class="f-contacts">
+          <li>
+            <span class="ico">
+              <!-- pin -->
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" aria-hidden="true">
+                <path d="M12 22s7-5.33 7-12a7 7 0 1 0-14 0c0 6.67 7 12 7 12Z" stroke="currentColor" stroke-width="2"/>
+                <circle cx="12" cy="10" r="2.5" stroke="currentColor" stroke-width="2"/>
+              </svg>
+            </span>
+            <a class="address-link glow-link"
+               href="https://www.google.com/maps?q=Strada+G%C4%83rii+6,+Complex+PAVCOM,+T%C3%A2rgovi%C8%99te"
+               target="_blank" rel="noopener">
+              Strada Gării, Nr. 6<br>Complex PAVCOM, etajul 2<br>Târgoviște, Dâmbovița
+            </a>
+          </li>
+        
+          <li>
+            <span class="ico">
+              <!-- phone -->
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" aria-hidden="true">
+                <path d="M22 16.92v2a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.08 4.18 2 2 0 0 1 4.06 2h2a2 2 0 0 1 2 1.72c.12.9.32 1.78.59 2.63a2 2 0 0 1-.45 2.11L7.09 9.91a16 16 0 0 0 6 6l1.45-1.11a2 2 0 0 1 2.11-.45c.85.27 1.73.47 2.63.59A2 2 0 0 1 22 16.92Z" stroke="currentColor" stroke-width="2"/>
+              </svg>
+            </span>
+            <a href="tel:0735393772">0735 393 772</a>
+          </li>
+        
+          <li>
+            <span class="ico">
+              <!-- mail -->
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" aria-hidden="true">
+                <path d="M4 6h16a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2Z" stroke="currentColor" stroke-width="2"/>
+                <path d="M22 8l-10 6L2 8" stroke="currentColor" stroke-width="2"/>
+              </svg>
+            </span>
+            <a href="mailto:iulian.nedelcu.v@gmail.com">iulian.nedelcu.v@gmail.com</a>
+          </li>
+        
+          <!-- Instagram -->
+          <li>
+            <span class="ico">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" aria-hidden="true">
+                <rect x="2" y="2" width="20" height="20" rx="5" stroke="currentColor" stroke-width="2"/>
+                <circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="2"/>
+                <circle cx="17" cy="7" r="1.5" fill="currentColor"/>
+              </svg>
+            </span>
+            <a href="https://www.instagram.com/crossgym_tgv/" target="_blank" rel="noopener">
+              Instagram
+            </a>
+          </li>
+        
+          <!-- Facebook -->
+          <li>
+            <span class="ico">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" aria-hidden="true">
+                <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3V2Z" fill="currentColor"/>
+              </svg>
+            </span>
+            <a href="https://www.facebook.com/crossgym.ro?locale=ro_RO" target="_blank" rel="noopener">
+              Facebook
+            </a>
+          </li>
+        </ul>
+        
+      </div>
+    </div>
+
+    <div class="ft-legal">© 2025 CrossGym Târgoviște. Toate drepturile rezervate.</div>
+  </div>
+</footer>ter>
+
+<!-- Lightbox global (deja în styles.css) -->
+<div class="lightbox" id="lb" role="dialog" aria-modal="true" aria-label="Imagine mărită"><img alt="" src=""></div>
+
+<!-- Micro-JS: reveal + lightbox pentru poze (dacă nu e în main.js) -->
+<script>
+  // 1) Reveal on scroll
+  (function(){
+    const els = document.querySelectorAll('.reveal');
+    if(!els.length) return;
+    const io = new IntersectionObserver((entries)=>{
+      entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('show'); io.unobserve(e.target); }});
+    }, {rootMargin:"0px 0px -10% 0px", threshold:.1});
+    els.forEach(el => io.observe(el));
+  })();
+
+  // 2) Lightbox pentru click pe poză (folosește #lb global)
+  (function(){
+    const lb = document.getElementById('lb');
+    if(!lb) return;
+    const img = lb.querySelector('img');
+    document.querySelectorAll('.champ-photo').forEach(ph => {
+      ph.style.cursor = 'zoom-in';
+      ph.addEventListener('click', () => {
+        img.src = ph.src; img.alt = ph.alt || '';
+        lb.classList.add('show');
+      });
+    });
+    lb.addEventListener('click', () => lb.classList.remove('show'));
+  })();
+</script>
+
+</body>
+</html>

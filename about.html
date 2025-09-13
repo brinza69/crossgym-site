@@ -1,0 +1,285 @@
+<!doctype html>
+<html lang="ro">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Despre CrossGym Târgoviște</title>
+  <meta name="description" content="Află povestea CrossGym Târgoviște: sală modernă de fitness și culturism, echipă de antrenori campioni și comunitate activă." />
+  <link rel="icon" href="assets/icons/logo.png" />
+  <meta property="og:title" content="Despre CrossGym Târgoviște" />
+  <meta property="og:description" content="Află povestea CrossGym Târgoviște: sală modernă de fitness și culturism, echipă de antrenori campioni și comunitate activă." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="assets/icons/logo.png">
+  <link rel="canonical" href="https://exemplu-domeniu.ro/" />
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "HealthClub", "name": "CrossGym Târgoviște", "url": "https://exemplu-domeniu.ro/", "image": "assets/og-image.jpg", "address": {"@type": "PostalAddress", "addressLocality": "Târgoviște", "addressRegion": "Dâmbovița", "addressCountry": "RO"}, "telephone": "+40 735 393 772"}</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css" />
+  <script defer src="js/main.js"></script>
+
+  <style>
+    /* Galerie About – fix imagini */
+.about-section .gallery .ratio {
+  position: relative;
+  width: 100%;
+  padding-top: 100%; /* pătrat */
+  overflow: hidden;
+  border-radius: 12px;
+  background: #0b0c0e;
+}
+
+.about-section .gallery img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;      /* taie surplusul, dar păstrează proporțiile */
+  object-position: center; /* subiectul rămâne centrat */
+  transition: transform 0.5s ease;
+}
+
+.about-section .gallery img:hover {
+  transform: scale(1.05); /* mic efect elegant pe hover */
+}
+
+  </style>
+</head>
+<body>
+<!-- ====================== HEADER ====================== -->
+<header class="site-header">
+    <div class="container nav">
+    <!-- Stânga: logo -->
+    <a class="logo" href="index.html" aria-label="Pagina principală CrossGym">
+        <img class="brand-logo brand-logo--nav" src="assets/icons/logo.png" alt="CrossGym Târgoviște" loading="eager" decoding="async">
+        <span class="brand-name">CrossGym</span>
+      </a>
+      
+  
+  
+      <!-- Mijloc: meniu (CENTRAT pe desktop) -->
+      <nav id="menu" class="menu" aria-label="Navigație principală">
+        <a href="about.html" class="active">Despre noi</a>
+        <a href="coaches.html">Antrenori</a>
+        <a href="pricing.html">Abonamente</a>
+        <a href="champions.html">Campionii</a>
+        <a href="gallery.html">Galerie</a>
+        <!-- Contact în meniu pentru MOBIL (ascuns pe desktop din CSS) -->
+        <a href="contact.html" class="btn menu-contact">Contact</a>
+      </nav>
+  
+      <!-- Dreapta: Contact (DESKTOP) + burger (MOBIL) -->
+      <a href="contact.html" class="btn contact-cta">Contact</a>
+      <button class="burger" aria-label="Deschide meniul" aria-controls="menu" aria-expanded="false">☰</button>
+    </div>
+  </header>
+
+  <!-- ===== HERO ===== -->
+  <section class="about-section about-intro">
+    <div class="container">
+      <h2 class="about-title">
+        Despre <span>CrossGym</span>
+      </h2>
+  
+      <p class="about-lead">
+        CrossGym Târgoviște este mai mult decât o sală de fitness – este locul
+        unde performanța se întâlnește cu pasiunea, iar obiectivele tale devin realitate.
+      </p>
+    </div>
+  </section>
+  
+
+  <!-- ===== MISIUNEA NOASTRĂ (split) ===== -->
+  <section class="about-section about-mission">
+    <div class="container split">
+      <div>
+        
+        <h2>Misiunea <span class="accent">Noastră</span></h2>
+        <p>Fondată cu viziunea de a crea un spațiu unde fiecare persoană să-și poată depăși limitele, CrossGym Târgoviște oferă o experiență completă de fitness într-un mediu modern și motivant.</p>
+        <p>Sala noastră dispune de o suprafață de <strong>1500mp</strong>, fiind astfel cea mai mare sală din județul Dâmbovița. Sala dispune de aparatură de la <strong>branduri de top</strong>, precum Nautilius, Gymleco, TechnoGym, Cybex, Hammer Strength, Matrix, Watson, Life Fitness, Hoist.</p>
+        <p>Echipa noastră de antrenori profesioniști și echipamentele de ultimă generație se combină pentru a-ți oferi toate instrumentele necesare să-ți atingi obiectivele, indiferent de nivelul tău de pregătire.</p>
+        <p>La CrossGym, credem că fiecare antrenament este o oportunitate de a deveni o versiune mai bună a ta. Susținem performanța prin dedicare, profesionalism și o comunitate unită de aceleași valori!</p>
+      </div>
+  
+      <img class="about-photo" src="assets/about-gallery/misiune.webp"
+           alt="Misiunea nostră Crossgym">
+    </div>
+  </section>
+  
+
+  
+
+  <!-- ===== VALORI ===== -->
+  <section class="container reveal">
+    <h2 class="center">Valorile <span class="accent">Noastre</span></h2>
+    <p class="lead center narrow">Principiile care ne ghidează în fiecare zi și ne definesc ca o comunitate unită.</p>
+
+    <div class="cards four" style="margin-top:18px">
+      <div class="panel card">
+        <div class="body center">
+          <div class="value-ico">🎯</div>
+          <h3>Performanță</h3>
+          <p class="muted">Susținem excelența în fiecare antrenament și încurajăm depășirea limitelor personale.</p>
+        </div>
+      </div>
+      <div class="panel card">
+        <div class="body center">
+          <div class="value-ico">👥</div>
+          <h3>Comunitate</h3>
+          <p class="muted">Un mediu prietenos unde fiecare membru se simte parte dintr-o familie.</p>
+        </div>
+      </div>
+      <div class="panel card">
+        <div class="body center">
+          <div class="value-ico">🏅</div>
+          <h3>Profesionalism</h3>
+          <p class="muted">Servicii de cea mai înaltă calitate oferite de antrenori certificați și echipamente moderne.</p>
+        </div>
+      </div>
+      <div class="panel card">
+        <div class="body center">
+          <div class="value-ico">⏱️</div>
+          <h3>Dedicare</h3>
+          <p class="muted">Suntem alături de tine în fiecare pas al călătoriei tale către o viață mai sănătoasă.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CIFRE ===== -->
+  <section class="band">
+    <div class="container">
+      <h2 class="center">CrossGym în <span class="accent">Cifre</span></h2>
+  
+      <div class="stats">
+        <div class="stat">
+          <div class="num" data-count="500" data-suffix="+">0</div>
+          <div class="lbl">Membri activi</div>
+        </div>
+  
+        <div class="stat">
+          <div class="num" data-count="3">0</div>
+          <div class="lbl">Antrenori experți</div>
+        </div>
+  
+        <div class="stat">
+          <div class="num" data-count="100" data-suffix="+">0</div>
+          <div class="lbl">Echipamente moderne</div>
+        </div>
+  
+        <div class="stat">
+          <div class="num" data-count="2013">0</div>
+          <div class="lbl">Anul înființării</div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+          
+
+
+
+
+
+<!-- ====================== FOOTER (3 coloane) ====================== -->
+<footer class="site-footer" id="footer">
+  <div class="container">
+    <div class="footer-main">
+      <!-- stânga: brand + descriere -->
+      <div class="f-col f-brand">
+        <div class="f-brand-head">
+          <img class="brand-logo brand-logo--footer" src="assets/icons/logo.png" alt="CrossGym Târgoviște">
+          <strong>CrossGym Târgoviște</strong>
+        </div>
+        <p class="muted">
+          CrossGym susține performanța. Sala ta de fitness modernă din Târgoviște.
+        </p>
+      </div>
+
+      <!-- centru: link-uri rapide -->
+      <nav class="f-col f-links" aria-label="Link-uri rapide">
+        <h4>Link-uri rapide</h4>
+        <ul class="f-list">
+          <li><a href="index.html">Acasă</a></li>
+          <li><a href="about.html">Despre noi</a></li>
+          <li><a href="coaches.html">Antrenori</a></li>
+          <li><a href="gallery.html">Galerie</a></li>
+          <li><a href="champions.html">Campionii Noștri</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+
+      <!-- dreapta: contact -->
+      <div class="f-col f-contact">
+        <ul class="f-contacts">
+          <li>
+            <span class="ico">
+              <!-- pin -->
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" aria-hidden="true">
+                <path d="M12 22s7-5.33 7-12a7 7 0 1 0-14 0c0 6.67 7 12 7 12Z" stroke="currentColor" stroke-width="2"/>
+                <circle cx="12" cy="10" r="2.5" stroke="currentColor" stroke-width="2"/>
+              </svg>
+            </span>
+            <a class="address-link glow-link"
+               href="https://www.google.com/maps?q=Strada+G%C4%83rii+6,+Complex+PAVCOM,+T%C3%A2rgovi%C8%99te"
+               target="_blank" rel="noopener">
+              Strada Gării, Nr. 6<br>Complex PAVCOM, etajul 2<br>Târgoviște, Dâmbovița
+            </a>
+          </li>
+        
+          <li>
+            <span class="ico">
+              <!-- phone -->
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" aria-hidden="true">
+                <path d="M22 16.92v2a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.08 4.18 2 2 0 0 1 4.06 2h2a2 2 0 0 1 2 1.72c.12.9.32 1.78.59 2.63a2 2 0 0 1-.45 2.11L7.09 9.91a16 16 0 0 0 6 6l1.45-1.11a2 2 0 0 1 2.11-.45c.85.27 1.73.47 2.63.59A2 2 0 0 1 22 16.92Z" stroke="currentColor" stroke-width="2"/>
+              </svg>
+            </span>
+            <a href="tel:0735393772">0735 393 772</a>
+          </li>
+        
+          <li>
+            <span class="ico">
+              <!-- mail -->
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" aria-hidden="true">
+                <path d="M4 6h16a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2Z" stroke="currentColor" stroke-width="2"/>
+                <path d="M22 8l-10 6L2 8" stroke="currentColor" stroke-width="2"/>
+              </svg>
+            </span>
+            <a href="mailto:iulian.nedelcu.v@gmail.com">iulian.nedelcu.v@gmail.com</a>
+          </li>
+        
+          <!-- Instagram -->
+          <li>
+            <span class="ico">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" aria-hidden="true">
+                <rect x="2" y="2" width="20" height="20" rx="5" stroke="currentColor" stroke-width="2"/>
+                <circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="2"/>
+                <circle cx="17" cy="7" r="1.5" fill="currentColor"/>
+              </svg>
+            </span>
+            <a href="https://www.instagram.com/crossgym_tgv/" target="_blank" rel="noopener">
+              Instagram
+            </a>
+          </li>
+        
+          <!-- Facebook -->
+          <li>
+            <span class="ico">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" aria-hidden="true">
+                <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3V2Z" fill="currentColor"/>
+              </svg>
+            </span>
+            <a href="https://www.facebook.com/crossgym.ro?locale=ro_RO" target="_blank" rel="noopener">
+              Facebook
+            </a>
+          </li>
+        </ul>
+        
+      </div>
+    </div>
+
+    <div class="ft-legal">© 2025 CrossGym Târgoviște. Toate drepturile rezervate.</div>
+  </div>
+</footer>
+<div class="lightbox" id="lb" role="dialog" aria-modal="true" aria-label="Imagine mărită"><img alt="" src=""></div>
+</body>
+</html>
