@@ -85,15 +85,9 @@
   border-radius: 12px;
 }
 
-.scard .cap {
-  position: absolute;
-  bottom: 0; 
-  left: 0;
-  width: 100%;
-  padding: 12px 16px;
-  background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
-  color: #fff;
-}
+/* overlayul cu titlu/descriere nu mai interceptează clickul */
+.scard .cap { pointer-events: none; }
+
 
 
 .scard .media {
@@ -153,6 +147,48 @@
     grid-template-columns: 1fr; /* o singură coloană pe mobil */
   }
 }
+
+/* Lightbox */
+.lightbox[hidden] { display:none; }
+.lightbox {
+  position: fixed; inset: 0; z-index: 9999;
+  background: rgba(0,0,0,.75);
+  display: grid; place-items: center;
+  padding: 24px;
+  animation: lbFade .12s ease-out;
+}
+@keyframes lbFade { from {opacity:0} to {opacity:1} }
+
+.lightbox .lb-inner { 
+  max-width: min(1200px, 92vw);
+  max-height: min(90vh, 92vh);
+  outline: none;
+}
+.lightbox img, .lightbox video {
+  display: block;
+  max-width: 100%;
+  max-height: 90vh;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0,0,0,.35);
+}
+
+.lb-close {
+  position: absolute; top: 14px; right: 14px;
+  width: 40px; height: 40px; border-radius: 999px;
+  border: 0; background: rgba(255,255,255,.12);
+  color: #fff; font-size: 24px; line-height: 1;
+  display: grid; place-items: center;
+  cursor: pointer;
+}
+.lb-close:hover { background: rgba(255,255,255,.2); }
+
+/* buton .media din card: reset pentru button */
+.scard .media {
+  all: unset; display:block; position:relative;
+  width: 100%; padding-top: 56.25%; cursor: zoom-in;
+}
+.scard .media > img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; border-radius:12px; }
+
 
 
 
@@ -249,68 +285,89 @@
 
     <div class="showcase-grid">
 
-      <!-- Video tur -->
-      <article class="panel scard">
-        <div class="media">
-          <video autoplay muted loop playsinline preload="metadata"
-                 poster="assets/index-gallery/tur-sala-crossgym.jpg">
-            <source src="assets/videos/tur-sala.mp4" type="video/mp4">
-            Browserul tău nu suportă video.
-          </video>
-        </div>
-        <div class="cap">
-          <div class="t">Tur al sălii</div>
-          <div class="d">Vizitează virtual sala și convinge-te de spațiile generoase și dotările moderne.</div>
-        </div>
-      </article>
+      <!-- Video tur (înlocuiește acest card) -->
+<article class="panel scard">
+  <button class="media" type="button"
+          data-pop="video"
+          data-src-webm="assets/videos/tur-sala-actualizat.webm"
+          data-src-mp4="assets/videos/tur-sala-actualizat.mp4"
+          data-poster="assets/videos/tur-poster.jpg"
+          aria-label="Redă tur video al sălii în fereastră">
+    <!-- thumb/afis: se vede în card; video se deschide în pop-out -->
+    <img src="assets/videos/tur-poster.jpg"
+         alt="Previzualizare tur video al sălii" loading="lazy" />
+  </button>
+
+  <div class="cap">
+    <div class="t">Tur al sălii</div>
+    <div class="d">Vizitează virtual sala și convinge-te de spațiile generoase și dotările moderne.</div>
+  </div>
+</article>
+
 
       <!-- Intrare -->
-      <article class="panel scard">
-        <div class="media">
-          <img src="assets/index-gallery/intrare-sala-crossgym.webp" 
-               alt="Intrarea în sala CrossGym Târgoviște" loading="lazy">
-        </div>
-        <div class="cap">
-          <div class="t">Intrarea în sală</div>
-          <div class="d">Primul pas spre un stil de viață sănătos începe aici.</div>
-        </div>
-      </article>
+<article class="panel scard">
+  <button class="media" type="button"
+          data-pop="img"
+          data-src="assets/index-gallery/intrare-sala-crossgym.webp"
+          aria-label="Deschide imaginea cu intrarea în sală">
+    <img src="assets/index-gallery/intrare-sala-crossgym.webp"
+         alt="Intrarea în sala CrossGym Târgoviște" loading="lazy">
+  </button>
+  <div class="cap">
+    <div class="t">Intrarea în sală</div>
+    <div class="d">Primul pas spre un stil de viață sănătos începe aici.</div>
+  </div>
+</article>
 
-      <!-- Zona Greutăți -->
-      <article class="panel scard">
-        <div class="media">
-          <img src="assets/index-gallery/zona-greutati-crossgym.webp" 
-               alt="Zona greutăți CrossGym – rackuri, bare olimpice și gantere" loading="lazy">
-        </div>
-        <div class="cap">
-          <div class="t">Zonă Greutăți</div>
-          <div class="d">Spațiu dedicat forței – rackuri, bare olimpice, gantere până la greutăți mari.</div>
-        </div>
-      </article>
 
-      <!-- Zona Cardio -->
-      <article class="panel scard">
-        <div class="media">
-          <img src="assets/index-gallery/zona-cardio-crossgym.webp" 
-               alt="Zona cardio CrossGym – benzi, biciclete și eliptice" loading="lazy">
-        </div>
-        <div class="cap">
-          <div class="t">Zonă Cardio</div>
-          <div class="d">Benzile, bicicletele și elipticele te așteaptă pentru o formă de zile mari.</div>
-        </div>
-      </article>
+      <!-- Zona Greutăți (cu pop-out) -->
+<article class="panel scard">
+  <button class="media" type="button"
+          data-pop="img"
+          data-src="assets/index-gallery/zona-greutati-crossgym.webp"
+          aria-label="Deschide imaginea: Zonă Greutăți">
+    <img src="assets/index-gallery/zona-greutati-crossgym.webp"
+         alt="Zona greutăți CrossGym – rackuri, bare olimpice și gantere" loading="lazy">
+  </button>
+  <div class="cap">
+    <div class="t">Zonă Greutăți</div>
+    <div class="d">Spațiu dedicat forței – rackuri, bare olimpice, gantere până la greutăți mari.</div>
+  </div>
+</article>
 
-      <!-- Program -->
-      <article class="panel scard">
-        <div class="media">
-          <img src="assets/index-gallery/program-crossgym.webp" 
-               alt="Programul sălii CrossGym Târgoviște" loading="lazy">
-        </div>
-        <div class="cap">
-          <div class="t">Program</div>
-          <div class="d">Luni–Vineri: 08:00–22:00 • Sâmbătă: 09:00–17:00 • Duminică: 10:00–17:00</div>
-        </div>
-      </article>
+
+      <!-- Zona Cardio (cu pop-out) -->
+<article class="panel scard">
+  <button class="media" type="button"
+          data-pop="img"
+          data-src="assets/index-gallery/zona-cardio-crossgym.webp"
+          aria-label="Deschide imaginea: Zonă Cardio">
+    <img src="assets/index-gallery/zona-cardio-crossgym.webp"
+         alt="Zona cardio CrossGym – benzi, biciclete și eliptice" loading="lazy">
+  </button>
+  <div class="cap">
+    <div class="t">Zonă Cardio</div>
+    <div class="d">Benzile, bicicletele și elipticele te așteaptă pentru o formă de zile mari.</div>
+  </div>
+</article>
+
+
+      <!-- Program (cu pop-out) -->
+<article class="panel scard">
+  <button class="media" type="button"
+          data-pop="img"
+          data-src="assets/index-gallery/program-crossgym.webp"
+          aria-label="Deschide imaginea: Programul sălii">
+    <img src="assets/index-gallery/program-crossgym.webp"
+         alt="Programul sălii CrossGym Târgoviște" loading="lazy">
+  </button>
+  <div class="cap">
+    <div class="t">Program</div>
+    <div class="d">Luni–Vineri: 08:00–22:00 • Sâmbătă: 09:00–17:00 • Duminică: 10:00–17:00</div>
+  </div>
+</article>
+
 
     </div>
 
@@ -619,10 +676,84 @@
   </div>
 </footer>
 
-<!-- Lightbox global (pentru galerie, dacă vrei ulterior) -->
-<div class="lightbox" id="lb" role="dialog" aria-modal="true" aria-label="Imagine mărită">
-  <img alt="" src="">
+<!-- Lightbox global -->
+<div class="lightbox" id="lb" role="dialog" aria-modal="true" aria-label="Previzualizare media" hidden>
+  <button class="lb-close" type="button" aria-label="Închide previzualizarea">×</button>
+  <div class="lb-inner" tabindex="-1"></div>
 </div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const lb = document.getElementById('lb');
+    const inner = lb.querySelector('.lb-inner');
+    const closeBtn = lb.querySelector('.lb-close');
+  
+    function openLB() {
+      lb.hidden = false;
+      inner.focus();
+    }
+    function closeLB() {
+      // oprește și curăță video ca să nu rămână sunetul după închidere
+      const v = inner.querySelector('video');
+      if (v) {
+        v.pause();
+        v.removeAttribute('src');
+        v.load();
+      }
+      inner.innerHTML = '';
+      lb.hidden = true;
+    }
+  
+    // Deschidere pe click pe card (butonul .media)
+    document.addEventListener('click', (e) => {
+      const btn = e.target.closest('.scard .media');
+      if (!btn) return;
+  
+      inner.innerHTML = '';
+  
+      if (btn.dataset.pop === 'img') {
+        const img = new Image();
+        img.alt = '';
+        img.src = btn.dataset.src;
+        img.onload = openLB;
+        inner.appendChild(img);
+      } else if (btn.dataset.pop === 'video') {
+        const video = document.createElement('video');
+        video.controls = true;
+        video.playsInline = true;   // important pe iOS
+        video.preload = 'metadata';
+        if (btn.dataset.poster) video.poster = btn.dataset.poster;
+  
+        // surse în ordinea preferinței (WebM -> MP4 fallback)
+        if (btn.dataset.srcWebm) {
+          const sWebm = document.createElement('source');
+          sWebm.src = btn.dataset.srcWebm;
+          sWebm.type = 'video/webm';
+          video.appendChild(sWebm);
+        }
+        if (btn.dataset.srcMp4) {
+          const sMp4 = document.createElement('source');
+          sMp4.src = btn.dataset.srcMp4;
+          sMp4.type = 'video/mp4';
+          video.appendChild(sMp4);
+        }
+  
+        inner.appendChild(video);
+        openLB();
+  
+        // încearcă play (unii browser-e îl vor bloca până apeși play – e ok)
+        setTimeout(() => { video.play().catch(() => {}); }, 0);
+      }
+    });
+  
+    // Închidere pe X / click pe overlay / Esc
+    closeBtn.addEventListener('click', closeLB);
+    lb.addEventListener('click', (e) => { if (e.target === lb) closeLB(); });
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !lb.hidden) closeLB(); });
+  });
+  </script>
+  
+
 
 </body>
 </html>
