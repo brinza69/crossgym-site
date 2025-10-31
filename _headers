@@ -1,0 +1,17 @@
+/*
+  Referrer-Policy: strict-origin-when-cross-origin
+  X-Content-Type-Options: nosniff
+  Permissions-Policy: camera=(), microphone=(), geolocation=()
+  X-Frame-Options: DENY
+
+# HTML – fără cache agresiv
+/*.html
+  Cache-Control: public, max-age=0, must-revalidate
+
+# CSS/JS/imagini – cache lung + immutable
+/assets/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# Fonts cross-origin
+/assets/**/*.woff2
+  Access-Control-Allow-Origin: *

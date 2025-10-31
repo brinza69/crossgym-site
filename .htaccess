@@ -1,0 +1,62 @@
+# === Dezactivează MultiViews (evită potriviri ciudate) ===
+Options -MultiViews
+
+# === PORNEȘTE REWRITE ===
+RewriteEngine On
+
+# --- 1) Forțează HTTPS + non-www (schimbă dacă preferi www) ---
+# dacă vrei www: înlocuiește următoarele 2 reguli cu forțare www
+RewriteCond %{HTTPS} !=on [OR]
+RewriteCond %{HTTP_HOST} ^www\. [NC]
+RewriteRule ^ https://crossgymtargoviste.com%{REQUEST_URI} [R=301,L]
+
+# --- 2) URL-uri fara extensie .html (intern: /pagina -> /pagina.html) ---
+# exceptă directoare/fisiere existente, sitemap, robots etc.
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^([A-Za-z0-9\-_]+)/?$ $1.html [L]
+
+# --- 3) Redirect .html -> fără .html (evită duplicate/canonicals conflict) ---
+RewriteCond %{THE_REQUEST} \s/+(.+?)\.html[\s?] [NC]
+RewriteRule ^ %1 [R=301,L]
+
+# --- 4) Servește .webp când browserul îl acceptă și fișierul există ---
+# ex: /assets/img/poza.jpg -> /assets/img/poza.jpg.webp
+RewriteCond %{HTTP_ACCEPT} image/webp
+RewriteCond %{REQUEST_FILENAME} \.(jpe?g|png)$ [NC]
+RewriteCond %{REQUEST_FILENAME}.webp -f
+RewriteRule ^ %{REQUEST_URI}.webp [L]
+
+# === HEADERE CACHE & COMPRESSION ===
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType text/css "access plus 30 days"
+  ExpiresByType application/javascript "access plus 30 days"
+  ExpiresByType image/webp "access plus 90 days"
+  ExpiresByType image/jpeg "access plus 90 days"
+  ExpiresByType image/png  "access plus 90 days"
+  ExpiresByType image/svg+xml "access plus 90 days"
+  ExpiresByType video/mp4 "access plus 30 days"
+  ExpiresByType video/webm "access plus 30 days"
+</IfModule>
+
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/plain text/css application/javascript application/json image/svg+xml
+</IfModule>
+
+# === CORS pentru fonturi/imagini (evită erori în console) ===
+<IfModule mod_headers.c>
+  <FilesMatch "\.(woff2?|ttf|otf|eot|svg)$">
+    Header add Access-Control-Allow-Origin "*"
+  </FilesMatch>
+
+  # Securitate minimă
+  Header set X-Content-Type-Options "nosniff"
+  Header set Referrer-Policy "strict-origin-when-cross-origin"
+  Header set X-Frame-Options "SAMEORIGIN"
+  Header set X-XSS-Protection "1; mode=block"
+  Header set Permissions-Policy "geolocation=(), microphone=(), camera=()"
+</IfModule>
+
+# === 404 custom ===
+ErrorDocument 404 /404.html

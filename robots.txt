@@ -1,3 +1,17 @@
+# CrossGym Targoviste — robots.txt
+# Permite indexarea întregului site și declară sitemapul canonic
+
 User-agent: *
 Allow: /
+# (optional) Evită indexarea paginilor de sistem dacă apar:
+Disallow: /admin/
+Disallow: /tmp/
+
+# Asigură accesul crawlerelor de Ads (Google Ads / AdsBot)
+User-agent: AdsBot-Google
+Allow: /
+User-agent: AdsBot-Google-Mobile
+Allow: /
+
+# Sitemap canonic (numai URL-uri fara .html)
 Sitemap: https://crossgymtargoviste.com/sitemap.xml

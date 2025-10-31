@@ -1,0 +1,15 @@
+# ——— Forțează varianta WWW (canonical) ———
+https://crossgymtargoviste.com/*   https://www.crossgymtargoviste.com/:splat   301
+
+# ——— Clean URLs (fără .html) ———
+/index.html      /
+/about.html      /about
+/contact.html    /contact
+/coaches.html    /coaches
+/gallery.html    /gallery
+/pricing.html    /pricing
+/champions.html  /champions
+/privacy.html    /privacy
+
+# ——— 404 fallback ———
+/*               /404.html    404

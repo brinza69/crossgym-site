@@ -5,85 +5,181 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <!-- SEO de bază -->
-  <title>Politica de confidențialitate – CrossGym Târgoviște</title>
-  <meta name="description" content="Politica de confidențialitate CrossGym Târgoviște: află cum colectăm, folosim și protejăm datele tale personale." />
+  <!-- SEO -->
+  <title>Politica de confidențialitate · CrossGym Târgoviște</title>
+  <meta name="description" content="Află cum colectăm și folosim datele personale la CrossGym Târgoviște. Drepturile tale GDPR, cookies și contacte. " />
+  <link rel="canonical" href="https://crossgymtargoviste.com/privacy" />
 
-  <!-- Canonical -->
-  <link rel="canonical" href="https://crossgymtargoviste.com/privacy.html" />
-
-  <!-- Favicon + Fonts + CSS -->
-  <link rel="icon" href="https://crossgymtargoviste.com/assets/icons/logo.png">
+  <!-- Favicon + font + CSS -->
+  <link rel="icon" href="https://crossgymtargoviste.com/assets/icons/logo.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/styles.css" />
 
-  <!-- OG (social media preview) -->
-  <meta property="og:title" content="Politica de confidențialitate – CrossGym Târgoviște" />
-  <meta property="og:description" content="Politica de confidențialitate CrossGym Târgoviște: află cum colectăm, folosim și protejăm datele tale personale." />
+  <!-- Open Graph -->
+  <meta property="og:title" content="Politica de confidențialitate · CrossGym Târgoviște" />
+  <meta property="og:description" content="Cum îți protejăm datele: temei legal, scopuri, durate, drepturi GDPR, cookies și contacte." />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://crossgymtargoviste.com/privacy.html" />
+  <meta property="og:url" content="https://crossgymtargoviste.com/privacy" />
   <meta property="og:image" content="https://crossgymtargoviste.com/assets/icons/logo.png" />
   <meta property="og:image:width" content="600" />
   <meta property="og:image:height" content="600" />
 
-  <!-- JSON-LD (date structurate pentru Google) -->
+  <!-- JSON-LD: WebPage + Breadcrumb + Organization (HealthClub) -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "HealthClub",
-    "name": "CrossGym Târgoviște",
-    "url": "https://crossgymtargoviste.com/privacy.html",
-    "image": "https://crossgymtargoviste.com/assets/icons/logo.png",
-    "address": {
-      "@type": "PostalAddress",
-      "addressLocality": "Târgoviște",
-      "addressRegion": "Dâmbovița",
-      "addressCountry": "RO"
-    },
-    "telephone": "+40 735 393 772"
+    "@graph": [
+      {
+        "@type": "WebPage",
+        "@id": "https://crossgymtargoviste.com/privacy",
+        "url": "https://crossgymtargoviste.com/privacy",
+        "name": "Politica de confidențialitate",
+        "isPartOf": { "@id": "https://crossgymtargoviste.com/#website" },
+        "dateModified": "2025-10-31"
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Acasă", "item": "https://crossgymtargoviste.com/" },
+          { "@type": "ListItem", "position": 2, "name": "Politica de confidențialitate", "item": "https://crossgymtargoviste.com/privacy" }
+        ]
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://crossgymtargoviste.com/#website",
+        "url": "https://crossgymtargoviste.com/",
+        "name": "CrossGym Târgoviște"
+      },
+      {
+        "@type": "HealthClub",
+        "@id": "https://crossgymtargoviste.com/#healthclub",
+        "name": "CrossGym Târgoviște",
+        "url": "https://crossgymtargoviste.com/",
+        "image": "https://crossgymtargoviste.com/assets/icons/logo.png",
+        "telephone": "+40 735 393 772",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Strada Gării, Nr. 6, Complex PAVCOM, etajul 2",
+          "addressLocality": "Târgoviște",
+          "addressRegion": "Dâmbovița",
+          "postalCode": "130104",
+          "addressCountry": "RO"
+        },
+        "sameAs": [
+          "https://www.instagram.com/crossgym_tgv/",
+          "https://www.facebook.com/crossgym.ro?locale=ro_RO"
+        ]
+      }
+    ]
   }
   </script>
 
   <!-- JS site -->
   <script defer src="js/main.js"></script>
-</head>
 
+  <style>
+    .legal { padding: 48px 0; }
+    .legal h1 { font-size: 40px; margin: 0 0 8px; text-align:center; }
+    .legal .lead { color: var(--muted); text-align:center; margin: 0 auto 22px; max-width: 860px; }
+    .legal .content { background: var(--panel); border:1px solid var(--border); border-radius:18px; padding:28px; box-shadow: var(--shadow); }
+    .legal h2 { font-size: 22px; margin-top: 24px; }
+    .legal ul { padding-left: 18px; }
+    .legal small.muted { color: var(--muted); display:block; margin-top: 6px; }
+    .tag-updated { display:inline-block; background:#1d1f24; border:1px solid var(--border); color:#c9ced9; padding:6px 10px; border-radius:999px; font-size:12px; margin-top:8px;}
+  </style>
+</head>
 <body>
+
 <!-- ====================== HEADER ====================== -->
 <header class="site-header">
-    <div class="container nav">
-    <!-- Stânga: logo -->
+  <div class="container nav">
     <a class="logo" href="index.html" aria-label="Pagina principală CrossGym">
-        <img class="brand-logo brand-logo--nav" src="assets/icons/logo.png" alt="CrossGym Târgoviște" loading="eager" decoding="async">
-        <span class="brand-name">CrossGym</span>
-      </a>
-      
-  
-  
-      <!-- Mijloc: meniu (CENTRAT pe desktop) -->
-      <nav id="menu" class="menu" aria-label="Navigație principală">
-        <a href="about.html">Despre noi</a>
-        <a href="coaches.html">Antrenori</a>
-        <a href="pricing.html">Abonamente</a>
-        <a href="champions.html">Campionii</a>
-        <a href="gallery.html">Galerie</a>
-        <!-- Contact în meniu pentru MOBIL (ascuns pe desktop din CSS) -->
-        <a href="contact.html" class="btn menu-contact">Contact</a>
-      </nav>
-  
-      <!-- Dreapta: Contact (DESKTOP) + burger (MOBIL) -->
-      <a href="contact.html" class="btn contact-cta">Contact</a>
-      <button class="burger" aria-label="Deschide meniul" aria-controls="menu" aria-expanded="false">☰</button>
-    </div>
-  </header>
+      <img class="brand-logo brand-logo--nav" src="assets/icons/logo.png" alt="CrossGym Târgoviște" loading="eager" decoding="async">
+      <span class="brand-name">CrossGym</span>
+    </a>
 
-<section class="container">
-  <h1 class="page">Politica de confidențialitate</h1>
-  <div class="panel pad">
-    <p>Respectăm datele tale personale. Această pagină explică tipurile de date pe care le colectăm (de ex. prin formularele de contact) și modul în care le folosim conform GDPR.</p>
-    <p>Contact: <a href="mailto:iulian.nedelcu.v@gmail.com">iulian.nedelcu.v@gmail.com</a></p>
+    <nav id="menu" class="menu" aria-label="Navigație principală">
+      <a href="about.html">Despre noi</a>
+      <a href="coaches.html">Antrenori</a>
+      <a href="pricing.html">Abonamente</a>
+      <a href="champions.html">Campionii</a>
+      <a href="gallery.html">Galerie</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+
+    <a href="contact.html" class="btn contact-cta">Contact</a>
+    <button class="burger" aria-label="Deschide meniul" aria-controls="menu" aria-expanded="false">☰</button>
+  </div>
+</header>
+
+<!-- ====================== PRIVACY ====================== -->
+<section class="container legal">
+  <h1>Politica de confidențialitate</h1>
+  <p class="lead">Cum colectăm, folosim și protejăm datele tale personale la CrossGym Târgoviște. Această pagină explică pe scurt drepturile tale și setările de confidențialitate.</p>
+  <div class="center"><span class="tag-updated">Ultima actualizare: 31 octombrie 2025</span></div>
+
+  <div class="content">
+    <h2>1. Cine suntem</h2>
+    <p><strong>CrossGym Târgoviște</strong> (<a href="https://crossgymtargoviste.com/">crossgymtargoviste.com</a>) operează această pagină și este operatorul datelor tale personale („Operatorul”).</p>
+    <p>Contact rapid: <a href="mailto:iulian.nedelcu.v@gmail.com">iulian.nedelcu.v@gmail.com</a> · Tel: <a href="tel:+40735393772">+40 735 393 772</a></p>
+
+    <h2>2. Ce date colectăm</h2>
+    <ul>
+      <li><strong>Date de contact:</strong> nume (dacă îl furnizezi), e-mail, telefon.</li>
+      <li><strong>Date tehnice:</strong> IP, tip dispozitiv, pagini vizualizate (agregat/anonymizat pentru analiză de bază — dacă folosim analitice).</li>
+      <li><strong>Conținut terț:</strong> Google Maps poate seta cookie-uri la afișarea hărții.</li>
+    </ul>
+
+    <h2>3. De ce (temei legal)</h2>
+    <ul>
+      <li><strong>Interes legitim</strong> – pentru a răspunde solicitărilor tale (formular/contact telefonic) și a asigura securitatea site-ului.</li>
+      <li><strong>Consimțământ</strong> – pentru module cookie neesențiale (ex: analitice/marketing) și pentru conținut terț ce setează cookie-uri.</li>
+      <li><strong>Executarea unei solicitări/contract</strong> – când ne ceri o ofertă sau programare.</li>
+      <li><strong>Obligații legale</strong> – păstrarea unor evidențe contabile/fiscale, dacă este cazul.</li>
+    </ul>
+
+    <h2>4. Cât timp păstrăm datele</h2>
+    <ul>
+      <li>Datele de contact: până la soluționarea solicitării + o perioadă rezonabilă (max. 12 luni) pentru urmărirea comunicării.</li>
+      <li>Jurnalele tehnice: până la 12 luni pentru securitate și diagnostic.</li>
+      <li>Cookie-uri: conform duratei setate de fiecare serviciu (vezi secțiunea Cookies).</li>
+    </ul>
+
+    <h2>5. Cu cine partajăm</h2>
+    <ul>
+      <li><strong>Furnizori IT/hosting</strong> – pentru rularea site-ului.</li>
+      <li><strong>Google</strong> – la încărcarea hărții (Google Maps). Poate colecta date conform politicilor proprii.</li>
+      <li><strong>Rețele sociale</strong> – doar dacă dai click pe linkuri/embeds (Instagram, Facebook).</li>
+    </ul>
+    <small class="muted">Nu vindem datele tale. Transferuri în afara UE pot apărea când folosești servicii terțe (ex: Google); acestea aplică măsuri de protecție standard.</small>
+
+    <h2>6. Drepturile tale (GDPR)</h2>
+    <ul>
+      <li>Dreptul de acces, rectificare, ștergere („dreptul de a fi uitat”).</li>
+      <li>Restricționare, opoziție la prelucrare și portabilitate.</li>
+      <li>Retragerea consimțământului oricând, când temeiul este consimțământul.</li>
+      <li>Plângere la ANSPDCP: <a href="https://www.dataprotection.ro/">dataprotection.ro</a>.</li>
+    </ul>
+    <p>Ne poți contacta la <a href="mailto:iulian.nedelcu.v@gmail.com">iulian.nedelcu.v@gmail.com</a> pentru a-ți exercita drepturile.</p>
+
+    <h2>7. Cookie-uri & tehnologii similare</h2>
+    <p>Folosim cookie-uri esențiale pentru funcționarea site-ului și, opțional, cookie-uri neesențiale (analitice/marketing) doar cu consimțământul tău.</p>
+    <ul>
+      <li><strong>Esențiale:</strong> necesare pentru navigare și securitate (nu pot fi dezactivate).</li>
+      <li><strong>Funcționale/terți:</strong> Google Maps (afișarea hărții poate seta cookie-uri la încărcare).</li>
+      <li><strong>Analitice (opțional):</strong> numai dacă vor fi activate în viitor, vor apărea aici în Politică & banner.</li>
+    </ul>
+
+    <h2>8. Conținut terț (Google Maps, social)</h2>
+    <p>Hărțile integrate de pe Google pot colecta date (IP, device info) când sunt afișate. Poți alege să deschizi traseul direct în Google Maps în locul afișării integrării de pe site.</p>
+
+    <h2>9. Securitate</h2>
+    <p>Aplicăm măsuri rezonabile de securitate (TLS/HTTPS, acces limitat, loguri). Nicio metodă online nu este 100% sigură, dar ne angajăm să limităm riscurile.</p>
+
+    <h2>10. Modificări</h2>
+    <p>Putem actualiza această Politică. Vom actualiza data „Ultima actualizare” și, unde este semnificativ, vom afișa o notificare pe site.</p>
   </div>
 </section>
 
@@ -91,18 +187,16 @@
 <footer class="site-footer" id="footer">
   <div class="container">
     <div class="footer-main">
-      <!-- stânga: brand + descriere -->
+      <!-- stânga -->
       <div class="f-col f-brand">
         <div class="f-brand-head">
           <img class="brand-logo brand-logo--footer" src="assets/icons/logo.png" alt="CrossGym Târgoviște">
           <strong>CrossGym Târgoviște</strong>
         </div>
-        <p class="muted">
-          CrossGym susține performanța. Sala ta de fitness modernă din Târgoviște.
-        </p>
+        <p class="muted">CrossGym susține performanța. Sala ta de fitness modernă din Târgoviște.</p>
       </div>
 
-      <!-- centru: link-uri rapide -->
+      <!-- centru -->
       <nav class="f-col f-links" aria-label="Link-uri rapide">
         <h4>Link-uri rapide</h4>
         <ul class="f-list">
@@ -112,40 +206,34 @@
           <li><a href="gallery.html">Galerie</a></li>
           <li><a href="champions.html">Campionii Noștri</a></li>
           <li><a href="contact.html">Contact</a></li>
+          <li><a href="privacy.html" aria-current="page">Politica de confidențialitate</a></li>
         </ul>
       </nav>
 
-      <!-- dreapta: contact -->
+      <!-- dreapta -->
       <div class="f-col f-contact">
         <ul class="f-contacts">
           <li>
             <span class="ico">
-              <!-- pin -->
               <svg viewBox="0 0 24 24" width="18" height="18" fill="none" aria-hidden="true">
                 <path d="M12 22s7-5.33 7-12a7 7 0 1 0-14 0c0 6.67 7 12 7 12Z" stroke="currentColor" stroke-width="2"/>
                 <circle cx="12" cy="10" r="2.5" stroke="currentColor" stroke-width="2"/>
               </svg>
             </span>
-            <a class="address-link glow-link"
-               href="https://www.google.com/maps?q=Strada+G%C4%83rii+6,+Complex+PAVCOM,+T%C3%A2rgovi%C8%99te"
-               target="_blank" rel="noopener">
+            <a class="address-link glow-link" href="https://www.google.com/maps?q=Strada+G%C4%83rii+6,+Complex+PAVCOM,+T%C3%A2rgovi%C8%99te" target="_blank" rel="noopener">
               Strada Gării, Nr. 6<br>Complex PAVCOM, etajul 2<br>Târgoviște, Dâmbovița
             </a>
           </li>
-        
           <li>
             <span class="ico">
-              <!-- phone -->
               <svg viewBox="0 0 24 24" width="18" height="18" fill="none" aria-hidden="true">
                 <path d="M22 16.92v2a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.08 4.18 2 2 0 0 1 4.06 2h2a2 2 0 0 1 2 1.72c.12.9.32 1.78.59 2.63a2 2 0 0 1-.45 2.11L7.09 9.91a16 16 0 0 0 6 6l1.45-1.11a2 2 0 0 1 2.11-.45c.85.27 1.73.47 2.63.59A2 2 0 0 1 22 16.92Z" stroke="currentColor" stroke-width="2"/>
               </svg>
             </span>
-            <a href="tel:0735393772">0735 393 772</a>
+            <a href="tel:+40735393772">+40 735 393 772</a>
           </li>
-        
           <li>
             <span class="ico">
-              <!-- mail -->
               <svg viewBox="0 0 24 24" width="18" height="18" fill="none" aria-hidden="true">
                 <path d="M4 6h16a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2Z" stroke="currentColor" stroke-width="2"/>
                 <path d="M22 8l-10 6L2 8" stroke="currentColor" stroke-width="2"/>
@@ -153,8 +241,6 @@
             </span>
             <a href="mailto:iulian.nedelcu.v@gmail.com">iulian.nedelcu.v@gmail.com</a>
           </li>
-        
-          <!-- Instagram -->
           <li>
             <span class="ico">
               <svg viewBox="0 0 24 24" width="18" height="18" fill="none" aria-hidden="true">
@@ -163,30 +249,23 @@
                 <circle cx="17" cy="7" r="1.5" fill="currentColor"/>
               </svg>
             </span>
-            <a href="https://www.instagram.com/crossgym_tgv/" target="_blank" rel="noopener">
-              Instagram
-            </a>
+            <a href="https://www.instagram.com/crossgym_tgv/" target="_blank" rel="noopener">Instagram</a>
           </li>
-        
-          <!-- Facebook -->
           <li>
             <span class="ico">
               <svg viewBox="0 0 24 24" width="18" height="18" fill="none" aria-hidden="true">
                 <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3V2Z" fill="currentColor"/>
               </svg>
             </span>
-            <a href="https://www.facebook.com/crossgym.ro?locale=ro_RO" target="_blank" rel="noopener">
-              Facebook
-            </a>
+            <a href="https://www.facebook.com/crossgym.ro?locale=ro_RO" target="_blank" rel="noopener">Facebook</a>
           </li>
         </ul>
-        
       </div>
     </div>
 
-    <div class="ft-legal">© 2025 CrossGym Târgoviște. Toate drepturile rezervate.</div>
+    <div class="ft-legal">© 2025 CrossGym Târgoviște. Toate drepturile rezervate. · <a href="privacy.html">Politica de confidențialitate</a></div>
   </div>
 </footer>
-<div class="lightbox" id="lb" role="dialog" aria-modal="true" aria-label="Imagine mărită"><img alt="" src=""></div>
+
 </body>
 </html>

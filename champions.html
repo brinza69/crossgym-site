@@ -10,7 +10,7 @@
   <meta name="description" content="Rezultatele sportivilor CrossGym la campionate naționale și internaționale. Performanță și dedicare pe scena fitness și culturism." />
 
   <!-- Canonical -->
-  <link rel="canonical" href="https://crossgymtargoviste.com/champions.html" />
+  <link rel="canonical" href="https://crossgymtargoviste.com/champions" />
 
   <!-- Favicon + CSS -->
   <link rel="icon" href="https://crossgymtargoviste.com/assets/icons/logo.png">
@@ -23,7 +23,7 @@
   <meta property="og:title" content="Campionii CrossGym Târgoviște" />
   <meta property="og:description" content="Rezultatele sportivilor CrossGym la campionate naționale și internaționale. Performanță și dedicare pe scena fitness și culturism." />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://crossgymtargoviste.com/champions.html" />
+  <meta property="og:url" content="https://crossgymtargoviste.com/champions" />
   <meta property="og:image" content="https://crossgymtargoviste.com/assets/icons/logo.png" />
   <meta property="og:image:width" content="600" />
   <meta property="og:image:height" content="600" />
@@ -34,7 +34,7 @@
     "@context": "https://schema.org",
     "@type": "HealthClub",
     "name": "CrossGym Târgoviște",
-    "url": "https://crossgymtargoviste.com/champions.html",
+    "url": "https://crossgymtargoviste.com/champions",
     "image": "https://crossgymtargoviste.com/assets/icons/logo.png",
     "address": {
       "@type": "PostalAddress",
@@ -81,7 +81,7 @@
       background:var(--panel); border:1px solid var(--border);
       box-shadow:var(--shadow);
       transition:transform .35s cubic-bezier(.2,.8,.2,1), box-shadow .35s cubic-bezier(.2,.8,.2,1), border-color .35s ease;
-      text-align:center; /* CENTRARE toate textele din card */
+      text-align:center;
     }
     .champ::before, .champ::after{
       content:""; position:absolute; inset:-2px; border-radius:inherit; pointer-events:none; z-index:0;
@@ -129,106 +129,86 @@
     }
 
     /* ——— LIGHTBOX peste TOT + blocare scroll ——— */
-.lightbox{
-  position: fixed;
-  inset: 0;
-  z-index: 9999;                 /* peste header & „pill-uri” */
-  background: rgba(0,0,0,.86);
-  display: none;
-  align-items: center;
-  justify-content: center;
-  padding: 20px;
-}
-.lightbox img{
-  max-width: 95vw;
-  max-height: 90vh;
-  border-radius: 16px;
-  box-shadow: 0 14px 48px rgba(0,0,0,.6);
-}
-.lightbox.show{ display: flex; }
-body.lb-open{ overflow: hidden; } /* oprește derularea fundalului */
+    .lightbox{
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      background: rgba(0,0,0,.86);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    .lightbox img{
+      max-width: 95vw;
+      max-height: 90vh;
+      border-radius: 16px;
+      box-shadow: 0 14px 48px rgba(0,0,0,.6);
+    }
+    .lightbox.show{ display: flex; }
+    body.lb-open{ overflow: hidden; }
 
+    /* Spațiere pe mobil și tabletă */
+    @media (max-width: 1100px) {
+      .champs { padding-left: 16px; padding-right: 16px; }
+    }
+    @media (max-width: 700px) {
+      .champs { padding-left: 20px; padding-right: 20px; }
+      .champs-grid { grid-template-columns: 1fr; }
+    }
 
-
-
-/* Spațiere pe mobil și tabletă */
-@media (max-width: 1100px) {
-  .champs {
-    padding-left: 16px;
-    padding-right: 16px;
-  }
-}
-
-@media (max-width: 700px) {
-  .champs {
-    padding-left: 20px;
-    padding-right: 20px;
-  }
-
-  .champs-grid {
-    grid-template-columns: 1fr; /* un card pe rând */
-  }
-}
-
-
-.champ-hero{
-  position:relative; isolation:isolate;
-  padding:70px 0 34px;
-  background:
-    radial-gradient(1000px 280px at 20% -80%, rgba(255,210,31,.10), transparent 60%),
-    radial-gradient(900px 260px at 80% -80%, rgba(255,210,31,.08), transparent 60%);
-  border-bottom:1px solid var(--border);
-  text-align:center;
-  overflow:hidden;
-}
-
-/* imagine trofee subtilă */
-.champ-hero::after{
-  content:"";
-  position:absolute; inset:0;
-  background-image: url("assets/champs/raft-trofee-crossgym-targoviste-hero.webp");
-  background-size:cover;
-  background-position:center;
-  opacity:.18;             /* ajustează între .12 și .25 */
-  filter: saturate(.6) blur(1px);
-  z-index:-1;
-}
-
-/* overlay pentru lizibilitate text */
-.champ-hero::before{
-  content:"";
-  position:absolute; inset:0;
-  background:linear-gradient(to bottom,
-    rgba(15,16,18,.55),
-    rgba(15,16,18,.35) 40%,
-    rgba(15,16,18,.55));
-  z-index:-1;
-}
-
-
-
-    
+    .champ-hero{
+      position:relative; isolation:isolate;
+      padding:70px 0 34px;
+      background:
+        radial-gradient(1000px 280px at 20% -80%, rgba(255,210,31,.10), transparent 60%),
+        radial-gradient(900px 260px at 80% -80%, rgba(255,210,31,.08), transparent 60%);
+      border-bottom:1px solid var(--border);
+      text-align:center;
+      overflow:hidden;
+    }
+    /* imagine trofee subtilă */
+    .champ-hero::after{
+      content:"";
+      position:absolute; inset:0;
+      background-image: url("assets/champs/raft-trofee-crossgym-targoviste-hero.webp");
+      background-size:cover;
+      background-position:center;
+      opacity:.18;
+      filter: saturate(.6) blur(1px);
+      z-index:-1;
+    }
+    /* overlay pentru lizibilitate text */
+    .champ-hero::before{
+      content:"";
+      position:absolute; inset:0;
+      background:linear-gradient(to bottom,
+        rgba(15,16,18,.55),
+        rgba(15,16,18,.35) 40%,
+        rgba(15,16,18,.55));
+      z-index:-1;
+    }
   </style>
 </head>
 <body>
 <!-- ====================== HEADER ====================== -->
 <header class="site-header">
   <div class="container nav">
-    <a class="logo" href="index.html" aria-label="Pagina principală CrossGym">
+    <a class="logo" href="/" aria-label="Pagina principală CrossGym">
       <img class="brand-logo brand-logo--nav" src="assets/icons/logo.png" alt="CrossGym Târgoviște" loading="eager" decoding="async">
       <span class="brand-name">CrossGym</span>
     </a>
 
     <nav id="menu" class="menu" aria-label="Navigație principală">
-      <a href="about.html">Despre noi</a>
-      <a href="coaches.html">Antrenori</a>
-      <a href="pricing.html">Abonamente</a>
-      <a href="champions.html" class="active">Campionii</a>
-      <a href="gallery.html">Galerie</a>
-      <a href="contact.html" class="btn menu-contact">Contact</a>
+      <a href="/about">Despre noi</a>
+      <a href="/coaches">Antrenori</a>
+      <a href="/pricing">Abonamente</a>
+      <a href="/champions" class="active" aria-current="page">Campionii</a>
+      <a href="/gallery">Galerie</a>
+      <a href="/contact" class="btn menu-contact">Contact</a>
     </nav>
 
-    <a href="contact.html" class="btn contact-cta">Contact</a>
+    <a href="/contact" class="btn contact-cta">Contact</a>
     <button class="burger" aria-label="Deschide meniul" aria-controls="menu" aria-expanded="false">☰</button>
   </div>
 </header>
@@ -244,183 +224,166 @@ body.lb-open{ overflow: hidden; } /* oprește derularea fundalului */
 <!-- ====================== GRID CAMPIONI ====================== -->
 <section class="container champs">
   <div class="champs-grid">
-
-
     <!-- Andrei Alexandrescu -->
-<article class="champ reveal">
-  <div class="champ-media">
-    <img
-      src="assets/champs/andrei-alexandrescu-vicecampion-mondial.webp"
-      alt="Andrei Alexandrescu – Vicecampion Mondial la Culturism"
-      class="champ-photo" loading="lazy" decoding="async"
-      width="1200" height="1500">
-    <span class="tag-rank">Locul 1</span>
-  </div>
-  <div class="champ-body">
-    <h3>Andrei Alexandrescu</h3>
-    <span class="role">Campion Național</span>
-    <p class="muted">Campionatul Național de Culturism și Fitness</p>
-  </div>
-</article>
+    <article class="champ reveal">
+      <div class="champ-media">
+        <img
+          src="assets/champs/andrei-alexandrescu-vicecampion-mondial.webp"
+          alt="Andrei Alexandrescu – Vicecampion Mondial la Culturism"
+          class="champ-photo" loading="lazy" decoding="async"
+          width="1200" height="1500">
+        <span class="tag-rank">Locul 1</span>
+      </div>
+      <div class="champ-body">
+        <h3>Andrei Alexandrescu</h3>
+        <span class="role">Campion Național</span>
+        <p class="muted">Campionatul Național de Culturism și Fitness</p>
+      </div>
+    </article>
 
-<!-- Iulian Nedelcu -->
-<article class="champ reveal">
-  <div class="champ-media">
-    <img
-      src="assets/champs/iulian-nedelcu-olympia-amateur-2022.webp"
-      alt="Iulian Nedelcu – Sportiv CrossGym, medalie la Olympia Amateur 2022 și multiplu campion național"
-      class="champ-photo" loading="lazy" decoding="async"
-      width="1200" height="1500">
-    <span class="tag-rank">Locul 1</span>
-  </div>
-  <div class="champ-body">
-    <h3>Iulian Nedelcu</h3>
-    <span class="role">Campion</span>
-    <p class="muted">
-      Campionatul Național de Culturism și Fitness
-    </p>
-  </div>
-</article>
+    <!-- Iulian Nedelcu -->
+    <article class="champ reveal">
+      <div class="champ-media">
+        <img
+          src="assets/champs/iulian-nedelcu-olympia-amateur-2022.webp"
+          alt="Iulian Nedelcu – Sportiv CrossGym, medalie la Olympia Amateur 2022 și multiplu campion național"
+          class="champ-photo" loading="lazy" decoding="async"
+          width="1200" height="1500">
+        <span class="tag-rank">Locul 1</span>
+      </div>
+      <div class="champ-body">
+        <h3>Iulian Nedelcu</h3>
+        <span class="role">Campion</span>
+        <p class="muted">Campionatul Național de Culturism și Fitness</p>
+      </div>
+    </article>
 
+    <!-- Ștefănescu Cătălin -->
+    <article class="champ reveal">
+      <div class="champ-media">
+        <img
+          src="assets/champs/stefanescu-catalin-campion-absolut-grand-prix-romania.webp"
+          alt="Ștefănescu Cătălin – Campion Absolut la Grand Prix România"
+          class="champ-photo" loading="lazy" decoding="async"
+          width="1200" height="1500">
+        <span class="tag-rank">Locul 1</span>
+      </div>
+      <div class="champ-body">
+        <h3>Ștefănescu Cătălin</h3>
+        <span class="role">Campion Absolut</span>
+        <p class="muted">Grand Prix România</p>
+      </div>
+    </article>
 
-<!-- Ștefănescu Cătălin -->
-<article class="champ reveal">
-  <div class="champ-media">
-    <img
-      src="assets/champs/stefanescu-catalin-campion-absolut-grand-prix-romania.webp"
-      alt="Ștefănescu Cătălin – Campion Absolut la Grand Prix România"
-      class="champ-photo" loading="lazy" decoding="async"
-      width="1200" height="1500">
-    <span class="tag-rank">Locul 1</span>
-  </div>
-  <div class="champ-body">
-    <h3>Ștefănescu Cătălin</h3>
-    <span class="role">Campion Absolut</span>
-    <p class="muted">Grand Prix România</p>
-  </div>
-</article>
+    <!-- Nicolescu Claudia -->
+    <article class="champ reveal">
+      <div class="champ-media">
+        <img
+          src="assets/champs/nicolescu-claudia-campioana-absoluta-bodyfitness.webp"
+          alt="Nicolescu Claudia – Campioana Absolută la BodyFitness"
+          class="champ-photo" loading="lazy" decoding="async"
+          width="1200" height="1500">
+        <span class="tag-rank">Locul 1</span>
+      </div>
+      <div class="champ-body">
+        <h3>Nicolescu Claudia</h3>
+        <span class="role">Campioană Absolută</span>
+        <p class="muted">Campionatul Național de Culturism și Fitness</p>
+      </div>
+    </article>
 
-<!-- Nicolescu Claudia -->
-<article class="champ reveal">
-  <div class="champ-media">
-    <img
-      src="assets/champs/nicolescu-claudia-campioana-absoluta-bodyfitness.webp"
-      alt="Nicolescu Claudia – Campioana Absolută la BodyFitness"
-      class="champ-photo" loading="lazy" decoding="async"
-      width="1200" height="1500">
-    <span class="tag-rank">Locul 1</span>
-  </div>
-  <div class="champ-body">
-    <h3>Nicolescu Claudia</h3>
-    <span class="role">Campioană Absolută</span>
-    <p class="muted">Campionatul Național de Culturism și Fitness</p>
-  </div>
-</article>
+    <!-- Simion Robert -->
+    <article class="champ reveal">
+      <div class="champ-media">
+        <img
+          src="assets/champs/simion-robert-semifinalist-cupa-romaniei.webp"
+          alt="Simion Robert – Semifinalist la Cupa României"
+          class="champ-photo" loading="lazy" decoding="async"
+          width="1200" height="1500">
+        <span class="tag-rank">Semifinală</span>
+      </div>
+      <div class="champ-body">
+        <h3>Simion Robert</h3>
+        <span class="role">Semifinalist</span>
+        <p class="muted">Cupa României</p>
+      </div>
+    </article>
 
-<!-- Simion Robert -->
-<article class="champ reveal">
-  <div class="champ-media">
-    <img
-      src="assets/champs/simion-robert-semifinalist-cupa-romaniei.webp"
-      alt="Simion Robert – Semifinalist la Cupa României"
-      class="champ-photo" loading="lazy" decoding="async"
-      width="1200" height="1500">
-    <span class="tag-rank">Semifinală</span>
-  </div>
-  <div class="champ-body">
-    <h3>Simion Robert</h3>
-    <span class="role">Semifinalist</span>
-    <p class="muted">Cupa României</p>
-  </div>
-</article>
+    <!-- Dragoș Antonio -->
+    <article class="champ reveal">
+      <div class="champ-media">
+        <img
+          src="assets/champs/dragos-antonio-locul-2-cupa-romaniei-bodybuilding.webp"
+          alt="Dragoș Antonio – Locul 2 (Vicecampion) la Cupa României, Bodybuilding"
+          class="champ-photo" loading="lazy" decoding="async"
+          width="1200" height="1500">
+        <span class="tag-rank">Locul 2</span>
+      </div>
+      <div class="champ-body">
+        <h3>Dragoș Antonio</h3>
+        <span class="role">Vicecampion</span>
+        <p class="muted">Cupa României</p>
+      </div>
+    </article>
 
-<!-- Dragoș Antonio -->
-<article class="champ reveal">
-  <div class="champ-media">
-    <img
-      src="assets/champs/dragos-antonio-locul-2-cupa-romaniei-bodybuilding.webp"
-      alt="Dragoș Antonio – Locul 2 (Vicecampion) la Cupa României, Bodybuilding"
-      class="champ-photo" loading="lazy" decoding="async"
-      width="1200" height="1500">
-    <span class="tag-rank">Locul 2</span>
-  </div>
-  <div class="champ-body">
-    <h3>Dragoș Antonio</h3>
-    <span class="role">Vicecampion</span>
-    <p class="muted">Cupa României</p>
-  </div>
-</article>
+    <!-- Ianis Ciurezu -->
+    <article class="champ reveal">
+      <div class="champ-media">
+        <img
+          src="assets/champs/ianis-ciurezu-locul-3-campionatul-national.webp"
+          alt="Ianis Ciurezu – Locul 3 la Campionatul Național de Culturism și Fitness"
+          class="champ-photo" loading="lazy" decoding="async"
+          width="1200" height="1500">
+        <span class="tag-rank">Locul 3</span>
+      </div>
+      <div class="champ-body">
+        <h3>Ianis Ciurezu</h3>
+        <span class="role">Medaliat cu bronz</span>
+        <p class="muted">Campionatul Național de Culturism și Fitness</p>
+      </div>
+    </article>
 
+    <!-- Tudorache Cătălin -->
+    <article class="champ reveal">
+      <div class="champ-media">
+        <img
+          src="assets/champs/tudorache-catalin-vicecampion-locul-2-cupa-romaniei.webp"
+          alt="Tudorache Cătălin – Vicecampion (Locul 2) la Cupa României"
+          class="champ-photo" loading="lazy" decoding="async"
+          width="1200" height="1500">
+        <span class="tag-rank">Locul 2</span>
+      </div>
+      <div class="champ-body">
+        <h3>Tudorache Cătălin</h3>
+        <span class="role">Vicecampion</span>
+        <p class="muted">Cupa României</p>
+      </div>
+    </article>
 
-<!-- Ianis Ciurezu -->
-<article class="champ reveal">
-  <div class="champ-media">
-    <img
-      src="assets/champs/ianis-ciurezu-locul-3-campionatul-national.webp"
-      alt="Ianis Ciurezu – Locul 3 la Campionatul Național de Culturism și Fitness"
-      class="champ-photo" loading="lazy" decoding="async"
-      width="1200" height="1500">
-    <span class="tag-rank">Locul 3</span>
-  </div>
-  <div class="champ-body">
-    <h3>Ianis Ciurezu</h3>
-    <span class="role">Medaliat cu bronz</span>
-    <p class="muted">Campionatul Național de Culturism și Fitness</p>
-  </div>
-</article>
+    <!-- Simion Cristi -->
+    <article class="champ reveal">
+      <div class="champ-media">
+        <img
+          src="assets/champs/simion-cristi-finalist-locul-4-cupa-romaniei.webp"
+          alt="Simion Cristi – Finalist (Locul 4) la Cupa României"
+          class="champ-photo" loading="lazy" decoding="async"
+          width="1200" height="1500">
+        <span class="tag-rank">Locul 4</span>
+      </div>
+      <div class="champ-body">
+        <h3>Simion Cristi</h3>
+        <span class="role">Finalist</span>
+        <p class="muted">Cupa României</p>
+      </div>
+    </article>
 
-<!-- Cătălin -->
-<article class="champ reveal">
-  <div class="champ-media">
-    <img
-      src="assets/champs/tudorache-catalin-vicecampion-locul-2-cupa-romaniei.webp"
-      alt="Tudorache Cătălin – Vicecampion (Locul 2) la Cupa României"
-      class="champ-photo" loading="lazy" decoding="async"
-      width="1200" height="1500">
-    <span class="tag-rank">Locul 2</span>
-  </div>
-  <div class="champ-body">
-    <h3>Tudorache Cătălin</h3>
-    <span class="role">Vicecampion</span>
-    <p class="muted">Cupa României</p>
-  </div>
-</article>
-
-
-
-
-
-
-<!-- Cristi -->
-<article class="champ reveal">
-  <div class="champ-media">
-    <img
-      src="assets/champs/simion-cristi-finalist-locul-4-cupa-romaniei.webp"
-      alt="Simion Cristi – Finalist (Locul 4) la Cupa României"
-      class="champ-photo" loading="lazy" decoding="async"
-      width="1200" height="1500">
-    <span class="tag-rank">Locul 4</span>
-  </div>
-  <div class="champ-body">
-    <h3>Simion Cristi</h3>
-    <span class="role">Finalist</span>
-    <p class="muted">Cupa României</p>
-  </div>
-</article>
-
-
-
-
-
-    <!-- Robica -->
+    <!-- Joițoiu Robert -->
     <article class="champ reveal">
       <div class="champ-media">
         <img class="champ-photo"
-     src="assets/champs/joitoiu-robert-campion-national-locul-1.webp"
-     alt="Joițoiu Robert – Campion Național, Locul 1 la Campionatul Național de Culturism și Fitness"
-     loading="lazy" decoding="async" width="800" height="1000">
-
-
+             src="assets/champs/joitoiu-robert-campion-national-locul-1.webp"
+             alt="Joițoiu Robert – Campion Național, Locul 1 la Campionatul Național de Culturism și Fitness"
+             loading="lazy" decoding="async" width="800" height="1000">
         <span class="tag-rank">Locul 1</span>
       </div>
       <div class="champ-body">
@@ -430,62 +393,41 @@ body.lb-open{ overflow: hidden; } /* oprește derularea fundalului */
       </div>
     </article>
 
+    <!-- Mihai Laura -->
+    <article class="champ reveal">
+      <div class="champ-media">
+        <img
+          src="assets/champs/mihai-laura-campioana-locul-1-campionat-national.webp"
+          alt="Mihai Laura – Campioană, Locul 1 la Campionatele Naționale"
+          class="champ-photo" loading="lazy" decoding="async"
+          width="1200" height="1500">
+        <span class="tag-rank">Locul 1</span>
+      </div>
+      <div class="champ-body">
+        <h3>Mihai Laura</h3>
+        <span class="role">Campioană</span>
+        <p class="muted">Campionatul Național de Culturism și Fitness</p>
+      </div>
+    </article>
 
-    
-
-    
-
-    
-
-
-
-
-
-
-
-
-<!-- Mihai Laura -->
-<article class="champ reveal">
-  <div class="champ-media">
-    <img
-      src="assets/champs/mihai-laura-campioana-locul-1-campionat-national.webp"
-      alt="Mihai Laura – Campioană, Locul 1 la Campionatele Naționale"
-      class="champ-photo" loading="lazy" decoding="async"
-      width="1200" height="1500">
-    <span class="tag-rank">Locul 1</span>
+    <!-- Alex Stănescu -->
+    <article class="champ reveal">
+      <div class="champ-media">
+        <img
+          src="assets/champs/alex-stanescu-vicecampion-locul-2-cupa-romaniei.webp"
+          alt="Alex Stănescu – Vicecampion, Locul 2 la Cupa României"
+          class="champ-photo" loading="lazy" decoding="async"
+          width="1200" height="1500">
+        <span class="tag-rank">Locul 2</span>
+      </div>
+      <div class="champ-body">
+        <h3>Alex Stănescu</h3>
+        <span class="role">Vicecampion</span>
+        <p class="muted">Cupa României</p>
+      </div>
+    </article>
   </div>
-  <div class="champ-body">
-    <h3>Mihai Laura</h3>
-    <span class="role">Campioană</span>
-    <p class="muted">Campionatul Național de Culturism și Fitness</p>
-  </div>
-</article>
-
-<!-- Alex Stănescu -->
-<article class="champ reveal">
-  <div class="champ-media">
-    <img
-      src="assets/champs/alex-stanescu-vicecampion-locul-2-cupa-romaniei.webp"
-      alt="Alex Stănescu – Vicecampion, Locul 2 la Cupa României"
-      class="champ-photo" loading="lazy" decoding="async"
-      width="1200" height="1500">
-    <span class="tag-rank">Locul 2</span>
-  </div>
-  <div class="champ-body">
-    <h3>Alex Stănescu</h3>
-    <span class="role">Vicecampion</span>
-    <p class="muted">Cupa României</p>
-  </div>
-</article>
-
-
-
-
-
-
-    
 </section>
-
 
 <!-- ====================== FOOTER (3 coloane) ====================== -->
 <footer class="site-footer" id="footer">
@@ -506,12 +448,12 @@ body.lb-open{ overflow: hidden; } /* oprește derularea fundalului */
       <nav class="f-col f-links" aria-label="Link-uri rapide">
         <h4>Link-uri rapide</h4>
         <ul class="f-list">
-          <li><a href="index.html">Acasă</a></li>
-          <li><a href="about.html">Despre noi</a></li>
-          <li><a href="coaches.html">Antrenori</a></li>
-          <li><a href="gallery.html">Galerie</a></li>
-          <li><a href="champions.html">Campionii Noștri</a></li>
-          <li><a href="contact.html">Contact</a></li>
+          <li><a href="/">Acasă</a></li>
+          <li><a href="/about">Despre noi</a></li>
+          <li><a href="/coaches">Antrenori</a></li>
+          <li><a href="/gallery">Galerie</a></li>
+          <li><a href="/champions">Campionii Noștri</a></li>
+          <li><a href="/contact">Contact</a></li>
         </ul>
       </nav>
 
@@ -532,7 +474,7 @@ body.lb-open{ overflow: hidden; } /* oprește derularea fundalului */
               Strada Gării, Nr. 6<br>Complex PAVCOM, etajul 2<br>Târgoviște, Dâmbovița
             </a>
           </li>
-        
+
           <li>
             <span class="ico">
               <!-- phone -->
@@ -542,7 +484,7 @@ body.lb-open{ overflow: hidden; } /* oprește derularea fundalului */
             </span>
             <a href="tel:0735393772">0735 393 772</a>
           </li>
-        
+
           <li>
             <span class="ico">
               <!-- mail -->
@@ -553,7 +495,7 @@ body.lb-open{ overflow: hidden; } /* oprește derularea fundalului */
             </span>
             <a href="mailto:iulian.nedelcu.v@gmail.com">iulian.nedelcu.v@gmail.com</a>
           </li>
-        
+
           <!-- Instagram -->
           <li>
             <span class="ico">
@@ -567,7 +509,7 @@ body.lb-open{ overflow: hidden; } /* oprește derularea fundalului */
               Instagram
             </a>
           </li>
-        
+
           <!-- Facebook -->
           <li>
             <span class="ico">
@@ -580,13 +522,12 @@ body.lb-open{ overflow: hidden; } /* oprește derularea fundalului */
             </a>
           </li>
         </ul>
-        
       </div>
     </div>
 
     <div class="ft-legal">© 2025 CrossGym Târgoviște. Toate drepturile rezervate.</div>
   </div>
-</footer>ter>
+</footer>
 
 <!-- Lightbox global (deja în styles.css) -->
 <div class="lightbox" id="lb" role="dialog" aria-modal="true" aria-label="Imagine mărită"><img alt="" src=""></div>
