@@ -101,18 +101,25 @@
     }
 
     .coaches-grid {
-      display: grid;
-      gap: 26px;
-      grid-template-columns: repeat(2, minmax(260px, 1fr));
-      justify-content: center;
-      /* siguranță, le ține centrate */
-    }
+  display: grid;
+  gap: 26px;
+  grid-template-columns: repeat(3, minmax(260px, 1fr));
+  justify-content: center;
+}
 
-    @media (max-width:700px) {
-      .coaches-grid {
-        grid-template-columns: 1fr;
-      }
-    }
+/* Tabletă - 2 carduri pe rând */
+@media (max-width: 1000px) {
+  .coaches-grid {
+    grid-template-columns: repeat(2, minmax(260px, 1fr));
+  }
+}
+
+/* Mobil - 1 card pe rând */
+@media (max-width: 700px) {
+  .coaches-grid {
+    grid-template-columns: 1fr;
+  }
+}
 
 
 
@@ -467,6 +474,38 @@
           <div class="coach-ctas">
             <a class="btn outline" href="https://www.instagram.com/andy.alexandrescu/" target="_blank"
               rel="noopener">Vezi profilul</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Ioana -->
+      <article class="coach reveal" data-tilt>
+        <div class="coach-media">
+          <img
+            class="coach-photo"
+            src="assets/coaches/ioana-zaharia-antrenoare-crossgym.webp"
+            alt="Ioana – antrenoare CrossGym Târgoviște; transformări sănătoase, tonifiere și condiție"
+            loading="lazy" decoding="async" width="1000" height="1000">
+          <div class="coach-tags">
+            <span class="pill">Lifestyle</span>
+            <span class="pill ghost">Masă musculară și tonifiere</span>
+          </div>
+        </div>
+
+        <div class="coach-body">
+          <h3>Zaharia Ioana</h3>
+          <span class="role">Antrenor</span>
+          <p class="muted">Antrenor certificat, motivat să te ghideze spre un stil de viață sănătos și remodelare corporală.</p>
+
+          <ul class="coach-meta">
+            <li>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M4 12h4m8 0h4M8 8v8m8-8v8M2 12h2m16 0h2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              Body transformation
+            </li>
+          </ul>
+
+          <div class="coach-ctas">
+            <a class="btn outline" href="https://www.instagram.com/dorinamihaela04/" target="_blank" rel="noopener">Vezi profilul</a>
           </div>
         </div>
       </article>
