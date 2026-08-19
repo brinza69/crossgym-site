@@ -70,7 +70,7 @@
        Preload pentru subsetul latin: e nevoie de el imediat, la primul text randat. -->
   <link rel="preload" href="/assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="css/fonts.css?v=bd904dfb">
-  <link rel="stylesheet" href="css/styles.css?v=dc1a83aa" />
+  <link rel="stylesheet" href="css/styles.css?v=d665e993" />
 
   <!-- Open Graph -->
   <meta property="og:title" content="Politica de confidențialitate · CrossGym Târgoviște" />
@@ -293,12 +293,15 @@
     </a>
 
     <nav id="menu" class="menu" aria-label="Navigație principală">
+      <!-- doar pe mobil: pe desktop rolul de "acasa" il are logo-ul -->
+      <a href="/" class="menu-home">Acasă</a>
       <a href="/about">Despre noi</a>
       <a href="/coaches">Antrenori</a>
       <a href="/pricing">Abonamente</a>
       <a href="/champions">Campionii</a>
       <a href="/gallery">Galerie</a>
-      <a href="/contact">Contact</a>
+      <a href="/contact" class="btn menu-contact">Contact</a>
+      <a href="tel:+40735393772" class="btn outline menu-tel" aria-label="Sună la CrossGym">Sună acum</a>
     </nav>
 
     <a href="/contact" class="btn contact-cta">Contact</a>
