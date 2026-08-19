@@ -67,7 +67,14 @@
   <link rel="canonical" href="https://www.crossgymtargoviste.com/contact" />
 
   <!-- Favicon + font + CSS -->
-  <link rel="icon" href="https://www.crossgymtargoviste.com/assets/icons/logo.png" />
+  <!-- Favicon. Google cere PATRAT si MULTIPLU DE 48px pentru pictograma din
+       rezultatele cautarii; logo.png avea 170x170 (nu e multiplu de 48) si de
+       aceea Google afisa globul gri implicit. In plus, /favicon.ico raspundea
+       404 — browserele si Googlebot il cer automat de la radacina. -->
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="48x48" href="/assets/icons/favicon-48.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="/assets/icons/favicon-96.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="/assets/icons/favicon-192.png">
   <!-- Font Inter gazduit LOCAL (fara conexiune la Google -> mai rapid + conform GDPR).
        Preload pentru subsetul latin: e nevoie de el imediat, la primul text randat. -->
   <link rel="preload" href="/assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
