@@ -22,7 +22,7 @@
 
   var CHEIE = 'crossgym_consimtamant';
   var LUNI_VALABILITATE = 6;
-  var GA_ID = 'G-XXXXXXXXXX';   // înlocuit automat odată cu restul paginilor
+  var GA_ID = 'G-GNM3W91MVZ';   // înlocuit automat odată cu restul paginilor
 
   /* ───────── stocare ───────── */
   function citeste() {
