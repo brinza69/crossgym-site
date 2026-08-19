@@ -1,3 +1,20 @@
+# ##############################################################################
+# !!! ATENTIE — FISIER INACTIV !!!
+#
+# Formatul acesta este specific NETLIFY. Site-ul ruleaza pe GITHUB PAGES,
+# care ignora complet fisierul _redirects. Niciun redirect de mai jos nu se
+# executa in productie.
+#
+# Ce se intampla REAL pe GitHub Pages:
+#   - apex -> www: se face automat (configurat prin CNAME + DNS), nu de aici
+#   - /about, /pricing etc. functioneaza nativ, fara reguli
+#   - /pricing.html raspunde 200 (NU 301) => duplicat rezolvat prin
+#     <link rel="canonical"> in HTML, nu prin acest fisier
+#   - 404 -> 404.html se face automat de GitHub Pages
+#
+# Pastrat doar ca referinta pentru o eventuala migrare pe Netlify.
+# ##############################################################################
+
 # ——— Forțează varianta WWW (canonical) ———
 https://crossgymtargoviste.com/*   https://www.crossgymtargoviste.com/:splat   301
 

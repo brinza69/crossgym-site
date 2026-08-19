@@ -5,55 +5,354 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
+  <!-- ═══════════ SEO tehnic ═══════════ -->
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+  <meta name="googlebot" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+  <meta name="author" content="CrossGym Târgoviște" />
+  <meta name="geo.region" content="RO-DB" />
+  <meta name="geo.placename" content="Târgoviște" />
+  <meta name="geo.position" content="44.9189059;25.4511755" />
+  <meta name="ICBM" content="44.9189059, 25.4511755" />
+
+  <!-- ═══════════ PWA / iconițe ═══════════ -->
+  <meta name="theme-color" content="#0b0c0e" />
+  <link rel="apple-touch-icon" sizes="180x180" href="https://www.crossgymtargoviste.com/assets/icons/apple-touch-icon.png" />
+  <link rel="manifest" href="/site.webmanifest" />
+
+  <!-- ═══════════ Twitter Card ═══════════ -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Galerie Foto Sală Fitness Târgoviște – CrossGym" />
+  <meta name="twitter:description" content="Galerie foto CrossGym Târgoviște: sală modernă, echipamente de top, antrenamente intense și competiții cu sportivi campioni." />
+  <meta name="twitter:image" content="https://www.crossgymtargoviste.com/assets/icons/og-crossgym.jpg" />
+  <meta name="twitter:image:alt" content="CrossGym Târgoviște – sală de fitness și culturism" />
+
+  <!-- ═══════════════════ Google Analytics 4 (cu consimțământ) ═══════════════════
+       ┌──────────────────────────────────────────────────────────────────┐
+       │  DE FACUT: inlocuieste G-XXXXXXXXXX cu ID-ul tau real de masurare │
+       │  (Google Analytics → Administrare → Fluxuri de date).             │
+       │  Apare in js/consent.js si in comentariul de aici.                │
+       │    grep -rl G-XXXXXXXXXX . | xargs sed -i                        │
+       │      's/G-XXXXXXXXXX/G-IDUL_TAU/g'                                │
+       └──────────────────────────────────────────────────────────────────┘
+
+       IMPORTANT: gtag.js NU se incarca aici. In UE, cookie-urile de analiza
+       cer consimtamant PREALABIL (Legea 506/2004 art. 4 alin. 5 + GDPR).
+       Scriptul Google e injectat de js/consent.js abia dupa ce vizitatorul
+       apasa "Accept". Pana atunci nu pleaca nicio cerere catre Google. -->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    /* Consent Mode v2 — totul refuzat implicit, inclusiv analiza. */
+    gtag('consent', 'default', {
+      'ad_storage': 'denied',
+      'ad_user_data': 'denied',
+      'ad_personalization': 'denied',
+      'analytics_storage': 'denied',
+      'functionality_storage': 'granted',
+      'security_storage': 'granted',
+      'wait_for_update': 500
+    });
+    gtag('set', 'ads_data_redaction', true);
+    gtag('set', 'url_passthrough', true);
+  </script>
+  <script defer src="/js/consent.js?v=6880224c"></script>
+  <script defer src="/js/analytics.js?v=9237583e"></script>
+
+
   <!-- SEO de bază -->
-  <title>Galerie CrossGym Târgoviște</title>
+  <title>Galerie Foto Sală Fitness Târgoviște – CrossGym</title>
   <meta name="description" content="Galerie foto CrossGym Târgoviște: sală modernă, echipamente de top, antrenamente intense și competiții cu sportivi campioni." />
 
   <!-- Canonical -->
-  <link rel="canonical" href="https://crossgymtargoviste.com/gallery" />
+  <link rel="canonical" href="https://www.crossgymtargoviste.com/gallery" />
 
   <!-- Favicon + font + CSS -->
-  <link rel="icon" href="https://crossgymtargoviste.com/assets/icons/logo.png" />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="icon" href="https://www.crossgymtargoviste.com/assets/icons/logo.png" />
+  <!-- Font Inter gazduit LOCAL (fara conexiune la Google -> mai rapid + conform GDPR).
+       Preload pentru subsetul latin: e nevoie de el imediat, la primul text randat. -->
+  <link rel="preload" href="/assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="css/fonts.css?v=bd904dfb">
+  <link rel="stylesheet" href="css/styles.css?v=dc1a83aa" />
 
   <!-- Open Graph -->
-  <meta property="og:title" content="Galerie CrossGym Târgoviște" />
+  <meta property="og:title" content="Galerie Foto Sală Fitness Târgoviște – CrossGym" />
   <meta property="og:description" content="Galerie foto CrossGym Târgoviște: sală modernă, echipamente de top, antrenamente intense și competiții cu sportivi campioni." />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://crossgymtargoviste.com/gallery" />
-  <meta property="og:image" content="https://crossgymtargoviste.com/assets/icons/logo.png" />
-  <meta property="og:image:width" content="600" />
-  <meta property="og:image:height" content="600" />
+  <meta property="og:url" content="https://www.crossgymtargoviste.com/gallery" />
+  <meta property="og:image" content="https://www.crossgymtargoviste.com/assets/icons/og-crossgym.jpg" />
+  <meta property="og:image:secure_url" content="https://www.crossgymtargoviste.com/assets/icons/og-crossgym.jpg" />
+  <meta property="og:image:type" content="image/jpeg" />
+  <meta property="og:image:alt" content="CrossGym Târgoviște – sală de fitness și culturism" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:locale" content="ro_RO" />
+  <meta property="og:site_name" content="CrossGym Târgoviște" />
 
-  <!-- JSON-LD (date structurate pentru Google) -->
+  <!-- Date structurate (JSON-LD) -->
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "HealthClub",
-    "name": "CrossGym Târgoviște",
-    "url": "https://crossgymtargoviste.com/gallery",
-    "image": "https://crossgymtargoviste.com/assets/icons/logo.png",
-    "address": {
-      "@type": "PostalAddress",
-      "addressLocality": "Târgoviște",
-      "addressRegion": "Dâmbovița",
-      "addressCountry": "RO"
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": [
+        "HealthClub",
+        "SportsActivityLocation",
+        "LocalBusiness"
+      ],
+      "@id": "https://www.crossgymtargoviste.com/#healthclub",
+      "name": "CrossGym Târgoviște",
+      "alternateName": [
+        "CrossGym",
+        "Cross Gym Târgoviște"
+      ],
+      "description": "Sală de fitness și culturism în Târgoviște, Dâmbovița. Echipamente moderne, antrenori campioni naționali și internaționali, abonamente flexibile pentru fitness și cardio.",
+      "url": "https://www.crossgymtargoviste.com/",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.crossgymtargoviste.com/assets/icons/logo.png",
+        "width": 170,
+        "height": 170
+      },
+      "image": [
+        "https://www.crossgymtargoviste.com/assets/icons/og-crossgym.jpg",
+        "https://www.crossgymtargoviste.com/assets/hero/landing.jpg"
+      ],
+      "telephone": "+40735393772",
+      "email": "iulian.nedelcu.v@gmail.com",
+      "priceRange": "30 - 220 RON",
+      "currenciesAccepted": "RON",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Strada Gării, Nr. 6, Complex PAVCOM, etajul 2",
+        "addressLocality": "Târgoviște",
+        "addressRegion": "Dâmbovița",
+        "postalCode": "130104",
+        "addressCountry": "RO"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 44.9189059,
+        "longitude": 25.4511755
+      },
+      "hasMap": "https://www.google.com/maps/place/CROSS+GYM/@44.9189097,25.4486006,17z/data=!3m1!4b1!4m6!3m5!1s0x40b2f531d2c74c73:0xb26126e0fd716922!8m2!3d44.9189059!4d25.4511755!16s%2Fg%2F11gr21f6f8",
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": [
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday"
+          ],
+          "opens": "07:00",
+          "closes": "22:00"
+        },
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": "Saturday",
+          "opens": "09:00",
+          "closes": "17:00"
+        },
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": "Sunday",
+          "opens": "10:00",
+          "closes": "17:00"
+        }
+      ],
+      "contactPoint": [
+        {
+          "@type": "ContactPoint",
+          "telephone": "+40735393772",
+          "email": "iulian.nedelcu.v@gmail.com",
+          "contactType": "customer service",
+          "availableLanguage": [
+            "ro",
+            "en"
+          ],
+          "areaServed": "RO"
+        }
+      ],
+      "sameAs": [
+        "https://www.instagram.com/crossgym_tgv/",
+        "https://www.facebook.com/crossgym.ro?locale=ro_RO"
+      ],
+      "areaServed": [
+        {
+          "@type": "City",
+          "name": "Târgoviște"
+        },
+        {
+          "@type": "AdministrativeArea",
+          "name": "Județul Dâmbovița"
+        }
+      ],
+      "amenityFeature": [
+        {
+          "@type": "LocationFeatureSpecification",
+          "name": "Zonă de forță (free weights, rackuri, bare olimpice)",
+          "value": true
+        },
+        {
+          "@type": "LocationFeatureSpecification",
+          "name": "Zonă cardio (benzi, biciclete, eliptice)",
+          "value": true
+        },
+        {
+          "@type": "LocationFeatureSpecification",
+          "name": "Antrenori personali certificați",
+          "value": true
+        },
+        {
+          "@type": "LocationFeatureSpecification",
+          "name": "Vestiare și dușuri",
+          "value": true
+        }
+      ],
+      "knowsLanguage": [
+        "ro",
+        "en"
+      ]
     },
-    "telephone": "+40 735 393 772"
-  }
+    {
+      "@type": "WebSite",
+      "@id": "https://www.crossgymtargoviste.com/#website",
+      "url": "https://www.crossgymtargoviste.com/",
+      "name": "CrossGym Târgoviște",
+      "inLanguage": "ro-RO",
+      "publisher": {
+        "@id": "https://www.crossgymtargoviste.com/#healthclub"
+      }
+    },
+    {
+      "@type": "CollectionPage",
+      "@id": "https://www.crossgymtargoviste.com/gallery#webpage",
+      "url": "https://www.crossgymtargoviste.com/gallery",
+      "name": "Galerie Foto Sală Fitness Târgoviște – CrossGym",
+      "description": "Galerie foto CrossGym Târgoviște: sală modernă, echipamente de top, antrenamente intense și competiții cu sportivi campioni.",
+      "inLanguage": "ro-RO",
+      "isPartOf": {
+        "@id": "https://www.crossgymtargoviste.com/#website"
+      },
+      "about": {
+        "@id": "https://www.crossgymtargoviste.com/#healthclub"
+      },
+      "primaryImageOfPage": {
+        "@type": "ImageObject",
+        "url": "https://www.crossgymtargoviste.com/assets/icons/og-crossgym.jpg"
+      },
+      "breadcrumb": {
+        "@id": "https://www.crossgymtargoviste.com/gallery#breadcrumb"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://www.crossgymtargoviste.com/gallery#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Acasă",
+          "item": "https://www.crossgymtargoviste.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Galerie",
+          "item": "https://www.crossgymtargoviste.com/gallery"
+        }
+      ]
+    },
+    {
+      "@type": "ImageGallery",
+      "@id": "https://www.crossgymtargoviste.com/gallery#galerie",
+      "name": "Galerie foto CrossGym Târgoviște",
+      "associatedMedia": [
+        {
+          "@type": "ImageObject",
+          "contentUrl": "https://www.crossgymtargoviste.com/assets/about-gallery/galerie-detaliu-sala-crossgym-targoviste.webp",
+          "url": "https://www.crossgymtargoviste.com/assets/about-gallery/galerie-detaliu-sala-crossgym-targoviste.webp",
+          "name": "Detaliu sală CrossGym Târgoviște",
+          "caption": "Detaliu sală CrossGym Târgoviște"
+        },
+        {
+          "@type": "ImageObject",
+          "contentUrl": "https://www.crossgymtargoviste.com/assets/about-gallery/galerie-zona-greutati-crossgym-targoviste.webp",
+          "url": "https://www.crossgymtargoviste.com/assets/about-gallery/galerie-zona-greutati-crossgym-targoviste.webp",
+          "name": "Zona greutăți CrossGym Târgoviște",
+          "caption": "Zona greutăți CrossGym Târgoviște"
+        },
+        {
+          "@type": "ImageObject",
+          "contentUrl": "https://www.crossgymtargoviste.com/assets/about-gallery/zona-intrare-sala-crossgym-targoviste.webp",
+          "url": "https://www.crossgymtargoviste.com/assets/about-gallery/zona-intrare-sala-crossgym-targoviste.webp",
+          "name": "Intrare sală CrossGym Târgoviște",
+          "caption": "Intrare sală CrossGym Târgoviște"
+        },
+        {
+          "@type": "ImageObject",
+          "contentUrl": "https://www.crossgymtargoviste.com/assets/about-gallery/zona-centrala-sala-crossgym-targoviste.webp",
+          "url": "https://www.crossgymtargoviste.com/assets/about-gallery/zona-centrala-sala-crossgym-targoviste.webp",
+          "name": "Zona centrală sală CrossGym",
+          "caption": "Zona centrală sală CrossGym"
+        },
+        {
+          "@type": "ImageObject",
+          "contentUrl": "https://www.crossgymtargoviste.com/assets/about-gallery/zona-bench-sala-crossgym-targoviste.webp",
+          "url": "https://www.crossgymtargoviste.com/assets/about-gallery/zona-bench-sala-crossgym-targoviste.webp",
+          "name": "Zona bench CrossGym",
+          "caption": "Zona bench CrossGym"
+        },
+        {
+          "@type": "ImageObject",
+          "contentUrl": "https://www.crossgymtargoviste.com/assets/about-gallery/zona-picioare-sala-crossgym-targoviste.webp",
+          "url": "https://www.crossgymtargoviste.com/assets/about-gallery/zona-picioare-sala-crossgym-targoviste.webp",
+          "name": "Zona picioare CrossGym",
+          "caption": "Zona picioare CrossGym"
+        },
+        {
+          "@type": "ImageObject",
+          "contentUrl": "https://www.crossgymtargoviste.com/assets/about-gallery/zona-continuare-picioare-sala-crossgym-targoviste.webp",
+          "url": "https://www.crossgymtargoviste.com/assets/about-gallery/zona-continuare-picioare-sala-crossgym-targoviste.webp",
+          "name": "Zona picioare – continuare",
+          "caption": "Zona picioare – continuare"
+        },
+        {
+          "@type": "ImageObject",
+          "contentUrl": "https://www.crossgymtargoviste.com/assets/about-gallery/zona-scripeti-sala-crossgym-targoviste.webp",
+          "url": "https://www.crossgymtargoviste.com/assets/about-gallery/zona-scripeti-sala-crossgym-targoviste.webp",
+          "name": "Zona scripeți CrossGym",
+          "caption": "Zona scripeți CrossGym"
+        },
+        {
+          "@type": "ImageObject",
+          "contentUrl": "https://www.crossgymtargoviste.com/assets/about-gallery/galerie-sala-cardio-crossgym-targoviste.webp",
+          "url": "https://www.crossgymtargoviste.com/assets/about-gallery/galerie-sala-cardio-crossgym-targoviste.webp",
+          "name": "Sala cardio CrossGym Târgoviște",
+          "caption": "Sala cardio CrossGym Târgoviște"
+        },
+        {
+          "@type": "ImageObject",
+          "contentUrl": "https://www.crossgymtargoviste.com/assets/about-gallery/zona-cardio-overview-sala-crossgym-targoviste.webp",
+          "url": "https://www.crossgymtargoviste.com/assets/about-gallery/zona-cardio-overview-sala-crossgym-targoviste.webp",
+          "name": "Zona cardio – overview",
+          "caption": "Zona cardio – overview"
+        }
+      ]
+    }
+  ]
+}
   </script>
 
-  <!-- JS site -->
-  <script defer src="js/main.js"></script>
+<!-- JS site -->
+  <script defer src="js/main.js?v=4296b3c0"></script>
 
   <!-- ===== Stiluri pentru galerie ===== -->
   <style>
     :root{ --bg:#0f1012; --panel:#15171b; --muted:#b7bcc6; --text:#f7f7fb; --brand:#ffd21f; --border:#242730; --r:18px; --shadow:0 10px 30px rgba(0,0,0,.35); }
 
-    body{ background:var(--bg); color:var(--text); font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto; }
+    body{ background:var(--bg); color:var(--text); font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif; }
 
     /* HERO mic (opțional) */
     .gal-hero{
@@ -112,7 +411,7 @@
 <header class="site-header">
   <div class="container nav">
     <a class="logo" href="/" aria-label="Pagina principală CrossGym">
-      <img class="brand-logo brand-logo--nav" src="assets/icons/logo.png" alt="CrossGym Târgoviște" loading="eager" decoding="async">
+      <img class="brand-logo brand-logo--nav" src="assets/icons/logo.png" alt="CrossGym Târgoviște" loading="eager" decoding="async" width="170" height="170">
       <span class="brand-name">CrossGym</span>
     </a>
 
@@ -145,35 +444,35 @@
   <div id="gallery" class="gallery" style="margin-top:18px">
     <!-- ===== IMAGINI VIZIBILE ===== -->
     <a class="gitem wide" href="assets/about-gallery/galerie-detaliu-sala-crossgym-targoviste.webp">
-      <div class="ratio"><img src="assets/about-gallery/galerie-detaliu-sala-crossgym-targoviste.webp" alt="Detaliu sală CrossGym Târgoviște"></div>
+      <div class="ratio"><img src="assets/about-gallery/galerie-detaliu-sala-crossgym-targoviste.webp" alt="Detaliu sală CrossGym Târgoviște" width="5472" height="3648" decoding="async" loading="lazy"></div>
     </a>
     <a class="gitem normal" href="assets/about-gallery/galerie-zona-greutati-crossgym-targoviste.webp">
-      <div class="ratio"><img src="assets/about-gallery/galerie-zona-greutati-crossgym-targoviste.webp" alt="Zona greutăți CrossGym Târgoviște"></div>
+      <div class="ratio"><img src="assets/about-gallery/galerie-zona-greutati-crossgym-targoviste.webp" alt="Zona greutăți CrossGym Târgoviște" width="1600" height="1067" decoding="async" loading="lazy"></div>
     </a>
     <a class="gitem wide" href="assets/about-gallery/zona-intrare-sala-crossgym-targoviste.webp">
-      <div class="ratio"><img src="assets/about-gallery/zona-intrare-sala-crossgym-targoviste.webp" alt="Intrare sală CrossGym Târgoviște"></div>
+      <div class="ratio"><img src="assets/about-gallery/zona-intrare-sala-crossgym-targoviste.webp" alt="Intrare sală CrossGym Târgoviște" width="1600" height="1067" decoding="async" loading="lazy"></div>
     </a>
     <a class="gitem normal" href="assets/about-gallery/zona-centrala-sala-crossgym-targoviste.webp">
-      <div class="ratio"><img src="assets/about-gallery/zona-centrala-sala-crossgym-targoviste.webp" alt="Zona centrală sală CrossGym"></div>
+      <div class="ratio"><img src="assets/about-gallery/zona-centrala-sala-crossgym-targoviste.webp" alt="Zona centrală sală CrossGym" width="1600" height="1067" decoding="async" loading="lazy"></div>
     </a>
     <!-- corectat: bench (evităm dublura cu sala cardio) -->
     <a class="gitem wide" href="assets/about-gallery/zona-bench-sala-crossgym-targoviste.webp">
-      <div class="ratio"><img src="assets/about-gallery/zona-bench-sala-crossgym-targoviste.webp" alt="Zona bench CrossGym"></div>
+      <div class="ratio"><img src="assets/about-gallery/zona-bench-sala-crossgym-targoviste.webp" alt="Zona bench CrossGym" width="1600" height="1067" decoding="async" loading="lazy"></div>
     </a>
     <a class="gitem normal" href="assets/about-gallery/zona-picioare-sala-crossgym-targoviste.webp">
-      <div class="ratio"><img src="assets/about-gallery/zona-picioare-sala-crossgym-targoviste.webp" alt="Zona picioare CrossGym"></div>
+      <div class="ratio"><img src="assets/about-gallery/zona-picioare-sala-crossgym-targoviste.webp" alt="Zona picioare CrossGym" width="1600" height="1067" decoding="async" loading="lazy"></div>
     </a>
     <a class="gitem wide" href="assets/about-gallery/zona-continuare-picioare-sala-crossgym-targoviste.webp">
-      <div class="ratio"><img src="assets/about-gallery/zona-continuare-picioare-sala-crossgym-targoviste.webp" alt="Zona picioare – continuare"></div>
+      <div class="ratio"><img src="assets/about-gallery/zona-continuare-picioare-sala-crossgym-targoviste.webp" alt="Zona picioare – continuare" width="1600" height="1067" decoding="async" loading="lazy"></div>
     </a>
     <a class="gitem normal" href="assets/about-gallery/zona-scripeti-sala-crossgym-targoviste.webp">
-      <div class="ratio"><img src="assets/about-gallery/zona-scripeti-sala-crossgym-targoviste.webp" alt="Zona scripeți CrossGym"></div>
+      <div class="ratio"><img src="assets/about-gallery/zona-scripeti-sala-crossgym-targoviste.webp" alt="Zona scripeți CrossGym" width="1600" height="1067" decoding="async" loading="lazy"></div>
     </a>
     <a class="gitem wide" href="assets/about-gallery/galerie-sala-cardio-crossgym-targoviste.webp">
-      <div class="ratio"><img src="assets/about-gallery/galerie-sala-cardio-crossgym-targoviste.webp" alt="Sala cardio CrossGym Târgoviște"></div>
+      <div class="ratio"><img src="assets/about-gallery/galerie-sala-cardio-crossgym-targoviste.webp" alt="Sala cardio CrossGym Târgoviște" width="1600" height="1067" decoding="async" loading="lazy"></div>
     </a>
     <a class="gitem normal" href="assets/about-gallery/zona-cardio-overview-sala-crossgym-targoviste.webp">
-      <div class="ratio"><img src="assets/about-gallery/zona-cardio-overview-sala-crossgym-targoviste.webp" alt="Zona cardio – overview"></div>
+      <div class="ratio"><img src="assets/about-gallery/zona-cardio-overview-sala-crossgym-targoviste.webp" alt="Zona cardio – overview" width="1600" height="1067" decoding="async" loading="lazy"></div>
     </a>
     <!-- ===== SFÂRȘIT IMAGINI VIZIBILE ===== -->
   </div>
@@ -189,7 +488,7 @@
     <div class="footer-main">
       <div class="f-col f-brand">
         <div class="f-brand-head">
-          <img class="brand-logo brand-logo--footer" src="assets/icons/logo.png" alt="CrossGym Târgoviște">
+          <img class="brand-logo brand-logo--footer" src="assets/icons/logo.png" alt="CrossGym Târgoviște" width="170" height="170" decoding="async" loading="lazy">
           <strong>CrossGym Târgoviște</strong>
         </div>
         <p class="muted">CrossGym susține performanța. Sala ta de fitness modernă din Târgoviște.</p>
@@ -201,6 +500,7 @@
           <li><a href="/">Acasă</a></li>
           <li><a href="/about">Despre noi</a></li>
           <li><a href="/coaches">Antrenori</a></li>
+          <li><a href="/pricing">Abonamente</a></li>
           <li><a href="/gallery">Galerie</a></li>
           <li><a href="/champions">Campionii Noștri</a></li>
           <li><a href="/contact">Contact</a></li>
@@ -259,12 +559,14 @@
       </div>
     </div>
 
-    <div class="ft-legal">© 2025 CrossGym Târgoviște. Toate drepturile rezervate.</div>
+    <div class="ft-legal">© 2025 CrossGym Târgoviște. Toate drepturile rezervate.
+      <span class="ft-legal__linkuri"><a href="/privacy">Politica de confidențialitate</a><span aria-hidden="true"> · </span><a href="#" class="setari-cookies" onclick="event.preventDefault();window.deschideSetariCookies&&window.deschideSetariCookies();">Setări cookies</a></span>
+    </div>
   </div>
 </footer>
 
 <!-- LIGHTBOX -->
-<div class="lightbox" id="lb" role="dialog" aria-modal="true"><img alt="" src=""></div>
+<div class="lightbox" id="lb" role="dialog" aria-modal="true"><img alt=""></div>
 
 <!-- JS -->
 <script>
@@ -323,8 +625,8 @@
       img.loading = 'lazy';
       img.decoding = 'async';
       img.src = file;
-      img.alt = `Galerie CrossGym Târgoviște ${n}`;
-      img.title = `Galerie CrossGym Târgoviște ${n}`;
+      img.alt = `Galerie Foto Sală Fitness Târgoviște – CrossGym ${n}`;
+      img.title = `Galerie Foto Sală Fitness Târgoviște – CrossGym ${n}`;
 
       wrap.appendChild(img);
       a.appendChild(wrap);

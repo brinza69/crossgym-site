@@ -1,12 +1,106 @@
-// Burger menu
+/* ── Burger menu: panou fullscreen cinetic ────────────────────────────
+   Refoloseste <nav id="menu"> existent (linkurile raman neschimbate in
+   HTML). Straturile decorative sunt create aici, ca sa nu fie nevoie de
+   modificari in cele 9 fisiere HTML; au aria-hidden, deci nu apar in
+   arborele de accesibilitate.                                          */
 const burger = document.querySelector('.burger');
 const menu = document.getElementById('menu');
 
 if (burger && menu) {
-  burger.addEventListener('click', () => {
-    const open = menu.classList.toggle('show');
-    burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+  // Scrim-ul (valul intunecat peste pagina) — singurul strat din afara meniului.
+  const kin = document.createElement('div');
+  kin.className = 'kin-nav';
+  kin.setAttribute('aria-hidden', 'true');
+  kin.innerHTML = '<div class="kin-scrim"></div>';
+  document.body.appendChild(kin);
+
+  // Fundalul si formele ambientale intra CHIAR IN .menu, nu intr-un container
+  // separat. Motivul: .menu e position:fixed (ancorat la viewport), iar un
+  // strat absolute intr-un alt container se poate alinia gresit daca pagina
+  // are latime diferita de viewport — exact bug-ul in care panoul ajungea in
+  // afara ecranului. Asa, fundalul urmeaza intotdeauna exact panoul.
+  const deco = document.createElement('div');
+  deco.className = 'kin-deco';
+  deco.setAttribute('aria-hidden', 'true');
+  deco.innerHTML =
+    '<span class="kin-deco__bg"></span>' +
+    '<svg class="kin-shapes" viewBox="0 0 400 800" fill="none" preserveAspectRatio="xMidYMid slice">' +
+      '<circle cx="330" cy="120" r="70"  fill="rgba(255,210,31,.10)"/>' +
+      '<circle cx="70"  cy="300" r="110" fill="rgba(255,210,31,.06)"/>' +
+      '<circle cx="350" cy="520" r="50"  fill="rgba(255,210,31,.12)"/>' +
+      '<circle cx="120" cy="680" r="90"  fill="rgba(255,210,31,.05)"/>' +
+      '<circle cx="280" cy="700" r="34"  fill="rgba(255,210,31,.14)"/>' +
+    '</svg>';
+  menu.insertBefore(deco, menu.firstChild);
+
+  /* Blocarea scroll-ului in spatele meniului.
+     `overflow:hidden` pe <body> NU functioneaza: elementul care deruleaza
+     este <html>, nu <body>. Iar pe iOS Safari nici `overflow:hidden` pe
+     <html> nu e de incredere — bara de adresa reintroduce derularea.
+
+     Metoda sigura peste tot: retinem pozitia, fixam body-ul deplasat in sus
+     cu exact acea valoare (deci nu sare imaginea), iar la inchidere derulam
+     inapoi. Meniul in sine ramane derulabil intern (overflow-y:auto). */
+  var scrollSalvat = 0;
+
+  const blocheazaScroll = function (activ) {
+    if (activ) {
+      scrollSalvat = window.pageYOffset || document.documentElement.scrollTop || 0;
+      document.body.style.position = 'fixed';
+      document.body.style.top = (-scrollSalvat) + 'px';
+      document.body.style.left = '0';
+      document.body.style.right = '0';
+      document.body.style.width = '100%';
+      document.body.classList.add('kin-lock');
+    } else {
+      document.body.classList.remove('kin-lock');
+      document.body.style.position = '';
+      document.body.style.top = '';
+      document.body.style.left = '';
+      document.body.style.right = '';
+      document.body.style.width = '';
+      window.scrollTo(0, scrollSalvat);
+    }
+  };
+
+  const setare = function (deschis) {
+    if (deschis) {
+      // Fortam un reflow inainte de a adauga clasa. Fara asta, tranzitia nu
+      // porneste fiabil: elementul vine din visibility:hidden si, in acelasi
+      // cadru, body isi schimba pozitionarea (relayout), asa ca browserul
+      // poate sari direct la starea finala sau intarzia pornirea animatiei.
+      void menu.offsetWidth;
+      void kin.offsetWidth;
+    }
+    menu.classList.toggle('show', deschis);
+    kin.classList.toggle('is-open', deschis);
+    blocheazaScroll(deschis);
+    burger.setAttribute('aria-expanded', deschis ? 'true' : 'false');
+    burger.setAttribute('aria-label', deschis ? 'Închide meniul' : 'Deschide meniul');
+    burger.innerHTML = deschis ? '&times;' : '&#9776;';
+  };
+
+  const esteDeschis = function () { return menu.classList.contains('show'); };
+
+  burger.addEventListener('click', function () { setare(!esteDeschis()); });
+
+  // click pe fundal inchide
+  kin.querySelector('.kin-scrim').addEventListener('click', function () { setare(false); });
+
+  // click pe un link inchide (navigarea catre ancore ramane vizibila)
+  menu.addEventListener('click', function (e) {
+    if (e.target.closest('a')) setare(false);
   });
+
+  // Escape inchide
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && esteDeschis()) { setare(false); burger.focus(); }
+  });
+
+  // daca se trece pe desktop cu meniul deschis, curatam starea
+  window.addEventListener('resize', function () {
+    if (window.innerWidth > 980 && esteDeschis()) setare(false);
+  }, { passive: true });
 }
 
 
@@ -264,3 +358,51 @@ if (copyBtn) {
   
   
   
+
+
+/* =========================================================
+   NAVBAR REDIMENSIONABIL
+   ---------------------------------------------------------
+   Port vanilla al efectului "resizable navbar": la scroll > 100px
+   adauga clasa .is-shrunk pe .site-header, iar CSS-ul face restul.
+
+   De ce asa si nu in React: site-ul e HTML static pe GitHub Pages,
+   fara build. Efectul e identic, dar linkurile raman in HTML (bun
+   pentru Google) si nu adaugam nicio dependenta.
+
+   Optimizat: listener passive + rAF, deci nu blocheaza scroll-ul si
+   nu forteaza reflow la fiecare eveniment.
+   ========================================================= */
+function initNavbarShrink(){
+  var header = document.querySelector('.site-header');
+  if (!header) return;
+
+  var PRAG = 100;          // aceeasi valoare ca in componenta originala
+  var ticking = false;
+
+  function aplica(){
+    ticking = false;
+    var y = window.pageYOffset || document.documentElement.scrollTop;
+    // Citim starea direct din DOM, nu dintr-o variabila de stare.
+    // O variabila proprie se poate desincroniza de clasa reala (ex. daca alt
+    // cod atinge clasa), iar atunci garda "daca nu s-a schimbat, iesi" blocheaza
+    // definitiv aplicarea. toggle(clasa, boolean) e idempotent, deci apelul
+    // repetat nu costa nimic si starea se auto-corecteaza mereu.
+    header.classList.toggle('is-shrunk', y > PRAG);
+  }
+
+  function onScroll(){
+    if (ticking) return;
+    ticking = true;
+    window.requestAnimationFrame(aplica);
+  }
+
+  window.addEventListener('scroll', onScroll, { passive: true });
+  aplica();   // starea corecta si daca pagina se deschide deja derulata
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initNavbarShrink);
+} else {
+  initNavbarShrink();
+}

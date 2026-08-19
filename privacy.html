@@ -5,79 +5,271 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
+  <!-- ═══════════ SEO tehnic ═══════════ -->
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+  <meta name="googlebot" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+  <meta name="author" content="CrossGym Târgoviște" />
+  <meta name="geo.region" content="RO-DB" />
+  <meta name="geo.placename" content="Târgoviște" />
+  <meta name="geo.position" content="44.9189059;25.4511755" />
+  <meta name="ICBM" content="44.9189059, 25.4511755" />
+
+  <!-- ═══════════ PWA / iconițe ═══════════ -->
+  <meta name="theme-color" content="#0b0c0e" />
+  <link rel="apple-touch-icon" sizes="180x180" href="https://www.crossgymtargoviste.com/assets/icons/apple-touch-icon.png" />
+  <link rel="manifest" href="/site.webmanifest" />
+
+  <!-- ═══════════ Twitter Card ═══════════ -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Politica de confidențialitate · CrossGym Târgoviște" />
+  <meta name="twitter:description" content="Cum îți protejăm datele: temei legal, scopuri, durate, drepturi GDPR, cookies și contacte." />
+  <meta name="twitter:image" content="https://www.crossgymtargoviste.com/assets/icons/og-crossgym.jpg" />
+  <meta name="twitter:image:alt" content="CrossGym Târgoviște – sală de fitness și culturism" />
+
+  <!-- ═══════════════════ Google Analytics 4 (cu consimțământ) ═══════════════════
+       ┌──────────────────────────────────────────────────────────────────┐
+       │  DE FACUT: inlocuieste G-XXXXXXXXXX cu ID-ul tau real de masurare │
+       │  (Google Analytics → Administrare → Fluxuri de date).             │
+       │  Apare in js/consent.js si in comentariul de aici.                │
+       │    grep -rl G-XXXXXXXXXX . | xargs sed -i                        │
+       │      's/G-XXXXXXXXXX/G-IDUL_TAU/g'                                │
+       └──────────────────────────────────────────────────────────────────┘
+
+       IMPORTANT: gtag.js NU se incarca aici. In UE, cookie-urile de analiza
+       cer consimtamant PREALABIL (Legea 506/2004 art. 4 alin. 5 + GDPR).
+       Scriptul Google e injectat de js/consent.js abia dupa ce vizitatorul
+       apasa "Accept". Pana atunci nu pleaca nicio cerere catre Google. -->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    /* Consent Mode v2 — totul refuzat implicit, inclusiv analiza. */
+    gtag('consent', 'default', {
+      'ad_storage': 'denied',
+      'ad_user_data': 'denied',
+      'ad_personalization': 'denied',
+      'analytics_storage': 'denied',
+      'functionality_storage': 'granted',
+      'security_storage': 'granted',
+      'wait_for_update': 500
+    });
+    gtag('set', 'ads_data_redaction', true);
+    gtag('set', 'url_passthrough', true);
+  </script>
+  <script defer src="/js/consent.js?v=6880224c"></script>
+  <script defer src="/js/analytics.js?v=9237583e"></script>
+
+
   <!-- SEO -->
   <title>Politica de confidențialitate · CrossGym Târgoviște</title>
   <meta name="description" content="Află cum colectăm și folosim datele personale la CrossGym Târgoviște. Drepturile tale GDPR, cookies și contacte. " />
-  <link rel="canonical" href="https://crossgymtargoviste.com/privacy" />
+  <link rel="canonical" href="https://www.crossgymtargoviste.com/privacy" />
 
   <!-- Favicon + font + CSS -->
-  <link rel="icon" href="https://crossgymtargoviste.com/assets/icons/logo.png" />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="icon" href="https://www.crossgymtargoviste.com/assets/icons/logo.png" />
+  <!-- Font Inter gazduit LOCAL (fara conexiune la Google -> mai rapid + conform GDPR).
+       Preload pentru subsetul latin: e nevoie de el imediat, la primul text randat. -->
+  <link rel="preload" href="/assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="css/fonts.css?v=bd904dfb">
+  <link rel="stylesheet" href="css/styles.css?v=dc1a83aa" />
 
   <!-- Open Graph -->
   <meta property="og:title" content="Politica de confidențialitate · CrossGym Târgoviște" />
   <meta property="og:description" content="Cum îți protejăm datele: temei legal, scopuri, durate, drepturi GDPR, cookies și contacte." />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://crossgymtargoviste.com/privacy" />
-  <meta property="og:image" content="https://crossgymtargoviste.com/assets/icons/logo.png" />
-  <meta property="og:image:width" content="600" />
-  <meta property="og:image:height" content="600" />
+  <meta property="og:url" content="https://www.crossgymtargoviste.com/privacy" />
+  <meta property="og:image" content="https://www.crossgymtargoviste.com/assets/icons/og-crossgym.jpg" />
+  <meta property="og:image:secure_url" content="https://www.crossgymtargoviste.com/assets/icons/og-crossgym.jpg" />
+  <meta property="og:image:type" content="image/jpeg" />
+  <meta property="og:image:alt" content="CrossGym Târgoviște – sală de fitness și culturism" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:locale" content="ro_RO" />
+  <meta property="og:site_name" content="CrossGym Târgoviște" />
 
   <!-- JSON-LD: WebPage + Breadcrumb + Organization (HealthClub) -->
+  <!-- Date structurate (JSON-LD) -->
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": "WebPage",
-        "@id": "https://crossgymtargoviste.com/privacy",
-        "url": "https://crossgymtargoviste.com/privacy",
-        "name": "Politica de confidențialitate",
-        "isPartOf": { "@id": "https://crossgymtargoviste.com/#website" },
-        "dateModified": "2025-10-31"
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": [
+        "HealthClub",
+        "SportsActivityLocation",
+        "LocalBusiness"
+      ],
+      "@id": "https://www.crossgymtargoviste.com/#healthclub",
+      "name": "CrossGym Târgoviște",
+      "alternateName": [
+        "CrossGym",
+        "Cross Gym Târgoviște"
+      ],
+      "description": "Sală de fitness și culturism în Târgoviște, Dâmbovița. Echipamente moderne, antrenori campioni naționali și internaționali, abonamente flexibile pentru fitness și cardio.",
+      "url": "https://www.crossgymtargoviste.com/",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.crossgymtargoviste.com/assets/icons/logo.png",
+        "width": 170,
+        "height": 170
       },
-      {
-        "@type": "BreadcrumbList",
-        "itemListElement": [
-          { "@type": "ListItem", "position": 1, "name": "Acasă", "item": "https://crossgymtargoviste.com/" },
-          { "@type": "ListItem", "position": 2, "name": "Politica de confidențialitate", "item": "https://crossgymtargoviste.com/privacy" }
-        ]
+      "image": [
+        "https://www.crossgymtargoviste.com/assets/icons/og-crossgym.jpg",
+        "https://www.crossgymtargoviste.com/assets/hero/landing.jpg"
+      ],
+      "telephone": "+40735393772",
+      "email": "iulian.nedelcu.v@gmail.com",
+      "priceRange": "30 - 220 RON",
+      "currenciesAccepted": "RON",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Strada Gării, Nr. 6, Complex PAVCOM, etajul 2",
+        "addressLocality": "Târgoviște",
+        "addressRegion": "Dâmbovița",
+        "postalCode": "130104",
+        "addressCountry": "RO"
       },
-      {
-        "@type": "WebSite",
-        "@id": "https://crossgymtargoviste.com/#website",
-        "url": "https://crossgymtargoviste.com/",
-        "name": "CrossGym Târgoviște"
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 44.9189059,
+        "longitude": 25.4511755
       },
-      {
-        "@type": "HealthClub",
-        "@id": "https://crossgymtargoviste.com/#healthclub",
-        "name": "CrossGym Târgoviște",
-        "url": "https://crossgymtargoviste.com/",
-        "image": "https://crossgymtargoviste.com/assets/icons/logo.png",
-        "telephone": "+40 735 393 772",
-        "address": {
-          "@type": "PostalAddress",
-          "streetAddress": "Strada Gării, Nr. 6, Complex PAVCOM, etajul 2",
-          "addressLocality": "Târgoviște",
-          "addressRegion": "Dâmbovița",
-          "postalCode": "130104",
-          "addressCountry": "RO"
+      "hasMap": "https://www.google.com/maps/place/CROSS+GYM/@44.9189097,25.4486006,17z/data=!3m1!4b1!4m6!3m5!1s0x40b2f531d2c74c73:0xb26126e0fd716922!8m2!3d44.9189059!4d25.4511755!16s%2Fg%2F11gr21f6f8",
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": [
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday"
+          ],
+          "opens": "07:00",
+          "closes": "22:00"
         },
-        "sameAs": [
-          "https://www.instagram.com/crossgym_tgv/",
-          "https://www.facebook.com/crossgym.ro?locale=ro_RO"
-        ]
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": "Saturday",
+          "opens": "09:00",
+          "closes": "17:00"
+        },
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": "Sunday",
+          "opens": "10:00",
+          "closes": "17:00"
+        }
+      ],
+      "contactPoint": [
+        {
+          "@type": "ContactPoint",
+          "telephone": "+40735393772",
+          "email": "iulian.nedelcu.v@gmail.com",
+          "contactType": "customer service",
+          "availableLanguage": [
+            "ro",
+            "en"
+          ],
+          "areaServed": "RO"
+        }
+      ],
+      "sameAs": [
+        "https://www.instagram.com/crossgym_tgv/",
+        "https://www.facebook.com/crossgym.ro?locale=ro_RO"
+      ],
+      "areaServed": [
+        {
+          "@type": "City",
+          "name": "Târgoviște"
+        },
+        {
+          "@type": "AdministrativeArea",
+          "name": "Județul Dâmbovița"
+        }
+      ],
+      "amenityFeature": [
+        {
+          "@type": "LocationFeatureSpecification",
+          "name": "Zonă de forță (free weights, rackuri, bare olimpice)",
+          "value": true
+        },
+        {
+          "@type": "LocationFeatureSpecification",
+          "name": "Zonă cardio (benzi, biciclete, eliptice)",
+          "value": true
+        },
+        {
+          "@type": "LocationFeatureSpecification",
+          "name": "Antrenori personali certificați",
+          "value": true
+        },
+        {
+          "@type": "LocationFeatureSpecification",
+          "name": "Vestiare și dușuri",
+          "value": true
+        }
+      ],
+      "knowsLanguage": [
+        "ro",
+        "en"
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://www.crossgymtargoviste.com/#website",
+      "url": "https://www.crossgymtargoviste.com/",
+      "name": "CrossGym Târgoviște",
+      "inLanguage": "ro-RO",
+      "publisher": {
+        "@id": "https://www.crossgymtargoviste.com/#healthclub"
       }
-    ]
-  }
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://www.crossgymtargoviste.com/privacy#webpage",
+      "url": "https://www.crossgymtargoviste.com/privacy",
+      "name": "Politica de confidențialitate · CrossGym Târgoviște",
+      "description": "Află cum colectăm și folosim datele personale la CrossGym Târgoviște. Drepturile tale GDPR, cookies și contacte.",
+      "inLanguage": "ro-RO",
+      "isPartOf": {
+        "@id": "https://www.crossgymtargoviste.com/#website"
+      },
+      "about": {
+        "@id": "https://www.crossgymtargoviste.com/#healthclub"
+      },
+      "primaryImageOfPage": {
+        "@type": "ImageObject",
+        "url": "https://www.crossgymtargoviste.com/assets/icons/og-crossgym.jpg"
+      },
+      "breadcrumb": {
+        "@id": "https://www.crossgymtargoviste.com/privacy#breadcrumb"
+      },
+      "dateModified": "2026-08-19"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://www.crossgymtargoviste.com/privacy#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Acasă",
+          "item": "https://www.crossgymtargoviste.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Politica de confidențialitate",
+          "item": "https://www.crossgymtargoviste.com/privacy"
+        }
+      ]
+    }
+  ]
+}
   </script>
 
-  <!-- JS site -->
-  <script defer src="js/main.js"></script>
+<!-- JS site -->
+  <script defer src="js/main.js?v=4296b3c0"></script>
 
   <style>
     .legal { padding: 48px 0; }
@@ -95,21 +287,21 @@
 <!-- ====================== HEADER ====================== -->
 <header class="site-header">
   <div class="container nav">
-    <a class="logo" href="index.html" aria-label="Pagina principală CrossGym">
-      <img class="brand-logo brand-logo--nav" src="assets/icons/logo.png" alt="CrossGym Târgoviște" loading="eager" decoding="async">
+    <a class="logo" href="/" aria-label="Pagina principală CrossGym">
+      <img class="brand-logo brand-logo--nav" src="assets/icons/logo.png" alt="CrossGym Târgoviște" loading="eager" decoding="async" width="170" height="170">
       <span class="brand-name">CrossGym</span>
     </a>
 
     <nav id="menu" class="menu" aria-label="Navigație principală">
-      <a href="about.html">Despre noi</a>
-      <a href="coaches.html">Antrenori</a>
-      <a href="pricing.html">Abonamente</a>
-      <a href="champions.html">Campionii</a>
-      <a href="gallery.html">Galerie</a>
-      <a href="contact.html">Contact</a>
+      <a href="/about">Despre noi</a>
+      <a href="/coaches">Antrenori</a>
+      <a href="/pricing">Abonamente</a>
+      <a href="/champions">Campionii</a>
+      <a href="/gallery">Galerie</a>
+      <a href="/contact">Contact</a>
     </nav>
 
-    <a href="contact.html" class="btn contact-cta">Contact</a>
+    <a href="/contact" class="btn contact-cta">Contact</a>
     <button class="burger" aria-label="Deschide meniul" aria-controls="menu" aria-expanded="false">☰</button>
   </div>
 </header>
@@ -118,18 +310,19 @@
 <section class="container legal">
   <h1>Politica de confidențialitate</h1>
   <p class="lead">Cum colectăm, folosim și protejăm datele tale personale la CrossGym Târgoviște. Această pagină explică pe scurt drepturile tale și setările de confidențialitate.</p>
-  <div class="center"><span class="tag-updated">Ultima actualizare: 31 octombrie 2025</span></div>
+  <div class="center"><span class="tag-updated">Ultima actualizare: 19 august 2026</span></div>
 
   <div class="content">
     <h2>1. Cine suntem</h2>
-    <p><strong>CrossGym Târgoviște</strong> (<a href="https://crossgymtargoviste.com/">crossgymtargoviste.com</a>) operează această pagină și este operatorul datelor tale personale („Operatorul”).</p>
+    <p><strong>CrossGym Târgoviște</strong> (<a href="https://www.crossgymtargoviste.com/">crossgymtargoviste.com</a>) operează această pagină și este operatorul datelor tale personale („Operatorul”).</p>
     <p>Contact rapid: <a href="mailto:iulian.nedelcu.v@gmail.com">iulian.nedelcu.v@gmail.com</a> · Tel: <a href="tel:+40735393772">+40 735 393 772</a></p>
 
     <h2>2. Ce date colectăm</h2>
     <ul>
       <li><strong>Date de contact:</strong> nume (dacă îl furnizezi), e-mail, telefon.</li>
-      <li><strong>Date tehnice:</strong> IP, tip dispozitiv, pagini vizualizate (agregat/anonymizat pentru analiză de bază — dacă folosim analitice).</li>
-      <li><strong>Conținut terț:</strong> Google Maps poate seta cookie-uri la afișarea hărții.</li>
+      <li><strong>Date tehnice (doar cu acordul tău):</strong> prin Google Analytics 4 — pagini vizitate, durata vizitei, tipul dispozitivului, sursa din care ai ajuns pe site și acțiuni precum apăsarea numărului de telefon sau a adresei. Adresa IP este anonimizată. Fără acordul tău, nu colectăm nimic din acestea.</li>
+      <li><strong>Preferința ta privind cookie-urile:</strong> se salvează local, în browserul tău, și nu părăsește dispozitivul.</li>
+      <li><strong>Conținut terț:</strong> harta Google se încarcă doar dacă apeși butonul dedicat.</li>
     </ul>
 
     <h2>3. De ce (temei legal)</h2>
@@ -150,10 +343,12 @@
     <h2>5. Cu cine partajăm</h2>
     <ul>
       <li><strong>Furnizori IT/hosting</strong> – pentru rularea site-ului.</li>
-      <li><strong>Google</strong> – la încărcarea hărții (Google Maps). Poate colecta date conform politicilor proprii.</li>
+      <li><strong>GitHub, Inc.</strong> – găzduiește site-ul; procesează adresa IP în jurnalele serverului, pentru livrarea paginilor și securitate.</li>
+      <li><strong>Cloudflare, Inc.</strong> – asigură serviciul DNS pentru domeniu.</li>
+      <li><strong>Google Ireland Limited</strong> – Google Analytics (numai cu acordul tău) și Google Maps (numai dacă apeși „Încarcă harta").</li>
       <li><strong>Rețele sociale</strong> – doar dacă dai click pe linkuri/embeds (Instagram, Facebook).</li>
     </ul>
-    <small class="muted">Nu vindem datele tale. Transferuri în afara UE pot apărea când folosești servicii terțe (ex: Google); acestea aplică măsuri de protecție standard.</small>
+    <small class="muted">Nu vindem datele tale, nu le folosim pentru publicitate și nu facem profilare. Transferurile în afara UE se fac în temeiul Cadrului UE-SUA privind confidențialitatea datelor sau al clauzelor contractuale standard.</small>
 
     <h2>6. Drepturile tale (GDPR)</h2>
     <ul>
@@ -164,16 +359,71 @@
     </ul>
     <p>Ne poți contacta la <a href="mailto:iulian.nedelcu.v@gmail.com">iulian.nedelcu.v@gmail.com</a> pentru a-ți exercita drepturile.</p>
 
-    <h2>7. Cookie-uri & tehnologii similare</h2>
-    <p>Folosim cookie-uri esențiale pentru funcționarea site-ului și, opțional, cookie-uri neesențiale (analitice/marketing) doar cu consimțământul tău.</p>
-    <ul>
-      <li><strong>Esențiale:</strong> necesare pentru navigare și securitate (nu pot fi dezactivate).</li>
-      <li><strong>Funcționale/terți:</strong> Google Maps (afișarea hărții poate seta cookie-uri la încărcare).</li>
-      <li><strong>Analitice (opțional):</strong> numai dacă vor fi activate în viitor, vor apărea aici în Politică & banner.</li>
-    </ul>
+    <h2>7. Cookie-uri &amp; tehnologii similare</h2>
+    <p>
+      La prima vizită îți afișăm un banner prin care îți ceri acordul. <strong>Până când
+      apeși „Accept toate", site-ul nu încarcă absolut nimic de la terți</strong> — nici
+      Google Analytics, nici harta, nici fonturi externe. Nicio adresă IP a ta nu ajunge
+      la vreo companie terță înainte de acordul tău.
+    </p>
+    <table class="tabel-cookies">
+      <thead>
+        <tr><th>Categorie</th><th>Ce reține</th><th>Durată</th><th>Temei</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Strict necesare</strong></td>
+          <td><code>crossgym_consimtamant</code> — reține exact ce ai ales în banner,
+              ca să nu te întrebăm la fiecare pagină. Se salvează local, în browserul
+              tău, și nu se transmite nicăieri.</td>
+          <td>6 luni</td>
+          <td>Interes legitim (art. 6 alin. 1 lit. f)</td>
+        </tr>
+        <tr>
+          <td><strong>Analitice</strong> <em>(opționale)</em></td>
+          <td>Google Analytics 4 (<code>_ga</code>, <code>_ga_*</code>) — număr de
+              vizitatori, pagini vizitate, dacă cineva a apăsat pe telefon sau pe hartă.
+              IP-ul este anonimizat. Nu folosim date pentru publicitate.</td>
+          <td>până la 2 ani</td>
+          <td><strong>Consimțământ</strong> (art. 6 alin. 1 lit. a)</td>
+        </tr>
+        <tr>
+          <td><strong>Marketing</strong></td>
+          <td>Nu folosim. Nu avem pixeli de publicitate, remarketing sau profilare.</td>
+          <td>—</td>
+          <td>—</td>
+        </tr>
+      </tbody>
+    </table>
+    <p>
+      Îți poți schimba alegerea oricând din linkul <strong>„Setări cookies"</strong> aflat
+      în subsolul fiecărei pagini. Retragerea acordului este la fel de simplă ca acordarea lui.
+    </p>
 
-    <h2>8. Conținut terț (Google Maps, social)</h2>
-    <p>Hărțile integrate de pe Google pot colecta date (IP, device info) când sunt afișate. Poți alege să deschizi traseul direct în Google Maps în locul afișării integrării de pe site.</p>
+    <h2>8. Conținut terț (Google Maps, rețele sociale)</h2>
+    <p>
+      <strong>Google Maps</strong> — harta de pe pagina de Contact <em>nu</em> se încarcă
+      automat. În locul ei vezi un substitut cu un buton „Încarcă harta". Motivul: un
+      astfel de element încorporat trimite adresa ta IP și informații despre dispozitiv
+      către Google chiar din momentul afișării paginii. Alegi tu dacă vrei asta. Poți
+      folosi și butonul „Deschide în Google Maps", care te duce direct în aplicație.
+    </p>
+    <p>
+      <strong>Fonturi</strong> — fontul site-ului (Inter) este găzduit pe serverul nostru,
+      nu preluat de la Google Fonts. Astfel, nicio cerere nu pleacă spre Google la simpla
+      încărcare a paginii.
+    </p>
+    <p>
+      <strong>Instagram și Facebook</strong> — avem doar legături simple către profilurile
+      noastre. Nu există module încorporate, deci nu se transmite nimic până când nu apeși
+      chiar tu pe link.
+    </p>
+    <p>
+      <strong>Transfer în afara UE</strong> — dacă accepți cookie-urile analitice, datele
+      pot fi prelucrate de Google Ireland Limited și transferate în SUA, în temeiul
+      Cadrului UE-SUA privind confidențialitatea datelor (<em>EU-US Data Privacy
+      Framework</em>), la care Google este certificat.
+    </p>
 
     <h2>9. Securitate</h2>
     <p>Aplicăm măsuri rezonabile de securitate (TLS/HTTPS, acces limitat, loguri). Nicio metodă online nu este 100% sigură, dar ne angajăm să limităm riscurile.</p>
@@ -190,7 +440,7 @@
       <!-- stânga -->
       <div class="f-col f-brand">
         <div class="f-brand-head">
-          <img class="brand-logo brand-logo--footer" src="assets/icons/logo.png" alt="CrossGym Târgoviște">
+          <img class="brand-logo brand-logo--footer" src="assets/icons/logo.png" alt="CrossGym Târgoviște" width="170" height="170" decoding="async" loading="lazy">
           <strong>CrossGym Târgoviște</strong>
         </div>
         <p class="muted">CrossGym susține performanța. Sala ta de fitness modernă din Târgoviște.</p>
@@ -200,13 +450,14 @@
       <nav class="f-col f-links" aria-label="Link-uri rapide">
         <h4>Link-uri rapide</h4>
         <ul class="f-list">
-          <li><a href="index.html">Acasă</a></li>
-          <li><a href="about.html">Despre noi</a></li>
-          <li><a href="coaches.html">Antrenori</a></li>
-          <li><a href="gallery.html">Galerie</a></li>
-          <li><a href="champions.html">Campionii Noștri</a></li>
-          <li><a href="contact.html">Contact</a></li>
-          <li><a href="privacy.html" aria-current="page">Politica de confidențialitate</a></li>
+          <li><a href="/">Acasă</a></li>
+          <li><a href="/about">Despre noi</a></li>
+          <li><a href="/coaches">Antrenori</a></li>
+          <li><a href="/pricing">Abonamente</a></li>
+          <li><a href="/gallery">Galerie</a></li>
+          <li><a href="/champions">Campionii Noștri</a></li>
+          <li><a href="/contact">Contact</a></li>
+          <li><a href="/privacy" aria-current="page">Politica de confidențialitate</a></li>
         </ul>
       </nav>
 
@@ -263,7 +514,9 @@
       </div>
     </div>
 
-    <div class="ft-legal">© 2025 CrossGym Târgoviște. Toate drepturile rezervate. · <a href="privacy.html">Politica de confidențialitate</a></div>
+    <div class="ft-legal">© 2025 CrossGym Târgoviște. Toate drepturile rezervate. · <a href="/privacy">Politica de confidențialitate</a>
+      <span class="ft-legal__linkuri"><a href="/privacy">Politica de confidențialitate</a><span aria-hidden="true"> · </span><a href="#" class="setari-cookies" onclick="event.preventDefault();window.deschideSetariCookies&&window.deschideSetariCookies();">Setări cookies</a></span>
+    </div>
   </div>
 </footer>
 

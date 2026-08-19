@@ -1,59 +1,109 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<!--
+  CrossGym Târgoviște — sitemap canonic
+  Toate URL-urile sunt pe https://www.crossgymtargoviste.com (host-ul care răspunde 200).
+  Varianta non-www face 301, deci NU trebuie listată aici.
+-->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
+        xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
+
   <!-- Homepage -->
   <url>
-    <loc>https://crossgymtargoviste.com/</loc>
-    <lastmod>2025-10-31</lastmod>
+    <loc>https://www.crossgymtargoviste.com/</loc>
+    <lastmod>2026-08-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://www.crossgymtargoviste.com/assets/hero/landing.jpg</image:loc>
+      <image:title>Sala CrossGym Târgoviște</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.crossgymtargoviste.com/assets/index-gallery/zona-greutati-crossgym.webp</image:loc>
+      <image:title>Zona greutăți CrossGym – rackuri, bare olimpice și gantere</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.crossgymtargoviste.com/assets/index-gallery/zona-cardio-crossgym.webp</image:loc>
+      <image:title>Zona cardio CrossGym – benzi, biciclete și eliptice</image:title>
+    </image:image>
+    <video:video>
+      <video:thumbnail_loc>https://www.crossgymtargoviste.com/assets/videos/tur-poster.jpg</video:thumbnail_loc>
+      <video:title>Tur virtual al sălii CrossGym Târgoviște</video:title>
+      <video:description>Tur video al sălii CrossGym din Târgoviște: zona de forță cu rackuri și bare olimpice, zona cardio, spațiile generoase și dotările moderne.</video:description>
+      <video:content_loc>https://www.crossgymtargoviste.com/assets/videos/tur-sala-actualizat.mp4</video:content_loc>
+      <video:family_friendly>yes</video:family_friendly>
+      <video:live>no</video:live>
+      <video:requires_subscription>no</video:requires_subscription>
+      <video:publication_date>2025-09-15T00:00:00+03:00</video:publication_date>
+    </video:video>
   </url>
 
+  <!-- Contact — cea mai mare intenție comercială -->
   <url>
-    <loc>https://crossgymtargoviste.com/about</loc>
-    <lastmod>2025-10-31</lastmod>
+    <loc>https://www.crossgymtargoviste.com/contact</loc>
+    <lastmod>2026-08-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Abonamente -->
+  <url>
+    <loc>https://www.crossgymtargoviste.com/pricing</loc>
+    <lastmod>2026-08-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://www.crossgymtargoviste.com/assets/index-gallery/abonamente-preturi-crossgym-targoviste.webp</image:loc>
+      <image:title>Abonamente și prețuri CrossGym Târgoviște</image:title>
+    </image:image>
+  </url>
+
+  <!-- Antrenori -->
+  <url>
+    <loc>https://www.crossgymtargoviste.com/coaches</loc>
+    <lastmod>2026-08-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <!-- Despre noi -->
+  <url>
+    <loc>https://www.crossgymtargoviste.com/about</loc>
+    <lastmod>2026-08-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
+  <!-- Campioni -->
   <url>
-    <loc>https://crossgymtargoviste.com/coaches</loc>
-    <lastmod>2025-10-31</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.85</priority>
-  </url>
-
-  <url>
-    <loc>https://crossgymtargoviste.com/pricing</loc>
-    <lastmod>2025-10-31</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.85</priority>
-  </url>
-
-  <url>
-    <loc>https://crossgymtargoviste.com/gallery</loc>
-    <lastmod>2025-10-31</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-
-  <url>
-    <loc>https://crossgymtargoviste.com/champions</loc>
-    <lastmod>2025-10-31</lastmod>
+    <loc>https://www.crossgymtargoviste.com/champions</loc>
+    <lastmod>2026-08-19</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <priority>0.75</priority>
   </url>
 
+  <!-- Galerie -->
   <url>
-    <loc>https://crossgymtargoviste.com/contact</loc>
-    <lastmod>2025-10-31</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
+    <loc>https://www.crossgymtargoviste.com/gallery</loc>
+    <lastmod>2026-08-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://www.crossgymtargoviste.com/assets/gallery/zona-free-weights-crossgym-targoviste.webp</image:loc>
+      <image:title>Zona free weights CrossGym Târgoviște</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.crossgymtargoviste.com/assets/gallery/antrenamente-grup-crossgym-targoviste.webp</image:loc>
+      <image:title>Antrenamente de grup la CrossGym Târgoviște</image:title>
+    </image:image>
   </url>
 
+  <!-- Politica de confidențialitate -->
   <url>
-    <loc>https://crossgymtargoviste.com/privacy</loc>
-    <lastmod>2025-10-31</lastmod>
+    <loc>https://www.crossgymtargoviste.com/privacy</loc>
+    <lastmod>2026-08-19</lastmod>
     <changefreq>yearly</changefreq>
-    <priority>0.4</priority>
+    <priority>0.3</priority>
   </url>
+
 </urlset>

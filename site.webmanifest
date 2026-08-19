@@ -1,0 +1,46 @@
+{
+  "name": "CrossGym Târgoviște – Sală Fitness & Culturism",
+  "short_name": "CrossGym",
+  "description": "Sală de fitness și culturism în Târgoviște, cu antrenori campioni, echipamente moderne și abonamente flexibile.",
+  "lang": "ro-RO",
+  "dir": "ltr",
+  "start_url": "/?utm_source=pwa",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#0b0c0e",
+  "theme_color": "#0b0c0e",
+  "categories": ["fitness", "health", "sports"],
+  "icons": [
+    {
+      "src": "/assets/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/assets/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/assets/icons/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Abonamente",
+      "url": "/pricing",
+      "description": "Vezi prețurile și pachetele CrossGym"
+    },
+    {
+      "name": "Contact",
+      "url": "/contact",
+      "description": "Adresă, telefon și hartă"
+    }
+  ]
+}

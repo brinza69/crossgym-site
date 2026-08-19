@@ -1,3 +1,22 @@
+# ##############################################################################
+# !!! ATENTIE — FISIER INACTIV !!!
+#
+# Site-ul ruleaza pe GITHUB PAGES (vezi CNAME -> www.crossgymtargoviste.com,
+# DNS -> brinza69.github.io). GitHub Pages NU citeste .htaccess — acesta este
+# un fisier Apache. NIMIC din regulile de mai jos nu se aplica in productie:
+#   - redirectul HTTPS/non-www NU ruleaza (GitHub Pages face singur apex -> www)
+#   - rescrierea /pagina -> /pagina.html NU ruleaza (GH Pages o face nativ)
+#   - redirectul .html -> fara .html NU ruleaza  => /pricing.html raspunde 200
+#   - negocierea .webp NU ruleaza
+#   - headerele de cache/securitate NU se aplica (verificat live: lipsesc)
+#
+# ATENTIE SUPLIMENTARA: regula de mai jos forteaza NON-www, adica exact
+# INVERSUL hostului real (www). Daca migrezi vreodata pe Apache, inverseaz-o
+# inainte, altfel intri intr-o bucla de redirect cu CNAME/_redirects.
+#
+# Pastrat doar ca referinta pentru o eventuala migrare pe hosting Apache.
+# ##############################################################################
+
 # === Dezactivează MultiViews (evită potriviri ciudate) ===
 Options -MultiViews
 

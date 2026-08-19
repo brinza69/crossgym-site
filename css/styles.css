@@ -296,7 +296,10 @@ a{ color:var(--brand); text-decoration:none }
 .hero-landing::before{
   content:"";
   position:absolute; inset:0;
-  background-image: var(--hero);           /* ex: url('assets/hero/landing.jpg') */
+  background-image: var(--hero);           /* ex: url('/assets/hero/landing.jpg')
+                                              ATENTIE: calea trebuie ABSOLUTA — url() dintr-o
+                                              custom property se rezolva fata de ACEST fisier CSS,
+                                              deci o cale relativa ar cere /css/assets/... (404). */
   background-size: cover;
   background-position: center;
   transform: scale(1.04);
@@ -336,7 +339,8 @@ a{ color:var(--brand); text-decoration:none }
   display:block;
   font-weight: 800;
   font-size: clamp(44px, 9vw, 120px);
-  opacity:0; transform: translateY(24px) scale(.98);
+  opacity:0; transform: translateY(12px) scale(.98);
+  padding-block: .02em;   /* aer minim pentru diacriticele coborate (t, s cu virgula) */
 }
 .hero-title .brand{ color: var(--brand); }
 
@@ -367,7 +371,10 @@ a{ color:var(--brand); text-decoration:none }
 .with-icon svg{ display:block; }
 
 /* ---------- ANIMAȚII ---------- */
-@keyframes fadeUp { from {opacity:0; transform: translateY(24px) scale(.98)} to {opacity:1; transform:none} }
+/* translateY redus 24px -> 12px: la line-height 1.1 si gap 0 intre linii,
+   un offset de 24px facea ca diacriticele coborate (t-virgula din "Sustine",
+   "Performanta") sa atinga majusculele liniei de deasupra in timpul stagger-ului. */
+@keyframes fadeUp { from {opacity:0; transform: translateY(12px) scale(.98)} to {opacity:1; transform:none} }
 @keyframes slowIn { from {opacity:0; transform: translateY(16px)} to {opacity:1; transform:none} }
 @keyframes bgIn   { from {transform: scale(1.08)} to {transform: scale(1)} }
 
@@ -919,10 +926,15 @@ section.container.reveal .cards{
   content: "";
   position: absolute;
   inset: 0;
+  /* Vinieta: centrul mai deschis (se vede sala), marginile si baza inchise,
+     ca titlul si subtitlul sa aiba contrast suficient peste imaginea luminoasa. */
   background:
-    radial-gradient(80% 60% at 50% 30%, rgba(0,0,0,.25) 0%, rgba(0,0,0,.75) 100%),
-    linear-gradient(to bottom, rgba(0,0,0,.6), rgba(0,0,0,.85));
-  z-index: -1;
+    radial-gradient(75% 60% at 50% 32%, rgba(0,0,0,.08) 0%, rgba(0,0,0,.26) 100%),
+    linear-gradient(to bottom, rgba(0,0,0,.36) 0%, rgba(0,0,0,.40) 45%, rgba(0,0,0,.38) 100%);
+  /* z-index POZITIV: overlay-ul trebuie sa stea PESTE imaginea din
+     .hero-landing::before (z-index:0). Cu -1 era randat dedesubt si nu
+     intuneca nimic — de aceea hero-ul aparea la luminozitate plina. */
+  z-index: 1;
 }
 
 .hero-lines{
@@ -936,7 +948,7 @@ section.container.reveal .cards{
     );
   mask: linear-gradient(#000, transparent 70%);
   pointer-events: none;
-  z-index: -1;
+  z-index: 2;
 }
 
 .hero-inner{
@@ -1554,3 +1566,969 @@ h2{ font-size:30px; margin:0 0 18px }
 }
 
 
+
+
+/* ===================== SEO: H1 vizual identic cu H2 =====================
+   Paginile fara hero aveau doar H2. Le-am promovat la H1 pentru structura
+   corecta a documentului; aceasta regula pastreaza randarea neschimbata. */
+h1.seo-h1{ font-size:30px; margin:0 0 18px; font-weight:700; }
+/* NU seta line-height aici: h2 il mosteneste din body (1.6). Fixandu-l pe
+   'normal' se pierdeau 12px inaltime si sarea layoutul. */
+
+
+/* =========================================================
+   NAVBAR REDIMENSIONABIL (port vanilla al efectului "resizable navbar")
+   ---------------------------------------------------------
+   La scroll > 100px, bara de sus se strange intr-o "pastila" flotanta,
+   cu blur si umbra. Markup-ul HTML ramane NESCHIMBAT — toate linkurile
+   stau in continuare in DOM, deci zero impact SEO.
+
+   Fara CLS: inaltimea .nav ramane fixa (72px) in ambele stari; se animeaza
+   doar latimea, colturile, fundalul si umbra. Nimic nu impinge continutul.
+
+   Ca sa dezactivezi complet efectul: sterge blocul asta + functia
+   initNavbarShrink() din js/main.js.
+   ========================================================= */
+
+.site-header{
+  transition:
+    background .45s cubic-bezier(.22,.9,.2,1),
+    border-color .45s cubic-bezier(.22,.9,.2,1),
+    backdrop-filter .45s cubic-bezier(.22,.9,.2,1);
+  will-change: background;
+}
+
+.site-header .nav{
+  border: 1px solid transparent;
+  transition:
+    max-width .55s cubic-bezier(.22,.9,.2,1),
+    transform .55s cubic-bezier(.22,.9,.2,1),
+    background .45s cubic-bezier(.22,.9,.2,1),
+    border-color .45s cubic-bezier(.22,.9,.2,1),
+    border-radius .55s cubic-bezier(.22,.9,.2,1),
+    box-shadow .45s cubic-bezier(.22,.9,.2,1),
+    padding .55s cubic-bezier(.22,.9,.2,1);
+  will-change: max-width, transform;
+}
+
+/* --- starea "strans" --- */
+.site-header.is-shrunk{
+  background: transparent;
+  border-bottom-color: transparent;
+  backdrop-filter: none;
+}
+
+.site-header.is-shrunk .nav{
+  max-width: 940px;
+  transform: translateY(8px);
+  border-radius: 999px;
+  padding-inline: 26px;
+  background: rgba(15,16,18,.72);
+  -webkit-backdrop-filter: blur(14px) saturate(140%);
+  backdrop-filter: blur(14px) saturate(140%);
+  border-color: rgba(255,210,31,.18);
+  box-shadow:
+    0 12px 38px rgba(0,0,0,.48),
+    0 2px 8px rgba(0,0,0,.30),
+    0 0 0 1px rgba(255,255,255,.035) inset;
+}
+
+/* pe mobil pastila e mai lata si cu colturi mai putin rotunde */
+@media (max-width:980px){
+  .site-header.is-shrunk .nav{
+    max-width: calc(100% - 20px);
+    border-radius: 18px;
+    padding-inline: 16px;
+  }
+}
+
+/* cand meniul burger e deschis, revenim la bara plina ca sa nu se taie itemii */
+.site-header.is-shrunk .menu.show{
+  background: rgba(15,16,18,.94);
+  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);
+  border-radius: 14px;
+}
+
+/* accesibilitate: fara miscare pentru cine a cerut asta din sistem */
+@media (prefers-reduced-motion: reduce){
+  .site-header,
+  .site-header .nav{ transition: none; }
+  .site-header.is-shrunk .nav{ transform: none; }
+}
+
+
+/* =========================================================
+   MENIU FULLSCREEN CINETIC (burger, mobil)
+   ---------------------------------------------------------
+   Refoloseste <nav id="menu"> existent — linkurile raman IDENTICE in HTML,
+   deci zero impact SEO. Fundalul si formele ambientale sunt injectate din JS
+   CHIAR IN .menu (nu intr-un container separat), pentru ca .menu e
+   position:fixed si se ancoreaza corect la viewport; un strat absolute in alt
+   container se poate alinia gresit cand pagina difera in latime de viewport.
+
+   Se activeaza doar sub 980px. Pe desktop meniul ramane orizontal, neschimbat.
+   ========================================================= */
+
+:root{ --kin-ease: cubic-bezier(0.65, 0.01, 0.05, 0.99); }
+
+/* valul intunecat peste pagina */
+.kin-nav{
+  position: fixed; top: 0; left: 0;
+  width: 100%; height: 100%;
+  /* Z-INDEX CRITIC: .menu se afla INAUNTRUL <header class="site-header">,
+     care are position:sticky + z-index:50 si deci creeaza un context de
+     stivuire propriu. Orice z-index pus pe .menu ramane prins in acel
+     context, la nivelul 50. Daca scrim-ul ar avea 55, s-ar picta PESTE
+     meniu si textul ar aparea intunecat si ilizibil (exact bug-ul avut).
+     Il tinem sub 50, iar mai jos ridicam explicit header-ul cand e deschis. */
+  z-index: 45;
+  pointer-events: none;
+  visibility: hidden;
+  overflow: hidden;              /* nu poate genera scroll orizontal */
+}
+.kin-nav.is-open{ visibility: visible; pointer-events: auto; }
+
+.kin-scrim{
+  position: absolute; inset: 0;
+  background: rgba(6,7,9,.74);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+  opacity: 0;
+  transition: opacity .5s var(--kin-ease);
+}
+.kin-nav.is-open .kin-scrim{ opacity: 1; }
+
+/* decorul din interiorul panoului: fundal + forme */
+.kin-deco{
+  position: absolute; inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+.kin-deco__bg{
+  position: absolute; inset: 0;
+  background: var(--panel);
+  border-left: 1px solid rgba(255,210,31,.16);
+  transform: translateX(101%);
+  transition: transform .5s var(--kin-ease);
+}
+.menu.show .kin-deco__bg{ transform: translateX(0); }
+
+.kin-shapes{
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  opacity: 0;
+  transition: opacity .6s var(--kin-ease) .2s;
+}
+.menu.show .kin-shapes{ opacity: 1; }
+.kin-shapes circle{
+  transform: scale(.4); transform-origin: center; opacity: 0;
+  transition: transform .7s var(--kin-ease), opacity .7s var(--kin-ease);
+}
+.menu.show .kin-shapes circle{ transform: scale(1); opacity: 1; }
+.menu.show .kin-shapes circle:nth-child(1){ transition-delay: .28s }
+.menu.show .kin-shapes circle:nth-child(2){ transition-delay: .36s }
+.menu.show .kin-shapes circle:nth-child(3){ transition-delay: .44s }
+.menu.show .kin-shapes circle:nth-child(4){ transition-delay: .52s }
+.menu.show .kin-shapes circle:nth-child(5){ transition-delay: .60s }
+
+/* pe desktop decorul nu trebuie sa existe vizual */
+@media (min-width:981px){
+  .kin-deco{ display: none; }
+}
+
+@media (max-width:980px){
+  .menu{
+    display: flex;
+    position: fixed;
+    top: 0; right: 0; bottom: 0; left: auto;
+    width: min(420px, 100%);
+    height: 100dvh;
+    margin: 0;
+    padding: clamp(84px, 14vh, 124px) clamp(24px, 7vw, 44px) max(28px, env(safe-area-inset-bottom));
+    gap: clamp(6px, 1.4vh, 14px);
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    background: transparent;
+    border: 0; border-radius: 0; box-shadow: none;
+    min-width: 0;
+    z-index: 60;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    -webkit-overflow-scrolling: touch;
+    transform: translateX(101%);
+    visibility: hidden;
+    transition: transform .55s var(--kin-ease), visibility 0s linear .55s;
+  }
+  .menu.show{
+    transform: translateX(0);
+    visibility: visible;
+    transition: transform .55s var(--kin-ease), visibility 0s linear 0s;
+  }
+
+  /* linkurile: nth-of-type ca sa nu fie afectate de elementul de decor */
+  .menu > a{
+    position: relative; z-index: 1;
+    font-size: clamp(26px, 7.4vw, 40px);
+    font-weight: 800;
+    letter-spacing: -.02em;
+    line-height: 1.18;
+    /* zona de atingere >= 48px chiar daca textul e mai scund (Apple HIG cere 44px).
+       Compensam cu gap mai mic, ca spatierea vizuala sa ramana aceeasi. */
+    padding-block: 8px;
+    min-height: 48px;
+    display: flex;
+    align-items: center;
+    color: var(--text);
+    opacity: 0;
+    transform: translateY(120%) rotate(8deg);
+    transform-origin: left center;
+    transition: transform .58s var(--kin-ease), opacity .42s var(--kin-ease), color .2s;
+  }
+  .menu.show > a{ opacity: 1; transform: translateY(0) rotate(0deg); }
+  .menu.show > a:nth-of-type(1){ transition-delay: .30s }
+  .menu.show > a:nth-of-type(2){ transition-delay: .35s }
+  .menu.show > a:nth-of-type(3){ transition-delay: .40s }
+  .menu.show > a:nth-of-type(4){ transition-delay: .45s }
+  .menu.show > a:nth-of-type(5){ transition-delay: .50s }
+  .menu.show > a:nth-of-type(6){ transition-delay: .55s }
+  .menu > a:active{ color: var(--brand); }
+
+  .menu .menu-contact{
+    display: inline-block;
+    margin-top: clamp(14px, 3vh, 26px);
+    font-size: clamp(15px, 4.2vw, 18px);
+    line-height: 1.2;
+    padding: 14px 22px;
+    border-radius: 12px;
+    color: #000;
+    min-height: 48px;            /* tinta de atingere confortabila */
+  }
+
+  .burger{
+    position: relative; z-index: 65;
+    min-width: 44px; min-height: 44px;   /* tinta de atingere >= 44px (iOS HIG) */
+    display: grid; place-items: center;
+    line-height: 1;
+  }
+
+  body.kin-lock{ overflow: hidden; }
+
+  /* header-ul (care contine meniul) trebuie sa fie peste scrim */
+  body.kin-lock .site-header{ z-index: 70; background: transparent; border-bottom-color: transparent; }
+}
+
+@media (prefers-reduced-motion: reduce){
+  .kin-scrim, .kin-deco__bg, .kin-shapes, .kin-shapes circle,
+  .menu, .menu > a{ transition-duration: .01ms !important; transition-delay: 0s !important; }
+}
+
+
+/* =========================================================
+   HERO: TOT LANDING-UL VIZIBIL DIN PRIMA, PE ORICE ECRAN
+   ---------------------------------------------------------
+   Problema: hero-ul avea min-height: clamp(560px, 85vh, 920px) plus
+   padding 120px/48px si titlu de pana la 120px. Pe laptopuri (768-800px
+   inaltime utila) continutul depasea ecranul si butoanele CTA erau taiate.
+
+   Solutie: inaltimea hero-ului = exact ecranul minus header, iar tipografia
+   scalata ca titlu + subtitlu + butoane sa incapa mereu.
+
+   De ce svh/dvh: pe iOS Safari si Chrome Android bara de adresa apare si
+   dispare. "100vh" e inaltimea CU bara ascunsa, deci continutul e taiat
+   la prima incarcare. "100svh" (small viewport height) e inaltimea CU bara
+   vizibila — garanteaza ca tot continutul se vede din prima.
+   ========================================================= */
+
+.hero-landing{
+  --header-h: 73px;
+  min-height: calc(100vh - var(--header-h));       /* fallback browsere vechi */
+  min-height: calc(100svh - var(--header-h));      /* garanteaza vizibilitatea */
+  padding: clamp(24px, 4vh, 56px) 0 clamp(24px, 4vh, 48px);
+  align-items: center;                              /* continutul centrat vertical */
+}
+
+/* titlul: plafon redus (120px -> 88px) ca cele 3 randuri sa incapa */
+.hero-title .line{
+  font-size: clamp(30px, 7vw, 88px);
+  line-height: 1.04;
+  padding-block: .02em;
+}
+
+.hero-landing .hero-sub{
+  font-size: clamp(14.5px, 1.15vw + 9px, 19px);
+  line-height: 1.55;
+  max-width: 60ch;
+  margin-inline: auto;
+}
+
+.hero-landing .hero-bar{ margin-block: clamp(8px, 1.4vh, 18px); }
+
+.hero-landing .hero-ctas{
+  margin-top: clamp(10px, 1.8vh, 22px);
+  flex-wrap: wrap;
+}
+.hero-landing .hero-ctas .btn{ min-height: 48px; }   /* tinta de atingere */
+
+/* ecrane scunde si late (laptopuri 13-14"): mai strangem tipografia */
+@media (max-height: 820px) and (min-width: 981px){
+  .hero-title .line{ font-size: clamp(30px, 5.2vw, 68px); }
+  .hero-landing{ padding-block: clamp(16px, 2.5vh, 32px); }
+}
+@media (max-height: 700px) and (min-width: 981px){
+  .hero-title .line{ font-size: clamp(28px, 4.4vw, 56px); }
+  .hero-landing .hero-sub{ font-size: 15.5px; }
+}
+
+/* telefoane: totul incape, inclusiv cu bara de adresa vizibila */
+@media (max-width: 560px){
+  .hero-landing{
+    --header-h: 65px;
+    padding: clamp(16px, 3vh, 32px) 0 clamp(20px, 3.5vh, 36px);
+  }
+  .hero-title .line{ font-size: clamp(28px, 9.2vw, 46px); }
+  .hero-landing .hero-sub{ font-size: clamp(14px, 3.9vw, 17px); max-width: 38ch; }
+  .hero-landing .hero-ctas{ gap: 10px; }
+  .hero-landing .hero-ctas .btn{ flex: 1 1 100%; }   /* butoane pe toata latimea */
+}
+
+/* telefoane foarte scunde (ex. iPhone SE 667px) */
+@media (max-width: 560px) and (max-height: 700px){
+  .hero-title .line{ font-size: clamp(26px, 8vw, 38px); }
+  .hero-landing .hero-sub{ font-size: 14px; line-height: 1.45; }
+  .hero-landing .hero-ctas .btn{ min-height: 44px; padding: 10px 14px; }
+}
+
+
+/* =========================================================
+   FARA SCROLL ORIZONTAL PE MOBIL
+   ---------------------------------------------------------
+   Meniul off-canvas sta inchis la translateX(101%), adica in afara
+   ecranului pe dreapta. Chrome il include in zona derulabila, deci
+   aparea scroll orizontal pe telefon.
+
+   Folosim `clip`, nu `hidden`: `overflow-x: hidden` transforma elementul
+   intr-un container de derulare si strica `position: sticky` la header.
+   `overflow-x: clip` doar taie, fara sa creeze scroll container.
+   `hidden` ramane ca rezerva pentru Safari < 16.
+   ========================================================= */
+@media (max-width: 980px){
+  html{
+    overflow-x: hidden;   /* rezerva pentru browsere vechi */
+    overflow-x: clip;     /* varianta corecta, pastreaza sticky */
+  }
+}
+
+
+/* telefoane: panoul ocupa tot ecranul (bloc separat, NU imbricat) */
+@media (max-width:560px){
+  .menu{ width: 100%; }
+  .kin-deco__bg{ border-left: 0; }
+}
+
+
+/* =========================================================
+   FIX 1: SCROLL ORIZONTAL DE LA MENIUL OFF-CANVAS (definitiv)
+   ---------------------------------------------------------
+   `overflow-x: clip` pe <html> s-a dovedit nesigur: pe tableta pagina
+   tot se derula (verificat — hero-ul se muta de la 0 la -300px).
+
+   Solutia sigura: taiem chiar la sursa. .menu e position:fixed, iar blocul
+   sau de referinta este .site-header (pentru ca header-ul are
+   backdrop-filter, ceea ce creeaza un containing block pentru descendentii
+   fixed). Deci e suficient sa taiem pe orizontala in header.
+
+   Folosim `clip`, nu `hidden`: `hidden` ar forta si axa verticala sa devina
+   scrollabila si ar taia meniul de 100dvh in cele 73px ale header-ului.
+   `clip` permite overflow-y: visible, deci meniul ramane intreg pe verticala.
+   ========================================================= */
+@media (max-width: 980px){
+  .site-header{
+    overflow-x: clip;
+    overflow-y: visible;
+  }
+}
+
+/* =========================================================
+   FIX 2: BUTONUL SECUNDAR ERA PREA TRANSPARENT
+   ---------------------------------------------------------
+   .btn.outline avea background:transparent si border #242730 (aproape
+   negru), deci peste fotografia hero-ului devenea aproape invizibil.
+   Ii dam un fundal semi-opac cu blur si o bordura vizibila: ramane
+   secundar fata de butonul galben, dar se citeste clar pe orice imagine.
+   ========================================================= */
+.btn.outline{
+  background: rgba(15,16,18,.62);
+  -webkit-backdrop-filter: blur(10px) saturate(130%);
+  backdrop-filter: blur(10px) saturate(130%);
+  border: 1px solid rgba(255,255,255,.34);
+  color: #fff;
+  transition: background .22s ease, border-color .22s ease, color .22s ease, transform .18s ease;
+}
+.btn.outline:hover{
+  background: rgba(15,16,18,.82);
+  border-color: var(--brand);
+  color: var(--brand);
+}
+.btn.outline:active{ transform: translateY(1px); }
+
+/* peste imaginea hero are nevoie de si mai mult contrast */
+.hero-landing .btn.outline{
+  background: rgba(10,11,13,.70);
+  border-color: rgba(255,255,255,.42);
+  box-shadow: 0 6px 20px rgba(0,0,0,.35);
+}
+.hero-landing .btn.outline:hover{
+  background: rgba(10,11,13,.88);
+  border-color: var(--brand);
+}
+
+
+/* =========================================================
+   FIX 3: SUBTITLUL HERO SE INTINDEA URAT PE TOATA LATIMEA
+   ---------------------------------------------------------
+   Textul ramane NESCHIMBAT (conteaza pentru SEO — contine "sala de
+   fitness moderna din Targoviste"). Schimbam doar felul in care se rupe:
+
+   - masura mai ingusta => randuri mai scurte, mai usor de citit
+     (regula tipografica: 45-75 caractere pe rand)
+   - text-wrap: balance => browserul egalizeaza randurile in loc sa lase
+     unul lung si unul scurt/orfan
+   - putin mai mult spatiu intre randuri
+   ========================================================= */
+.hero-landing .hero-sub{
+  max-width: 46ch;
+  margin-inline: auto;
+  line-height: 1.6;
+  text-wrap: balance;          /* Chrome 114+, Safari 17.5+ */
+  text-wrap: pretty;           /* varianta mai noua, daca exista */
+  color: #e9ecf2;
+  text-shadow: 0 1px 12px rgba(0,0,0,.45);
+}
+
+@media (max-width: 980px){
+  .hero-landing .hero-sub{ max-width: 40ch; }
+}
+@media (max-width: 560px){
+  .hero-landing .hero-sub{ max-width: 34ch; line-height: 1.5; }
+}
+
+
+/* =========================================================
+   FIX 4: BUTONUL "CONTACT" DIN MENIU DEVENEA INVIZIBIL
+   ---------------------------------------------------------
+   Regula veche `.menu a:hover, .menu a.active{ color: var(--brand) }`
+   (linia ~245) se aplica si butonului galben .menu-contact. Rezultat:
+   text galben pe fundal galben = invizibil.
+
+   Se manifesta in doua situatii:
+     1. pe pagina /contact, unde linkul primeste clasa .active
+     2. la hover pe butonul din meniu, pe ORICE pagina
+
+   Butonul e o suprafata plina, nu un link text — culoarea lui trebuie sa
+   ramana neagra indiferent de stare. Specificitate mai mare (0,3,0) ca sa
+   bata `.menu a.active` (0,2,1).
+   ========================================================= */
+.menu a.btn.menu-contact,
+.menu a.btn.menu-contact:hover,
+.menu a.btn.menu-contact:focus,
+.menu a.btn.menu-contact.active{
+  color: #000;
+  background: var(--brand);
+  opacity: 1;
+}
+.menu a.btn.menu-contact:hover{
+  background: #ffdb4d;              /* doar un pic mai deschis la hover */
+}
+
+/* acelasi risc pentru butonul din bara de sus (desktop), daca primeste .active */
+.contact-cta,
+.contact-cta:hover,
+.contact-cta.active{ color: #000; }
+
+
+/* =========================================================
+   BANNER CONSIMTAMANT COOKIES (GDPR)
+   ---------------------------------------------------------
+   Cerinte legale respectate vizual:
+   - cele doua butoane au aceeasi greutate vizuala (refuzul nu poate fi
+     mai greu de gasit decat acceptul — art. 7 GDPR, consimtamant liber)
+   - nu blocheaza continutul, dar e clar vizibil
+   ========================================================= */
+.cookie-banner{
+  position: fixed;
+  left: 50%;
+  bottom: max(16px, env(safe-area-inset-bottom));
+  transform: translate(-50%, calc(100% + 24px));
+  width: min(920px, calc(100vw - 32px));
+  z-index: 90;
+  background: rgba(18,20,24,.96);
+  -webkit-backdrop-filter: blur(14px) saturate(140%);
+  backdrop-filter: blur(14px) saturate(140%);
+  border: 1px solid rgba(255,210,31,.22);
+  border-radius: 16px;
+  box-shadow: 0 18px 50px rgba(0,0,0,.55);
+  opacity: 0;
+  transition: transform .38s cubic-bezier(.22,.9,.2,1), opacity .38s ease;
+}
+.cookie-banner.este-vizibil{ transform: translate(-50%, 0); opacity: 1; }
+
+.cookie-banner__continut{
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 18px 22px;
+}
+.cookie-banner__text strong{
+  display: block;
+  font-size: 15px;
+  margin-bottom: 4px;
+  color: var(--text);
+}
+.cookie-banner__text p{
+  margin: 0;
+  font-size: 13.5px;
+  line-height: 1.55;
+  color: #c4cad6;
+}
+.cookie-banner__text a{ color: var(--brand); text-decoration: underline; }
+
+.cookie-banner__actiuni{
+  display: flex;
+  gap: 10px;
+  flex-shrink: 0;
+}
+.cookie-banner__actiuni .btn{
+  padding: 11px 18px;
+  font-size: 14px;
+  min-height: 44px;
+  white-space: nowrap;
+}
+
+@media (max-width: 760px){
+  .cookie-banner__continut{ flex-direction: column; align-items: stretch; gap: 14px; padding: 16px 18px; }
+  .cookie-banner__actiuni{ flex-direction: column-reverse; }
+  .cookie-banner__actiuni .btn{ width: 100%; text-align: center; }
+}
+
+@media (prefers-reduced-motion: reduce){
+  .cookie-banner{ transition: opacity .01ms; transform: translate(-50%, 0); }
+}
+
+/* ---- placeholder pentru continut extern blocat (harta Google) ---- */
+.extern-blocat{
+  position: absolute; inset: 0;
+  display: grid; place-items: center;
+  gap: 14px;
+  padding: 24px;
+  text-align: center;
+  background:
+    linear-gradient(rgba(11,12,14,.72), rgba(11,12,14,.72)),
+    url('/assets/gallery/harta-placeholder.svg') center/cover no-repeat,
+    #15171b;
+}
+.extern-blocat__text{ max-width: 44ch; color: #cfd5e0; font-size: 14px; line-height: 1.55; }
+.extern-blocat__text strong{ display:block; color: var(--text); margin-bottom: 6px; font-size: 15px; }
+
+/* linkuri legale in subsol (obligatoriu: alegerea cookies trebuie sa poata fi schimbata) */
+.ft-legal__linkuri{ display:inline-block; margin-left:10px; }
+.ft-legal__linkuri a{ color:#9aa2b1; text-decoration:none; border-bottom:1px solid rgba(154,162,177,.35); }
+.ft-legal__linkuri a:hover{ color:var(--brand); border-bottom-color:var(--brand); }
+@media (max-width:560px){
+  .ft-legal__linkuri{ display:block; margin:8px 0 0; }
+}
+
+/* tabelul de cookie-uri din politica de confidentialitate */
+.tabel-cookies{
+  width:100%; border-collapse:collapse; margin:18px 0 22px;
+  font-size:14px; line-height:1.55;
+  display:block; overflow-x:auto;          /* pe mobil se deruleaza doar tabelul */
+  white-space:normal;
+}
+.tabel-cookies thead th{
+  text-align:left; padding:10px 12px; background:#1b1e24; color:var(--text);
+  border-bottom:2px solid rgba(255,210,31,.28); font-weight:700; white-space:nowrap;
+}
+.tabel-cookies td{
+  padding:12px; border-bottom:1px solid var(--border); color:#c4cad6;
+  vertical-align:top; min-width:140px;
+}
+.tabel-cookies td strong{ color:var(--text); }
+.tabel-cookies code{
+  background:#14161a; border:1px solid var(--border); border-radius:6px;
+  padding:1px 6px; font-size:12.5px; color:var(--brand);
+}
+
+
+/* =========================================================
+   CONSISTENTA VIZUALA — scara unica de rotunjiri si butoane
+   ---------------------------------------------------------
+   Inainte, in site existau 11 valori diferite de border-radius
+   (4, 6, 8, 10, 12, 14, 16, 18, 999px...). Cardurile erau taiate
+   uneori la 14px, alteori la 16 sau 18 — de aici senzatia de
+   "ceva nu se aseaza bine". Le aducem la o scara de 4 trepte.
+
+   Blocul e la finalul fisierului, deci castiga in cascada fara sa
+   fie nevoie sa umblam prin zeci de reguli imprastiate.
+   ========================================================= */
+:root{
+  --r-sm:   10px;   /* elemente mici: chips, cod, logo */
+  --r-btn:  12px;   /* butoane si campuri */
+  --r-card: 16px;   /* carduri, panouri, imagini */
+  --r-pill: 999px;  /* pastile complet rotunde */
+  --r: var(--r-card);           /* variabila veche, aliniata la scara */
+}
+
+/* --- carduri, panouri, imagini: toate la aceeasi treapta --- */
+.panel,
+.price-card,
+.f-card,
+.about-photo,
+.howto .panel.pad,
+.scard,
+.scard .ratio,
+.insp-card .ratio,
+.gitem .ratio,
+.split img,
+.champ,
+.champ-media{
+  border-radius: var(--r-card);
+}
+.price-card::after{ border-radius: inherit; }
+
+/* colturile de sus ale imaginilor din capul cardurilor */
+.ratio{
+  border-top-left-radius: var(--r-card);
+  border-top-right-radius: var(--r-card);
+}
+
+/* --- butoane: aceeasi rotunjire, aceeasi inaltime, peste tot ---
+   ATENTIE: .menu .menu-contact NU intra aici. Butonul acela e varianta
+   pentru MOBIL si e ascuns pe desktop cu `display:none`. Daca il includem
+   in regula asta, `display:inline-flex` (venind mai jos in fisier, la
+   specificitate egala) anuleaza ascunderea si apar DOUA butoane "Contact"
+   in bara de sus. Il stilam separat, mai jos, fara sa atingem `display`. */
+.btn,
+.call-bar,
+.map-cta .btn,
+.cookie-banner__actiuni .btn,
+.extern-blocat .btn{
+  border-radius: var(--r-btn);
+  min-height: 46px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  line-height: 1.2;
+  padding: 12px 18px;
+}
+
+/* butonul Contact din meniul mobil: aceleasi proportii, dar fara `display`,
+   ca sa ramana ascuns pe desktop si vizibil doar in meniul burger */
+.menu .menu-contact{
+  border-radius: var(--r-btn);
+  min-height: 46px;
+  align-items: center;
+  justify-content: center;
+  line-height: 1.2;
+  padding: 12px 18px;
+}
+/* butoanele mari din hero raman mai generoase */
+.btn.btn-lg{ padding: 14px 22px; min-height: 52px; font-size: 16px; }
+
+/* --- inele de focus vizibile, la fel peste tot (accesibilitate) --- */
+.glow-link:focus-visible,
+.f-contacts a:focus-visible,
+.address-link:focus-visible,
+.btn:focus-visible,
+.burger:focus-visible,
+.menu a:focus-visible{
+  border-radius: var(--r-sm);
+  outline: 2px solid var(--brand);
+  outline-offset: 3px;
+}
+
+/* --- font unic peste tot, inclusiv in stilurile inline din pagini --- */
+body, button, input, select, textarea, .btn, .menu a, .hero-title, h1, h2, h3, h4{
+  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+}
+
+
+/* =========================================================
+   VIZIBILITATEA CELOR DOUA BUTOANE "CONTACT" — regula finala
+   ---------------------------------------------------------
+   In markup exista DOUA butoane Contact, intentionat:
+     .contact-cta        -> bara de sus, doar pe DESKTOP
+     .menu .menu-contact -> in meniul burger, doar pe MOBIL
+
+   Problema: regula generala `.btn{ display:inline-flex }` (necesara ca
+   textul sa fie centrat vertical in cei 46px) are aceeasi specificitate
+   (0,1,0) ca `.contact-cta{ display:none }` din media query. Fiind scrisa
+   mai jos in fisier, o anula — si se vedeau ambele butoane simultan.
+
+   Rezolvare prin SPECIFICITATE, nu prin !important: prefixam cu
+   .site-header, deci (0,2,0) si (0,3,0). Castiga curat, fara efecte laterale.
+   ========================================================= */
+@media (min-width: 981px){
+  .site-header .menu .menu-contact{ display: none; }   /* pe desktop: doar bara de sus */
+}
+@media (max-width: 980px){
+  .site-header .contact-cta{ display: none; }          /* pe mobil: doar cel din meniu */
+}
+
+
+/* =========================================================
+   SUBSTITUTUL HARTII — sa incapa in caseta pe ecrane mici
+   ---------------------------------------------------------
+   Caseta hartii are raport fix (padding-top:64%), deci pe un telefon de
+   390px are doar ~208px inaltime. Continutul substitutului (text + doua
+   butoane) masura 238px si se taia — al doilea buton ramanea pe jumatate.
+
+   Sub 620px pastram doar butonul principal „Incarca harta". Al doilea
+   ("Deschide in Google Maps") este oricum redundant: exact sub harta se
+   afla butonul „Deschide traseul", care face acelasi lucru.
+   ========================================================= */
+.extern-blocat{
+  gap: 12px;
+  padding: 18px;
+  align-content: center;
+}
+
+@media (max-width: 620px){
+  .extern-blocat{ padding: 14px; gap: 10px; }
+  .extern-blocat__text{ font-size: 12.5px; line-height: 1.45; }
+  .extern-blocat__text strong{ font-size: 14px; margin-bottom: 4px; }
+  .extern-blocat .btn.outline{ display: none; }   /* dublura cu „Deschide traseul" de dedesubt */
+  .extern-blocat .btn{ min-height: 44px; padding: 10px 16px; font-size: 14px; }
+}
+
+/* ecrane foarte inguste: scurtam si mai mult */
+@media (max-width: 400px){
+  .extern-blocat__text{ font-size: 12px; }
+  .extern-blocat{ padding: 12px; gap: 8px; }
+}
+
+
+/* =========================================================
+   RAFINARE VIZUALA — de ce parea "ieftin" si ce s-a schimbat
+   ---------------------------------------------------------
+   Trei cauze concrete, masurate in fisier:
+
+   1) font-weight:800 aparea de 17 ori. Cand TOT textul e la greutate
+      maxima, nimic nu mai iese in evidenta si totul pare strigat.
+      Pastram 800 doar pentru titlurile mari si cifre; restul coboara
+      la 700, care ramane ferm dar respira.
+
+   2) Butoanele nu aveau NICIO umbra. Suprafata perfect plata, fara
+      muchie de lumina sus, arata ca un dreptunghi colorat, nu ca un
+      buton apasabil.
+
+   3) Fara reglaj de letter-spacing. Textul bold are nevoie de spatiere
+      usor negativa ca sa nu para umflat.
+   ========================================================= */
+
+/* ---------- 1. Ierarhie de greutati ---------- */
+.btn, .call-bar,
+.logo, .f-brand-head strong,
+.scard .cap .t, .insp-card .t,
+.menu > a{
+  font-weight: 700;
+}
+/* raman la 800: titlurile mari si cifrele — acolo greutatea are rost */
+.hero-title, .hero-title .line, .about-title, .contact-title,
+.price-card .value, .price .value, .stat .num{ font-weight: 800; }
+
+/* ---------- 2. Butoane cu relief ---------- */
+.btn{
+  letter-spacing: .005em;
+  background-image: linear-gradient(180deg,
+    rgba(255,255,255,.20) 0%,
+    rgba(255,255,255,0)  46%,
+    rgba(0,0,0,.06)     100%);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.45),   /* muchie de lumina sus = relief */
+    0 1px 2px rgba(0,0,0,.24),
+    0 6px 16px rgba(0,0,0,.20);
+  transition: transform .16s ease, box-shadow .22s ease, filter .22s ease, background-color .22s ease;
+}
+.btn:hover{
+  transform: translateY(-1px);
+  filter: brightness(1.04);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.5),
+    0 2px 4px rgba(0,0,0,.26),
+    0 10px 24px rgba(0,0,0,.26);
+}
+.btn:active{
+  transform: translateY(1px);
+  filter: brightness(.98);
+  box-shadow: inset 0 2px 5px rgba(0,0,0,.28), 0 1px 2px rgba(0,0,0,.2);
+}
+
+/* butonul galben primeste si un halou discret, in culoarea brandului */
+.btn:not(.outline):not(.secondary){
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.5),
+    0 1px 2px rgba(0,0,0,.24),
+    0 8px 22px rgba(255,210,31,.16);
+}
+.btn:not(.outline):not(.secondary):hover{
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.55),
+    0 2px 5px rgba(0,0,0,.26),
+    0 14px 30px rgba(255,210,31,.24);
+}
+
+/* varianta conturata: fara gradient, dar cu aceeasi mecanica de apasare */
+.btn.outline{ background-image: none; }
+
+.call-bar{
+  letter-spacing: .005em;
+  background-image: linear-gradient(180deg, rgba(255,255,255,.22), rgba(0,0,0,.05));
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.5),
+    0 8px 22px rgba(255,210,31,.22);
+  transition: transform .16s ease, box-shadow .22s ease, filter .22s ease;
+}
+.call-bar:active{ transform: translateY(1px); }
+
+/* ---------- 3. Hover pe meniul din bara de sus (doar desktop) ---------- */
+@media (min-width: 981px){
+  .menu a{
+    position: relative;
+    padding-block: 6px;
+    transition: color .22s ease;
+  }
+  /* linie care creste din centru spre margini */
+  .menu a::after{
+    content: "";
+    position: absolute;
+    left: 50%; right: 50%; bottom: 0;
+    height: 2px;
+    border-radius: 2px;
+    background: var(--brand);
+    box-shadow: 0 0 10px rgba(255,210,31,.55);
+    transition: left .3s cubic-bezier(.22,.9,.2,1), right .3s cubic-bezier(.22,.9,.2,1);
+  }
+  .menu a:hover::after,
+  .menu a:focus-visible::after{ left: 0; right: 0; }
+
+  /* pagina curenta ramane marcata permanent */
+  .menu a.active{ color: var(--brand); }
+  .menu a.active::after{ left: 0; right: 0; opacity: .85; }
+
+  /* butonul Contact nu primeste linie — e deja o suprafata plina */
+  .menu a.btn::after, .contact-cta::after{ content: none; }
+}
+
+/* ---------- 4. Reglaje fine de tipografie ---------- */
+h2, h3{ letter-spacing: -.015em; }
+.scard .cap .t, .insp-card .t, .price-card h3{ letter-spacing: -.01em; }
+.section-sub, .hero-sub, .about-lead{ letter-spacing: .002em; }
+.badge, .role{ letter-spacing: .02em; font-weight: 600; }
+
+
+/* =========================================================
+   EFECT LA ATINGERE IN MENIUL BURGER
+   ---------------------------------------------------------
+   Pe mobil nu exista hover propriu-zis, dar exista :active (degetul
+   apasat) si :focus-visible (navigare cu tastatura). Pe tablete cu
+   mouse/trackpad hover-ul chiar exista, deci il tratam si pe el —
+   dar doar acolo unde dispozitivul chiar poate face hover.
+
+   Efectul: o bara galbena creste din stanga, textul aluneca putin
+   spre dreapta si se coloreaza. Acelasi limbaj vizual ca linia din
+   meniul de desktop, adaptat la un panou vertical.
+   ========================================================= */
+@media (max-width: 980px){
+  .menu > a:not(.btn){
+    padding-left: 18px;                 /* loc pentru bara din stanga */
+    margin-left: -18px;
+    transition:
+      transform .58s cubic-bezier(.22,.9,.2,1),
+      opacity .42s cubic-bezier(.22,.9,.2,1),
+      color .22s ease,
+      padding-left .28s cubic-bezier(.22,.9,.2,1);
+  }
+
+  .menu > a:not(.btn)::before{
+    content: "";
+    position: absolute;
+    left: 0; top: 50%;
+    width: 4px; height: 0;
+    border-radius: 4px;
+    background: var(--brand);
+    box-shadow: 0 0 12px rgba(255,210,31,.6);
+    transform: translateY(-50%);
+    transition: height .28s cubic-bezier(.22,.9,.2,1);
+  }
+
+  /* starea "atins": bara creste, textul se muta si devine galben */
+  .menu.show > a:not(.btn):active,
+  .menu.show > a:not(.btn):focus-visible{
+    color: var(--brand);
+    padding-left: 26px;
+  }
+  .menu.show > a:not(.btn):active::before,
+  .menu.show > a:not(.btn):focus-visible::before{ height: 62%; }
+
+  /* pagina curenta ramane marcata */
+  .menu > a.active:not(.btn){ color: var(--brand); padding-left: 26px; }
+  .menu > a.active:not(.btn)::before{ height: 62%; }
+}
+
+/* hover real, doar pe dispozitive care chiar au cursor */
+@media (max-width: 980px) and (hover: hover) and (pointer: fine){
+  .menu.show > a:not(.btn):hover{ color: var(--brand); padding-left: 26px; }
+  .menu.show > a:not(.btn):hover::before{ height: 62%; }
+}
+
+/* butonul Contact din meniu: doar o ridicare discreta la apasare */
+@media (max-width: 980px){
+  .menu .menu-contact:active{ transform: translateY(1px); }
+}
+
+
+/* =========================================================
+   BURGER-UL TREBUIE SA MEARGA SI CAND ESTI DERULAT IN PAGINA
+   ---------------------------------------------------------
+   Bug gasit: cu pagina derulata la 1500px, meniul se deschidea la
+   -1491px, adica total in afara ecranului.
+
+   Lantul cauzal:
+   1. .site-header are backdrop-filter (chiar si "blur(0px)" conteaza!).
+      Orice valoare diferita de `none` face din header un BLOC DE
+      REFERINTA pentru descendentii cu position:fixed.
+   2. .menu e position:fixed => se ancoreaza de header, NU de ecran.
+   3. Blocarea scroll-ului pune body-ul pe position:fixed, ceea ce rupe
+      `position:sticky` al header-ului => header-ul ramane la pozitia lui
+      din document (1500px mai sus), tragand meniul dupa el.
+
+   Solutia: cat timp meniul e deschis, scoatem complet backdrop-filter
+   de pe header. Fara el, header-ul nu mai e bloc de referinta, iar
+   meniul se ancoreaza de ecran — indiferent cat ai derulat.
+   ========================================================= */
+body.kin-lock .site-header,
+body.kin-lock .site-header .nav{
+  /* Orice proprietate din lista de mai jos transforma elementul in BLOC DE
+     REFERINTA pentru descendentii position:fixed. Meniul e fixed, deci daca
+     vreun parinte are una dintre ele, meniul se ancoreaza de acel parinte in
+     loc de ecran — si dispare din vizor cand pagina e derulata.
+
+     Vinovatii identificati (ambii din efectul de navbar redimensionabil):
+       .site-header      -> will-change: background
+       .site-header .nav -> transform: translateY(8px) + will-change: transform
+
+     De-asta bug-ul aparea DOAR derulat: sub 100px navbar-ul nu e strans,
+     deci nu are transform. Le neutralizam pe toate cat timp meniul e deschis. */
+  -webkit-backdrop-filter: none !important;
+  backdrop-filter: none !important;
+  transform: none !important;
+  will-change: auto !important;
+  filter: none !important;
+}
+body.kin-lock .site-header{
+  position: static;   /* sticky oricum nu mai are efect cu body pe position:fixed */
+}

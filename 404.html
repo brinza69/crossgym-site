@@ -5,29 +5,89 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
+  <!-- ═══════════ SEO tehnic ═══════════ -->
+  <meta name="robots" content="noindex, follow" />
+  <meta name="googlebot" content="noindex, follow" />
+  <meta name="author" content="CrossGym Târgoviște" />
+  <meta name="geo.region" content="RO-DB" />
+  <meta name="geo.placename" content="Târgoviște" />
+  <meta name="geo.position" content="44.9189059;25.4511755" />
+  <meta name="ICBM" content="44.9189059, 25.4511755" />
+
+  <!-- ═══════════ PWA / iconițe ═══════════ -->
+  <meta name="theme-color" content="#0b0c0e" />
+  <link rel="apple-touch-icon" sizes="180x180" href="https://www.crossgymtargoviste.com/assets/icons/apple-touch-icon.png" />
+  <link rel="manifest" href="/site.webmanifest" />
+
+  <!-- ═══════════ Twitter Card ═══════════ -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="404 · Pagina nu a fost găsită — CrossGym Târgoviște" />
+  <meta name="twitter:description" content="Ups! Pagina pe care o cauți nu există sau a fost mutată. Revino pe pagina principală sau contactează-ne." />
+  <meta name="twitter:image" content="https://www.crossgymtargoviste.com/assets/icons/og-crossgym.jpg" />
+  <meta name="twitter:image:alt" content="CrossGym Târgoviște – sală de fitness și culturism" />
+
+  <!-- ═══════════════════ Google Analytics 4 (cu consimțământ) ═══════════════════
+       ┌──────────────────────────────────────────────────────────────────┐
+       │  DE FACUT: inlocuieste G-XXXXXXXXXX cu ID-ul tau real de masurare │
+       │  (Google Analytics → Administrare → Fluxuri de date).             │
+       │  Apare in js/consent.js si in comentariul de aici.                │
+       │    grep -rl G-XXXXXXXXXX . | xargs sed -i                        │
+       │      's/G-XXXXXXXXXX/G-IDUL_TAU/g'                                │
+       └──────────────────────────────────────────────────────────────────┘
+
+       IMPORTANT: gtag.js NU se incarca aici. In UE, cookie-urile de analiza
+       cer consimtamant PREALABIL (Legea 506/2004 art. 4 alin. 5 + GDPR).
+       Scriptul Google e injectat de js/consent.js abia dupa ce vizitatorul
+       apasa "Accept". Pana atunci nu pleaca nicio cerere catre Google. -->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    /* Consent Mode v2 — totul refuzat implicit, inclusiv analiza. */
+    gtag('consent', 'default', {
+      'ad_storage': 'denied',
+      'ad_user_data': 'denied',
+      'ad_personalization': 'denied',
+      'analytics_storage': 'denied',
+      'functionality_storage': 'granted',
+      'security_storage': 'granted',
+      'wait_for_update': 500
+    });
+    gtag('set', 'ads_data_redaction', true);
+    gtag('set', 'url_passthrough', true);
+  </script>
+  <script defer src="/js/consent.js?v=6880224c"></script>
+  <script defer src="/js/analytics.js?v=9237583e"></script>
+
+
   <!-- SEO -->
   <title>404 · Pagina nu a fost găsită — CrossGym Târgoviște</title>
   <meta name="description" content="Ups! Pagina pe care o cauți nu există sau a fost mutată. Revino pe pagina principală sau contactează-ne." />
-  <meta name="robots" content="noindex,follow" />
 
   <!-- Canonical (spre 404-ul canonic, opțional) -->
-  <link rel="canonical" href="https://crossgymtargoviste.com/404" />
+  <link rel="canonical" href="https://www.crossgymtargoviste.com/404" />
 
   <!-- Favicon + Font + CSS -->
-  <link rel="icon" href="https://crossgymtargoviste.com/assets/icons/logo.png">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/styles.css">
+  <link rel="icon" href="https://www.crossgymtargoviste.com/assets/icons/logo.png">
+  <!-- Font Inter gazduit LOCAL (fara conexiune la Google -> mai rapid + conform GDPR).
+       Preload pentru subsetul latin: e nevoie de el imediat, la primul text randat. -->
+  <link rel="preload" href="/assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="css/fonts.css?v=bd904dfb">
+  <link rel="preload" as="image" href="/assets/hero/landing.jpg" fetchpriority="high">
+  <link rel="stylesheet" href="css/styles.css?v=dc1a83aa">
 
   <!-- OG (social preview) -->
   <meta property="og:title" content="404 · Pagina nu a fost găsită — CrossGym Târgoviște" />
   <meta property="og:description" content="Ups! Pagina pe care o cauți nu există sau a fost mutată. Revino pe pagina principală sau contactează-ne." />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://crossgymtargoviste.com/404" />
-  <meta property="og:image" content="https://crossgymtargoviste.com/assets/icons/logo.png" />
-  <meta property="og:image:width" content="600" />
-  <meta property="og:image:height" content="600" />
+  <meta property="og:url" content="https://www.crossgymtargoviste.com/404" />
+  <meta property="og:image" content="https://www.crossgymtargoviste.com/assets/icons/og-crossgym.jpg" />
+  <meta property="og:image:secure_url" content="https://www.crossgymtargoviste.com/assets/icons/og-crossgym.jpg" />
+  <meta property="og:image:type" content="image/jpeg" />
+  <meta property="og:image:alt" content="CrossGym Târgoviște – sală de fitness și culturism" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:locale" content="ro_RO" />
+  <meta property="og:site_name" content="CrossGym Târgoviște" />
 
   <!-- JSON-LD minim pentru pagină web (fără business schema ca să nu diluăm semnalele) -->
   <script type="application/ld+json">
@@ -35,13 +95,13 @@
     "@context": "https://schema.org",
     "@type": "WebPage",
     "name": "Pagina 404",
-    "url": "https://crossgymtargoviste.com/404",
-    "isPartOf": { "@type": "WebSite", "name": "CrossGym Târgoviște", "url": "https://crossgymtargoviste.com/" }
+    "url": "https://www.crossgymtargoviste.com/404",
+    "isPartOf": { "@type": "WebSite", "name": "CrossGym Târgoviște", "url": "https://www.crossgymtargoviste.com/" }
   }
   </script>
 
   <!-- JS global (dacă ai nevoie de el pe 404) -->
-  <script defer src="js/main.js"></script>
+  <script defer src="js/main.js?v=4296b3c0"></script>
 
   <style>
     /* stil mic doar pentru erou 404; restul vine din css/styles.css */
@@ -59,7 +119,7 @@
       content:"";
       position:absolute; inset:0;
       background: linear-gradient(120deg, rgba(0,0,0,.55), rgba(0,0,0,.35)), 
-                  url('assets/hero/landing.jpg') center/cover no-repeat;
+                  url('/assets/hero/landing.jpg') center/cover no-repeat;
       filter: saturate(1.05);
     }
     .hero-404 .inner { position: relative; z-index: 1; padding: 40px 20px; max-width: 880px; }
@@ -79,7 +139,7 @@
   <div class="container nav">
     <!-- Logo -->
     <a class="logo" href="/" aria-label="Pagina principală CrossGym">
-      <img class="brand-logo brand-logo--nav" src="assets/icons/logo.png" alt="CrossGym Târgoviște" loading="eager" decoding="async">
+      <img class="brand-logo brand-logo--nav" src="assets/icons/logo.png" alt="CrossGym Târgoviște" loading="eager" decoding="async" width="170" height="170">
       <span class="brand-name">CrossGym</span>
     </a>
 
@@ -122,7 +182,7 @@
     <div class="footer-main">
       <div class="f-col f-brand">
         <div class="f-brand-head">
-          <img class="brand-logo brand-logo--footer" src="assets/icons/logo.png" alt="CrossGym Târgoviște">
+          <img class="brand-logo brand-logo--footer" src="assets/icons/logo.png" alt="CrossGym Târgoviște" width="170" height="170" decoding="async" loading="lazy">
           <strong>CrossGym Târgoviște</strong>
         </div>
         <p class="muted">CrossGym susține performanța. Sala ta de fitness modernă din Târgoviște.</p>
@@ -134,6 +194,7 @@
           <li><a href="/">Acasă</a></li>
           <li><a href="/about">Despre noi</a></li>
           <li><a href="/coaches">Antrenori</a></li>
+          <li><a href="/pricing">Abonamente</a></li>
           <li><a href="/gallery">Galerie</a></li>
           <li><a href="/champions">Campionii Noștri</a></li>
           <li><a href="/contact">Contact</a></li>
@@ -198,7 +259,9 @@
       </div>
     </div>
 
-    <div class="ft-legal">© 2025 CrossGym Târgoviște. Toate drepturile rezervate.</div>
+    <div class="ft-legal">© 2025 CrossGym Târgoviște. Toate drepturile rezervate.
+      <span class="ft-legal__linkuri"><a href="/privacy">Politica de confidențialitate</a><span aria-hidden="true"> · </span><a href="#" class="setari-cookies" onclick="event.preventDefault();window.deschideSetariCookies&&window.deschideSetariCookies();">Setări cookies</a></span>
+    </div>
   </div>
 </footer>
 

@@ -5,68 +5,271 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
+  <!-- ═══════════ SEO tehnic ═══════════ -->
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+  <meta name="googlebot" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+  <meta name="author" content="CrossGym Târgoviște" />
+  <meta name="geo.region" content="RO-DB" />
+  <meta name="geo.placename" content="Târgoviște" />
+  <meta name="geo.position" content="44.9189059;25.4511755" />
+  <meta name="ICBM" content="44.9189059, 25.4511755" />
+
+  <!-- ═══════════ PWA / iconițe ═══════════ -->
+  <meta name="theme-color" content="#0b0c0e" />
+  <link rel="apple-touch-icon" sizes="180x180" href="https://www.crossgymtargoviste.com/assets/icons/apple-touch-icon.png" />
+  <link rel="manifest" href="/site.webmanifest" />
+
+  <!-- ═══════════ Twitter Card ═══════════ -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Contact CrossGym Târgoviște – Adresă, Telefon și Program" />
+  <meta name="twitter:description" content="Adresă, telefon și hartă pentru CrossGym Târgoviște. Programează o vizită sau sună acum." />
+  <meta name="twitter:image" content="https://www.crossgymtargoviste.com/assets/icons/og-crossgym.jpg" />
+  <meta name="twitter:image:alt" content="CrossGym Târgoviște – sală de fitness și culturism" />
+
+  <!-- ═══════════════════ Google Analytics 4 (cu consimțământ) ═══════════════════
+       ┌──────────────────────────────────────────────────────────────────┐
+       │  DE FACUT: inlocuieste G-XXXXXXXXXX cu ID-ul tau real de masurare │
+       │  (Google Analytics → Administrare → Fluxuri de date).             │
+       │  Apare in js/consent.js si in comentariul de aici.                │
+       │    grep -rl G-XXXXXXXXXX . | xargs sed -i                        │
+       │      's/G-XXXXXXXXXX/G-IDUL_TAU/g'                                │
+       └──────────────────────────────────────────────────────────────────┘
+
+       IMPORTANT: gtag.js NU se incarca aici. In UE, cookie-urile de analiza
+       cer consimtamant PREALABIL (Legea 506/2004 art. 4 alin. 5 + GDPR).
+       Scriptul Google e injectat de js/consent.js abia dupa ce vizitatorul
+       apasa "Accept". Pana atunci nu pleaca nicio cerere catre Google. -->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    /* Consent Mode v2 — totul refuzat implicit, inclusiv analiza. */
+    gtag('consent', 'default', {
+      'ad_storage': 'denied',
+      'ad_user_data': 'denied',
+      'ad_personalization': 'denied',
+      'analytics_storage': 'denied',
+      'functionality_storage': 'granted',
+      'security_storage': 'granted',
+      'wait_for_update': 500
+    });
+    gtag('set', 'ads_data_redaction', true);
+    gtag('set', 'url_passthrough', true);
+  </script>
+  <script defer src="/js/consent.js?v=6880224c"></script>
+  <script defer src="/js/analytics.js?v=9237583e"></script>
+
+
   <!-- SEO de bază -->
-  <title>Contact CrossGym Târgoviște</title>
+  <title>Contact CrossGym Târgoviște – Adresă, Telefon și Program</title>
   <meta name="description" content="Adresă, telefon și hartă pentru CrossGym Târgoviște. Programează o vizită sau sună acum pentru detalii despre abonamente și antrenamente." />
 
   <!-- Canonical -->
-  <link rel="canonical" href="https://crossgymtargoviste.com/contact" />
+  <link rel="canonical" href="https://www.crossgymtargoviste.com/contact" />
 
   <!-- Favicon + font + CSS -->
-  <link rel="icon" href="https://crossgymtargoviste.com/assets/icons/logo.png" />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="icon" href="https://www.crossgymtargoviste.com/assets/icons/logo.png" />
+  <!-- Font Inter gazduit LOCAL (fara conexiune la Google -> mai rapid + conform GDPR).
+       Preload pentru subsetul latin: e nevoie de el imediat, la primul text randat. -->
+  <link rel="preload" href="/assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="css/fonts.css?v=bd904dfb">
+  <link rel="stylesheet" href="css/styles.css?v=dc1a83aa" />
 
   <!-- Open Graph -->
-  <meta property="og:title" content="Contact CrossGym Târgoviște" />
+  <meta property="og:title" content="Contact CrossGym Târgoviște – Adresă, Telefon și Program" />
   <meta property="og:description" content="Adresă, telefon și hartă pentru CrossGym Târgoviște. Programează o vizită sau sună acum." />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://crossgymtargoviste.com/contact" />
-  <meta property="og:image" content="https://crossgymtargoviste.com/assets/icons/logo.png" />
-  <meta property="og:image:width" content="600" />
-  <meta property="og:image:height" content="600" />
+  <meta property="og:url" content="https://www.crossgymtargoviste.com/contact" />
+  <meta property="og:image" content="https://www.crossgymtargoviste.com/assets/icons/og-crossgym.jpg" />
+  <meta property="og:image:secure_url" content="https://www.crossgymtargoviste.com/assets/icons/og-crossgym.jpg" />
+  <meta property="og:image:type" content="image/jpeg" />
+  <meta property="og:image:alt" content="CrossGym Târgoviște – sală de fitness și culturism" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:locale" content="ro_RO" />
+  <meta property="og:site_name" content="CrossGym Târgoviște" />
 
-  <!-- JSON-LD (date structurate pentru Google) -->
+  <!-- Date structurate (JSON-LD) -->
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "HealthClub",
-    "@id": "https://crossgymtargoviste.com/#healthclub",
-    "name": "CrossGym Târgoviște",
-    "url": "https://crossgymtargoviste.com/contact",
-    "image": "https://crossgymtargoviste.com/assets/icons/logo.png",
-    "address": {
-      "@type": "PostalAddress",
-      "streetAddress": "Strada Gării, Nr. 6, Complex PAVCOM, etajul 2",
-      "addressLocality": "Târgoviște",
-      "addressRegion": "Dâmbovița",
-      "postalCode": "130104",
-      "addressCountry": "RO"
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": [
+        "HealthClub",
+        "SportsActivityLocation",
+        "LocalBusiness"
+      ],
+      "@id": "https://www.crossgymtargoviste.com/#healthclub",
+      "name": "CrossGym Târgoviște",
+      "alternateName": [
+        "CrossGym",
+        "Cross Gym Târgoviște"
+      ],
+      "description": "Sală de fitness și culturism în Târgoviște, Dâmbovița. Echipamente moderne, antrenori campioni naționali și internaționali, abonamente flexibile pentru fitness și cardio.",
+      "url": "https://www.crossgymtargoviste.com/",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.crossgymtargoviste.com/assets/icons/logo.png",
+        "width": 170,
+        "height": 170
+      },
+      "image": [
+        "https://www.crossgymtargoviste.com/assets/icons/og-crossgym.jpg",
+        "https://www.crossgymtargoviste.com/assets/hero/landing.jpg"
+      ],
+      "telephone": "+40735393772",
+      "email": "iulian.nedelcu.v@gmail.com",
+      "priceRange": "30 - 220 RON",
+      "currenciesAccepted": "RON",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Strada Gării, Nr. 6, Complex PAVCOM, etajul 2",
+        "addressLocality": "Târgoviște",
+        "addressRegion": "Dâmbovița",
+        "postalCode": "130104",
+        "addressCountry": "RO"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 44.9189059,
+        "longitude": 25.4511755
+      },
+      "hasMap": "https://www.google.com/maps/place/CROSS+GYM/@44.9189097,25.4486006,17z/data=!3m1!4b1!4m6!3m5!1s0x40b2f531d2c74c73:0xb26126e0fd716922!8m2!3d44.9189059!4d25.4511755!16s%2Fg%2F11gr21f6f8",
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": [
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday"
+          ],
+          "opens": "07:00",
+          "closes": "22:00"
+        },
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": "Saturday",
+          "opens": "09:00",
+          "closes": "17:00"
+        },
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": "Sunday",
+          "opens": "10:00",
+          "closes": "17:00"
+        }
+      ],
+      "contactPoint": [
+        {
+          "@type": "ContactPoint",
+          "telephone": "+40735393772",
+          "email": "iulian.nedelcu.v@gmail.com",
+          "contactType": "customer service",
+          "availableLanguage": [
+            "ro",
+            "en"
+          ],
+          "areaServed": "RO"
+        }
+      ],
+      "sameAs": [
+        "https://www.instagram.com/crossgym_tgv/",
+        "https://www.facebook.com/crossgym.ro?locale=ro_RO"
+      ],
+      "areaServed": [
+        {
+          "@type": "City",
+          "name": "Târgoviște"
+        },
+        {
+          "@type": "AdministrativeArea",
+          "name": "Județul Dâmbovița"
+        }
+      ],
+      "amenityFeature": [
+        {
+          "@type": "LocationFeatureSpecification",
+          "name": "Zonă de forță (free weights, rackuri, bare olimpice)",
+          "value": true
+        },
+        {
+          "@type": "LocationFeatureSpecification",
+          "name": "Zonă cardio (benzi, biciclete, eliptice)",
+          "value": true
+        },
+        {
+          "@type": "LocationFeatureSpecification",
+          "name": "Antrenori personali certificați",
+          "value": true
+        },
+        {
+          "@type": "LocationFeatureSpecification",
+          "name": "Vestiare și dușuri",
+          "value": true
+        }
+      ],
+      "knowsLanguage": [
+        "ro",
+        "en"
+      ]
     },
-    "telephone": "+40 735 393 772",
-    "contactPoint": [{
-      "@type": "ContactPoint",
-      "telephone": "+40 735 393 772",
-      "contactType": "customer service",
-      "availableLanguage": ["ro", "en"]
-    }],
-    "sameAs": [
-      "https://www.instagram.com/crossgym_tgv/",
-      "https://www.facebook.com/crossgym.ro?locale=ro_RO"
-    ],
-    "geo": {
-      "@type": "GeoCoordinates",
-      "latitude": 44.9189059,
-      "longitude": 25.4511755
+    {
+      "@type": "WebSite",
+      "@id": "https://www.crossgymtargoviste.com/#website",
+      "url": "https://www.crossgymtargoviste.com/",
+      "name": "CrossGym Târgoviște",
+      "inLanguage": "ro-RO",
+      "publisher": {
+        "@id": "https://www.crossgymtargoviste.com/#healthclub"
+      }
     },
-    "hasMap": "https://www.google.com/maps/place/CROSS+GYM/@44.9189097,25.4486006,17z/data=!3m1!4b1!4m6!3m5!1s0x40b2f531d2c74c73:0xb26126e0fd716922!8m2!3d44.9189059!4d25.4511755!16s%2Fg%2F11gr21f6f8"
-  }
+    {
+      "@type": "ContactPage",
+      "@id": "https://www.crossgymtargoviste.com/contact#webpage",
+      "url": "https://www.crossgymtargoviste.com/contact",
+      "name": "Contact CrossGym Târgoviște – Adresă, Telefon și Program",
+      "description": "Adresă, telefon și hartă pentru CrossGym Târgoviște. Programează o vizită sau sună acum pentru detalii despre abonamente și antrenamente.",
+      "inLanguage": "ro-RO",
+      "isPartOf": {
+        "@id": "https://www.crossgymtargoviste.com/#website"
+      },
+      "about": {
+        "@id": "https://www.crossgymtargoviste.com/#healthclub"
+      },
+      "primaryImageOfPage": {
+        "@type": "ImageObject",
+        "url": "https://www.crossgymtargoviste.com/assets/icons/og-crossgym.jpg"
+      },
+      "breadcrumb": {
+        "@id": "https://www.crossgymtargoviste.com/contact#breadcrumb"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://www.crossgymtargoviste.com/contact#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Acasă",
+          "item": "https://www.crossgymtargoviste.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Contact",
+          "item": "https://www.crossgymtargoviste.com/contact"
+        }
+      ]
+    }
+  ]
+}
   </script>
 
-  <!-- JS site -->
-  <script defer src="js/main.js"></script>
+<!-- JS site -->
+  <script defer src="js/main.js?v=4296b3c0"></script>
 </head>
 
 <body>
@@ -74,21 +277,21 @@
 <!-- ====================== HEADER ====================== -->
 <header class="site-header">
   <div class="container nav">
-    <a class="logo" href="index.html" aria-label="Pagina principală CrossGym">
-      <img class="brand-logo brand-logo--nav" src="assets/icons/logo.png" alt="CrossGym Târgoviște" loading="eager" decoding="async">
+    <a class="logo" href="/" aria-label="Pagina principală CrossGym">
+      <img class="brand-logo brand-logo--nav" src="assets/icons/logo.png" alt="CrossGym Târgoviște" loading="eager" decoding="async" width="170" height="170">
       <span class="brand-name">CrossGym</span>
     </a>
 
     <nav id="menu" class="menu" aria-label="Navigație principală">
-      <a href="about.html">Despre noi</a>
-      <a href="coaches.html">Antrenori</a>
-      <a href="pricing.html">Abonamente</a>
-      <a href="champions.html">Campionii</a>
-      <a href="gallery.html">Galerie</a>
-      <a href="contact.html" class="btn menu-contact active" aria-current="page">Contact</a>
+      <a href="/about">Despre noi</a>
+      <a href="/coaches">Antrenori</a>
+      <a href="/pricing">Abonamente</a>
+      <a href="/champions">Campionii</a>
+      <a href="/gallery">Galerie</a>
+      <a href="/contact" class="btn menu-contact active" aria-current="page">Contact</a>
     </nav>
 
-    <a href="contact.html" class="btn contact-cta">Contact</a>
+    <a href="/contact" class="btn contact-cta">Contact</a>
     <button class="burger" aria-label="Deschide meniul" aria-controls="menu" aria-expanded="false">☰</button>
   </div>
 </header>
@@ -185,22 +388,33 @@
 
       <!-- CTA-uri secundare -->
       <div class="cta-row" style="display:flex;gap:12px;flex-wrap:wrap;margin-top:6px;">
-        <a class="btn" href="pricing.html">Vezi abonamente</a>
-        <a class="btn outline" href="about.html">Despre sală</a>
+        <a class="btn" href="/pricing">Vezi abonamente</a>
+        <a class="btn outline" href="/about">Despre sală</a>
       </div>
     </div>
 
     <!-- Col dreapta: hartă -->
     <div class="panel pad reveal" style="position:sticky;top:88px;">
-      <div class="ratio r-1x1" style="padding-top:64%;border-radius:14px;overflow:hidden;">
-        <iframe
-          title="Harta CrossGym"
-          style="border:0;position:absolute;inset:0;width:100%;height:100%;"
-          loading="lazy"
-          allowfullscreen
-          referrerpolicy="no-referrer-when-downgrade"
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2825.2178128831893!2d25.451175499999994!3d44.918905900000006!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40b2f531d2c74c73%3A0xb26126e0fd716922!2sCROSS%20GYM!5e0!3m2!1sro!2sro!4v1757534154827!5m2!1sro!2sro">
-        </iframe>
+      <!-- Harta Google se incarca DOAR dupa consimtamant.
+           Motiv: un iframe Google Maps trimite adresa IP a vizitatorului catre
+           Google si seteaza cookie-uri inca de la incarcarea paginii — adica
+           inainte de orice acord. Pana la accept afisam un substitut, iar
+           js/consent.js injecteaza iframe-ul real din data-consimtamant-src. -->
+      <div class="ratio r-1x1" style="padding-top:64%;border-radius:14px;overflow:hidden;"
+           data-consimtamant-src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2825.2178128831893!2d25.451175499999994!3d44.918905900000006!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40b2f531d2c74c73%3A0xb26126e0fd716922!2sCROSS%20GYM!5e0!3m2!1sro!2sro!4v1757534154827!5m2!1sro!2sro"
+           data-titlu="Harta CrossGym Târgoviște">
+        <div class="extern-blocat">
+          <div class="extern-blocat__text">
+            <strong>Harta Google</strong>
+            Încărcarea hărții trimite datele tale (inclusiv adresa IP) către Google.
+            O afișăm doar cu acordul tău.
+          </div>
+          <button type="button" class="btn" data-incarca-extern>Încarcă harta</button>
+          <a class="btn outline" target="_blank" rel="noopener"
+             href="https://www.google.com/maps/place/CROSS+GYM/@44.9189097,25.4486006,17z/data=!3m1!4b1!4m6!3m5!1s0x40b2f531d2c74c73:0xb26126e0fd716922!8m2!3d44.9189059!4d25.4511755!16s%2Fg%2F11gr21f6f8">
+            Deschide în Google Maps
+          </a>
+        </div>
       </div>
 
       <div class="map-cta">
@@ -263,7 +477,7 @@
     <div class="footer-main">
       <div class="f-col f-brand">
         <div class="f-brand-head">
-          <img class="brand-logo brand-logo--footer" src="assets/icons/logo.png" alt="CrossGym Târgoviște">
+          <img class="brand-logo brand-logo--footer" src="assets/icons/logo.png" alt="CrossGym Târgoviște" width="170" height="170" decoding="async" loading="lazy">
           <strong>CrossGym Târgoviște</strong>
         </div>
         <p class="muted">
@@ -274,12 +488,13 @@
       <nav class="f-col f-links" aria-label="Link-uri rapide">
         <h4>Link-uri rapide</h4>
         <ul class="f-list">
-          <li><a href="index.html">Acasă</a></li>
-          <li><a href="about.html">Despre noi</a></li>
-          <li><a href="coaches.html">Antrenori</a></li>
-          <li><a href="gallery.html">Galerie</a></li>
-          <li><a href="champions.html">Campionii Noștri</a></li>
-          <li><a href="contact.html" aria-current="page">Contact</a></li>
+          <li><a href="/">Acasă</a></li>
+          <li><a href="/about">Despre noi</a></li>
+          <li><a href="/coaches">Antrenori</a></li>
+          <li><a href="/pricing">Abonamente</a></li>
+          <li><a href="/gallery">Galerie</a></li>
+          <li><a href="/champions">Campionii Noștri</a></li>
+          <li><a href="/contact" aria-current="page">Contact</a></li>
         </ul>
       </nav>
 
@@ -341,13 +556,15 @@
       </div>
     </div>
 
-    <div class="ft-legal">© 2025 CrossGym Târgoviște. Toate drepturile rezervate.</div>
+    <div class="ft-legal">© 2025 CrossGym Târgoviște. Toate drepturile rezervate.
+      <span class="ft-legal__linkuri"><a href="/privacy">Politica de confidențialitate</a><span aria-hidden="true"> · </span><a href="#" class="setari-cookies" onclick="event.preventDefault();window.deschideSetariCookies&&window.deschideSetariCookies();">Setări cookies</a></span>
+    </div>
   </div>
 </footer>
 
 <!-- Lightbox global (dacă îl folosești în proiect) -->
 <div class="lightbox" id="lb" role="dialog" aria-modal="true" aria-label="Imagine mărită">
-  <img alt="" src="">
+  <img alt="">
 </div>
 
 </body>

@@ -1,3 +1,20 @@
+# ##############################################################################
+# !!! ATENTIE — FISIER INACTIV !!!
+#
+# Formatul acesta este specific NETLIFY. Site-ul ruleaza pe GITHUB PAGES,
+# care ignora complet fisierul _headers.
+#
+# Verificat live pe https://www.crossgymtargoviste.com/ — raspunsul NU contine
+# X-Content-Type-Options, Referrer-Policy, X-Frame-Options sau Permissions-Policy.
+# GitHub Pages trimite doar Strict-Transport-Security si Cache-Control: max-age=600.
+#
+# Headerele de securitate nu pot fi setate pe GitHub Pages. Daca le vrei cu
+# adevarat, singura solutie este un proxy in fata (ex: Cloudflare) sau mutarea
+# pe alt hosting.
+#
+# Pastrat doar ca referinta pentru o eventuala migrare pe Netlify.
+# ##############################################################################
+
 /*
   Referrer-Policy: strict-origin-when-cross-origin
   X-Content-Type-Options: nosniff

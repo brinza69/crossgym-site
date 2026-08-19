@@ -1,17 +1,36 @@
-# CrossGym Targoviste — robots.txt
-# Permite indexarea întregului site și declară sitemapul canonic
+# ═══════════════════════════════════════════════════════════════
+# CrossGym Târgoviște — robots.txt
+# Host canonic: https://www.crossgymtargoviste.com  (apex-ul face 301 spre www)
+# ═══════════════════════════════════════════════════════════════
 
 User-agent: *
 Allow: /
-# (optional) Evită indexarea paginilor de sistem dacă apar:
+
+# Fișiere de sistem / temporare (dacă apar vreodată)
 Disallow: /admin/
 Disallow: /tmp/
 
-# Asigură accesul crawlerelor de Ads (Google Ads / AdsBot)
+# Nu indexa URL-urile cu parametri de tracking (evită conținut duplicat)
+Disallow: /*?utm_
+Disallow: /*?fbclid=
+Disallow: /*?gclid=
+
+# Crawlerele Google trebuie să poată încărca CSS/JS/imagini pentru randare
+User-agent: Googlebot
+Allow: /
+Allow: /css/
+Allow: /js/
+Allow: /assets/
+
+User-agent: Googlebot-Image
+Allow: /assets/
+
+# Crawlerele Google Ads
 User-agent: AdsBot-Google
 Allow: /
+
 User-agent: AdsBot-Google-Mobile
 Allow: /
 
-# Sitemap canonic (numai URL-uri fara .html)
-Sitemap: https://crossgymtargoviste.com/sitemap.xml
+# Sitemap canonic (numai URL-uri pe www, fără .html)
+Sitemap: https://www.crossgymtargoviste.com/sitemap.xml
